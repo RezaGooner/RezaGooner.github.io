@@ -9,10 +9,31 @@ html, body, * {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reza Asadi</title>
 
-<!-- فونت فارسی Vazirmatn از CDN -->
-<link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.003/Vazirmatn.min.css" rel="stylesheet">
 
 <style>
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn-Regular.woff2') format('woff2'),
+         url('fonts/Vazirmatn-Regular.woff') format('woff'),
+         url('fonts/Vazirmatn-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn-Bold.woff2') format('woff2'),
+         url('fonts/Vazirmatn-Bold.woff') format('woff'),
+         url('fonts/Vazirmatn-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* اعمال فونت به کل سایت */
+html, body, * {
+    font-family: 'Vazirmatn', Tahoma, sans-serif !important;
+}
+
 body {
     font-family: 'Vazirmatn', Tahoma, sans-serif;
     margin: 0;
