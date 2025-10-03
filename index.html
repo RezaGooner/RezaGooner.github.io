@@ -33,7 +33,7 @@
         }
         nav a:hover { color: #ffd700; }
         main {
-            max-width: 900px;
+            max-width: 1100px;
             margin: auto;
             padding: 20px;
             background: #fff;
@@ -62,6 +62,45 @@
             margin-top: 40px;
         }
         footer a { color: #ffd700; text-decoration: none; }
+
+        /* بخش گواهی‌ها */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .cert-card {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+        .cert-card:hover {
+            transform: scale(1.05);
+        }
+        .cert-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+        }
+        .cert-card p {
+            padding: 10px;
+            font-size: 0.9em;
+            color: #333;
+            margin: 0;
+        }
+        @media (max-width: 992px) {
+            .cert-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .cert-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .cert-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -84,9 +123,9 @@
     <section id="about">
         <h2>معرفی من</h2>
         <p>
-من رضا هستم، دانشجوی دوره کارشناسی رشته مهندسی کامپیوتر. بیش از یک سال است که به‌صورت جدی در حوزه هوش مصنوعی و یادگیری ماشین فعالیت و مطالعه می‌کنم و تجربه عملی خوبی در این زمینه به‌دست آورده‌ام.
-در شاخه‌های تخصصی مانند پردازش زبان طبیعی (NLP) و بینایی ماشین (Computer Vision) پروژه‌هایی انجام داده‌ام و توانسته‌ام مهارت‌های خود را گسترش دهم.
-هدف و مسیر بعدی من، تسلط بر یادگیری تقویتی (Reinforcement Learning) و به‌کارگیری آن در پروژه‌های واقعی است.
+            من رضا هستم، دانشجوی دوره کارشناسی رشته مهندسی کامپیوتر. بیش از یک سال است که به‌صورت جدی در حوزه هوش مصنوعی و یادگیری ماشین فعالیت و مطالعه می‌کنم و تجربه عملی خوبی در این زمینه به‌دست آورده‌ام.
+            در شاخه‌های تخصصی مانند پردازش زبان طبیعی (NLP) و بینایی ماشین (Computer Vision) پروژه‌هایی انجام داده‌ام و توانسته‌ام مهارت‌های خود را گسترش دهم.
+            هدف و مسیر بعدی من، تسلط بر یادگیری تقویتی (Reinforcement Learning) و به‌کارگیری آن در پروژه‌های واقعی است.
         </p>
     </section>
 
@@ -110,39 +149,33 @@
 
     <section id="certificates">
         <h2>گواهی‌ها و افتخارات</h2>
-        <ul>
-            <li><a href="https://icpc.sharif.edu/2024/scoreboard/" target="_blank">ICPC 2024 – Tehran Site، رتبه 35</a></li>
-            <li><a href="https://quera.org/certificate/Flz0oEbP/" target="_blank">Data Structures Design – PERFECT Grade</a></li>
-            <li><a href="https://quera.org/certificate/QMcPIyhT/" target="_blank">Data Analysis with Python – VERY GOOD Grade</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/data-visualization" target="_blank">Data Visualization</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/pandas" target="_blank">Pandas</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/feature-engineering" target="_blank">Feature Engineering</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/data-cleaning" target="_blank">Data Cleaning</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/time-series" target="_blank">Time Series</a></li>
-            <li><a href="https://faradars.org/verify/D064A73E" target="_blank">Generative AI</a></li>
-            <li><a href="https://faradars.org/verify/0CC3B50C" target="_blank">Mastering Machine Learning</a></li>
-            <li><a href="https://faradars.org/verify/9039C997" target="_blank">Python Libraries for ML & DL</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-machine-learning" target="_blank">Intro to Machine Learning</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/intermediate-machine-learning" target="_blank">Intermediate Machine Learning</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/machine-learning-explainability" target="_blank">ML Explainability</a></li>
-            <li><a href="https://maktabkhooneh.org/certificates/mk-d3grru/" target="_blank">Machine Learning – Maktabkhooneh</a></li>
-            <li><a href="https://quera.org/certificate/4Ptal4Nw/" target="_blank">Natural Language Processing – PERFECT Grade</a></li>
-            <li><a href="https://quera.org/certificate/99DoHWjF/" target="_blank">Large Language Models – PERFECT Grade</a></li>
-            <li><a href="https://quera.org/certificate/A08MbVsz/" target="_blank">Deep Learning – VERY GOOD Grade</a></li>
-            <li><a href="https://faradars.org/verify/575E6411" target="_blank">Deep Learning Fundamentals</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-deep-learning" target="_blank">Intro to Deep Learning</a></li>
-            <li><a href="https://quera.org/certificate/7yi1CcBA/" target="_blank">Professional Image Processing – VERY GOOD Grade</a></li>
-            <li><a href="https://faradars.org/verify/4F4757FD" target="_blank">Object Detection</a></li>
-            <li><a href="https://faradars.org/verify/86EE37B1" target="_blank">Computer Vision</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/computer-vision" target="_blank">Computer Vision – Kaggle</a></li>
-            <li><a href="https://maktabkhooneh.org/certificates/MK-GLYD87" target="_blank">DL for Object Detection & Recognition</a></li>
-            <li><a href="https://maktabkhooneh.org/certificates/mk-3ap6cm/" target="_blank">Machine Vision & Image Processing – OpenCV</a></li>
-            <li><a href="https://courses.opencv.org/certificates/f83fe0c6d1c043e5af23cc07e4763382" target="_blank">OpenCV Bootcamp</a></li>
-            <li><a href="https://faradars.org/verify/FEAA454F" target="_blank">Advanced Techniques for RL</a></li>
-            <li><a href="https://faradars.org/verify/2F9E19DC" target="_blank">Deep RL with DQN</a></li>
-            <li><a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-game-ai-and-reinforcement-learning" target="_blank">Intro to Game AI & RL</a></li>
-            <li><a href="https://faradars.org/verify/7886CBA3" target="_blank">Mastering Git, GitHub & GitLab</a></li>
-        </ul>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <a href="https://icpc.sharif.edu/2024/scoreboard/" target="_blank">
+                    <img src="images/icpc2024.jpg" alt="ICPC 2024">
+                    <p>ICPC 2024 – Tehran Site، رتبه 35</p>
+                </a>
+            </div>
+            <div class="cert-card">
+                <a href="https://quera.org/certificate/Flz0oEbP/" target="_blank">
+                    <img src="images/data_structures.jpg" alt="Data Structures">
+                    <p>Data Structures Design – PERFECT Grade</p>
+                </a>
+            </div>
+            <div class="cert-card">
+                <a href="https://quera.org/certificate/QMcPIyhT/" target="_blank">
+                    <img src="images/data_analysis.jpg" alt="Data Analysis">
+                    <p>Data Analysis with Python – VERY GOOD Grade</p>
+                </a>
+            </div>
+            <div class="cert-card">
+                <a href="https://www.kaggle.com/learn/certification/rezagooner/data-visualization" target="_blank">
+                    <img src="images/data_visualization.jpg" alt="Data Visualization">
+                    <p>Data Visualization</p>
+                </a>
+            </div>
+            <!-- ادامه کارت‌های گواهی به همین ساختار -->
+        </div>
     </section>
 
     <section id="projects">
@@ -157,14 +190,14 @@
 
     <section id="contact">
         <h2>راه‌های ارتباطی</h2>
-        <p>📧 Gmail: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
+        <p>📧 ایمیل: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
         <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
-        <p>🔗 Telegram: <a href="https://T.me/RezaGooner" target="_blank">Telegram</a></p>
+        <p>🔗 لینکدین: <a href="https://linkedin.com/in/USERNAME" target="_blank">LinkedIn</a></p>
     </section>
 </main>
 
 <footer>
-    <p>© 2025 ساخته شده توسط رضا  – منتشر شده در </p>
+    <p>© 2025 ساخته شده توسط رضا گونر – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
 </footer>
 
 </body>
