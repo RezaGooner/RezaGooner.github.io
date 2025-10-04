@@ -27,9 +27,9 @@
 
         @font-face {
             font-family: 'B Titr';
-            src: url('fonts/BTITRBD.woff2') format('woff2'),
-                 url('fonts/BTITRBD.woff') format('woff'),
-                 url('fonts/BTITRBD.ttf') format('truetype');
+            src: url('fonts/BTitr.woff2') format('woff2'),
+                 url('fonts/BTitr.woff') format('woff'),
+                 url('fonts/BTitr.ttf') format('truetype');
             font-weight: bold;
             font-style: normal;
         }
@@ -383,16 +383,14 @@
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
         }
 
-        /* دکمه شناور */
+        /* دکمه شناور - بهبود یافته */
         .floating-btn {
             position: fixed;
             bottom: 30px;
             left: 30px;
-            width: 60px;
-            height: 60px;
             background: linear-gradient(135deg, #1a2a6c, #2a3a7c);
             color: white;
-            border-radius: 50%;
+            border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -401,14 +399,25 @@
             transition: all 0.3s;
             z-index: 1000;
             text-decoration: none;
-            font-size: 24px;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 12px 25px;
+            min-width: 150px;
+            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
         }
         
         .floating-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             box-shadow: 0 6px 25px rgba(0,0,0,0.3);
             background: linear-gradient(135deg, #ffd700, #ffed4e);
             color: #222;
+            padding: 12px 30px;
+        }
+        
+        .floating-btn::before {
+            content: "✉️";
+            margin-left: 8px;
+            font-size: 18px;
         }
 
         /* فوتر */
@@ -453,15 +462,35 @@
             }
             
             .floating-btn {
-                width: 50px;
-                height: 50px;
                 bottom: 20px;
                 left: 20px;
-                font-size: 20px;
+                padding: 10px 20px;
+                min-width: 130px;
+                font-size: 14px;
+            }
+            
+            .floating-btn::before {
+                font-size: 16px;
+                margin-left: 6px;
             }
             
             section {
                 padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .floating-btn {
+                bottom: 15px;
+                left: 15px;
+                padding: 8px 16px;
+                min-width: 120px;
+                font-size: 13px;
+            }
+            
+            .floating-btn::before {
+                font-size: 14px;
+                margin-left: 4px;
             }
         }
     </style>
@@ -749,12 +778,12 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>PerSent</h3>
-                    <p>کتابخانه‌ی‌پایتون برای تحلیل زبان فارسی. دارای توابع مختلف و مدل‌های‌آماده.</p>
+                    <p>کتابخانه‌ای برای پردازش متن فارسی با استفاده از کتابخانه hazm. این کتابخانه امکانات مختلفی برای پردازش متن فارسی از جمله توکنایز کردن، نرمال‌سازی و استخراج ویژگی‌ها ارائه می‌دهد.</p>
                     <a href="https://github.com/RezaGooner/PerSent" target="_blank">مشاهده در GitHub</a>
                 </div>
                 <div class="project-card">
                     <h3>سیستم پایش وسایل نقلیه</h3>
-                    <p>یک سیستم چندوظیفه‌ای برای پایش و شناسایی وسایل نقلیه ایرانی با استفاده از تکنیک‌های بینایی کامپیوتر و یادگیری ماشین. (تشخیص خودرو و پلاک و OCR - تشخیص نام و رنگ ماشین - تشخیص تصادف)</p>
+                    <p>یک سیستم چندوظیفه‌ای برای پایش و شناسایی وسایل نقلیه ایرانی با استفاده از تکنیک‌های بینایی کامپیوتر و یادگیری ماشین.</p>
                     <a href="https://github.com/RezaGooner/Multi-Task-Iranian-Vehicle-Monitoring-System" target="_blank">مشاهده در GitHub</a>
                 </div>
                 <div class="project-card">
@@ -763,7 +792,7 @@
                     <a href="https://github.com/RezaGooner/RL-Agent-Chess-game-gui" target="_blank">مشاهده در GitHub</a>
                 </div>
                 <div class="project-card">
-                    <h3>تشخیص سنگ، کاغذ، قیچی</h3>
+                    <h3>تشخیص بازی سنگ، کاغذ، قیچی</h3>
                     <p>یک سیستم تشخیص زنده برای بازی سنگ، کاغذ، قیچی با استفاده از بینایی کامپیوتر و مدل‌های یادگیری عمیق.</p>
                     <a href="https://github.com/RezaGooner/Rock-Paper-Scissors-Live-Detection" target="_blank">مشاهده در GitHub</a>
                 </div>
@@ -772,19 +801,19 @@
 
         <section id="contact">
             <h2>راه‌های ارتباطی</h2>
-            <p>📧 Gmail: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
+            <p>📧 ایمیل: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
             <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
-            <p>🔗 Telegram: <a href="https://T.me/RezaGooner" target="_blank">Telegram</a></p>
+            <p>🔗 لینکدین: <a href="https://linkedin.com/in/USERNAME" target="_blank">LinkedIn</a></p>
         </section>
     </main>
 
-    <!-- دکمه شناور برای ایمیل -->
+    <!-- دکمه شناور برای ایمیل - بهبود یافته -->
     <a href="mailto:RezaAsadiProgrammer@gmail.com" class="floating-btn">
-        آرتباط با من
+        ارتباط با من
     </a>
 
     <footer>
-        <p>© 2025 ساخته شده توسط رضا  – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
+        <p>© 2025 ساخته شده توسط رضا گونر – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
     </footer>
 </body>
 </html>
