@@ -194,12 +194,26 @@ footer a:hover {
 </header>
 
 <nav>
-    <a href="#about">معرفی</a>
-    <a href="#education">تحصیلات</a>
-    <a href="#activities">فعالیت‌ها</a>
-    <a href="#certificates">گواهی‌ها</a>
-    <a href="#projects">نمونه‌کارها</a>
-    <a href="#contact">ارتباط</a>
+    <ul>
+        <li><a href="#about">معرفی</a></li>
+        <li><a href="#education">تحصیلات</a></li>
+        <li><a href="#activities">فعالیت‌ها</a></li>
+        <li>
+            <a href="#certificates">گواهی‌ها ▾</a>
+            <ul>
+                <li><a href="#algorithms">Algorithms</a></li>
+                <li><a href="#datascience">Data Science</a></li>
+                <li><a href="#aiml">AI & ML</a></li>
+                <li><a href="#nlp">NLP & LLM</a></li>
+                <li><a href="#deeplearning">Deep Learning</a></li>
+                <li><a href="#cv">Computer Vision</a></li>
+                <li><a href="#rl">Reinforcement Learning</a></li>
+                <li><a href="#git">Git</a></li>
+            </ul>
+        </li>
+        <li><a href="#projects">نمونه‌کارها</a></li>
+        <li><a href="#contact">ارتباط</a></li>
+    </ul>
 </nav>
 
 <main>
@@ -512,14 +526,22 @@ footer a:hover {
             
     </section>
 
-    <section id="projects">
+ <section id="projects">
         <h2>نمونه‌کارها در GitHub</h2>
-        <ul>
-            <li><a href="https://github.com/RezaGooner/PerSent" target="_blank">PerSent - پردازش متن فارسی با hazm</a></li>
-            <li><a href="https://github.com/RezaGooner/Multi-Task-Iranian-Vehicle-Monitoring-System" target="_blank">سیستم چندوظیفه‌ای پایش وسایل نقلیه ایرانی</a></li>
-            <li><a href="https://github.com/RezaGooner/RL-Agent-Chess-game-gui" target="_blank">عامل یادگیری تقویتی برای بازی شطرنج (GUI)</a></li>
-            <li><a href="https://github.com/RezaGooner/Rock-Paper-Scissors-Live-Detection" target="_blank">تشخیص زنده بازی سنگ، کاغذ، قیچی</a></li>
-        </ul>
+        <div class="projects-grid">
+            <div class="project-card">
+                <a href="https://github.com/RezaGooner/PerSent" target="_blank">PerSent - پردازش متن فارسی با hazm</a>
+            </div>
+            <div class="project-card">
+                <a href="https://github.com/RezaGooner/Multi-Task-Iranian-Vehicle-Monitoring-System" target="_blank">سیستم پایش وسایل نقلیه ایرانی</a>
+            </div>
+            <div class="project-card">
+                <a href="https://github.com/RezaGooner/RL-Agent-Chess-game-gui" target="_blank">عامل RL برای بازی شطرنج (GUI)</a>
+            </div>
+            <div class="project-card">
+                <a href="https://github.com/RezaGooner/Rock-Paper-Scissors-Live-Detection" target="_blank">تشخیص زنده سنگ-کاغذ-قیچی</a>
+            </div>
+        </div>
     </section>
 
     <section id="contact">
