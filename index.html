@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reza Asadi</title>
+
     <style>
         @font-face {
             font-family: 'IRANSansWeb(FaNum)';
@@ -32,67 +34,9 @@
             font-style: normal;
         }
 
-        /* متغیرهای زبان */
-        :root {
-            --text-color: #333;
-            --bg-color: #fff;
-            --primary-color: #1a2a6c;
-            --secondary-color: #ffd700;
-            --accent-color: #2c3e50;
-        }
-
-        /* استایل کلی */
+        /* اعمال فونت به کل سایت */
         html, body, * {
             font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
-        }
-
-        [lang="en"], [lang="ru"] {
-            font-family: Arial, sans-serif !important;
-        }
-
-        [lang="en"] body, [lang="ru"] body {
-            direction: ltr;
-            text-align: left;
-        }
-
-        [lang="en"] header, [lang="ru"] header {
-            text-align: center;
-        }
-
-        [lang="en"] nav, [lang="ru"] nav {
-            text-align: center;
-        }
-
-        [lang="en"] .dropdown-content, [lang="ru"] .dropdown-content {
-            left: 0;
-            right: auto;
-        }
-
-        [lang="en"] .dropdown-content a, [lang="ru"] .dropdown-content a {
-            text-align: left;
-        }
-
-        [lang="en"] ul li::before, [lang="ru"] ul li::before {
-            right: auto;
-            left: 20px;
-            content: '▶';
-        }
-
-        [lang="en"] h2::after, [lang="ru"] h2::after {
-            right: auto;
-            left: 0;
-            background: linear-gradient(to left, #ffd700, transparent);
-        }
-
-        [lang="en"] .floating-btn, [lang="ru"] .floating-btn {
-            left: auto;
-            right: 30px;
-        }
-
-        [lang="en"] .project-card::before, [lang="ru"] .project-card::before {
-            right: auto;
-            left: 0;
-            background: linear-gradient(to left, #1a2a6c, #ffd700);
         }
 
         /* اعمال فونت B Titr برای تیترها */
@@ -106,26 +50,13 @@
             font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
         }
 
-        [lang="en"] h1, [lang="en"] h2, [lang="en"] h3, 
-        [lang="en"] h4, [lang="en"] h5, [lang="en"] h6,
-        [lang="en"] header h1, [lang="en"] header p,
-        [lang="en"] nav a, [lang="en"] .dropdown-content a,
-        [lang="en"] .project-card h3, [lang="en"] .cert-category h3,
-        [lang="ru"] h1, [lang="ru"] h2, [lang="ru"] h3, 
-        [lang="ru"] h4, [lang="ru"] h5, [lang="ru"] h6,
-        [lang="ru"] header h1, [lang="ru"] header p,
-        [lang="ru"] nav a, [lang="ru"] .dropdown-content a,
-        [lang="ru"] .project-card h3, [lang="ru"] .cert-category h3 {
-            font-family: Arial, sans-serif !important;
-        }
-
+        /* استایل کلی */
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ee 100%);
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            color: var(--text-color);
-            transition: all 0.3s ease;
+            color: #333;
         }
 
         /* دکمه تغییر زبان */
@@ -133,34 +64,34 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 1001;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            padding: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
         }
-
+        
         .lang-btn {
-            background: none;
-            border: none;
-            padding: 8px 16px;
-            margin: 0 2px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .lang-btn:hover {
-            background: #ffd700;
-            transform: translateY(-2px);
-        }
-
-        .lang-btn.active {
-            background: #1a2a6c;
+            background: linear-gradient(135deg, #1a2a6c, #2a3a7c);
             color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .lang-btn:hover {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #222;
+            transform: scale(1.05);
+        }
+        
+        .lang-btn.active {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #222;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
         }
 
         /* هدر */
@@ -641,6 +572,16 @@
 
         /* ریسپانسیو */
         @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                left: 10px;
+            }
+            
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            
             header h1 {
                 font-size: 2.2em;
             }
@@ -682,17 +623,6 @@
                 margin-left: 6px;
             }
             
-            .language-switcher {
-                top: 10px;
-                left: 10px;
-                padding: 6px;
-            }
-            
-            .lang-btn {
-                padding: 6px 12px;
-                font-size: 12px;
-            }
-            
             section {
                 padding: 20px;
             }
@@ -711,546 +641,705 @@
                 font-size: 14px;
                 margin-left: 4px;
             }
-            
-            .language-switcher {
-                top: 5px;
-                left: 5px;
-            }
-        }
-
-        /* نمایش اولیه - فقط فارسی نمایش داده شود */
-        [lang]:not([lang="fa"]) {
-            display: none;
-        }
-
-        [lang="fa"] {
-            display: block;
         }
     </style>
 </head>
+
 <body>
-    <!-- دکمه تغییر زبان -->
+    <!-- دکمه‌های تغییر زبان -->
     <div class="language-switcher">
         <button class="lang-btn active" data-lang="fa">فارسی</button>
         <button class="lang-btn" data-lang="en">English</button>
         <button class="lang-btn" data-lang="ru">Русский</button>
     </div>
 
-    <!-- محتوای فارسی -->
-    <div lang="fa">
-        <header>
-            <h1>رضا اسدی</h1>
-            <p>دانشجوی مهندسی کامپیوتر | علاقه‌مند به هوش مصنوعی و یادگیری ماشین</p>
-        </header>
+    <header>
+        <h1 data-translate="name">Reza Asadi</h1>
+        <p data-translate="title">دانشجوی مهندسی کامپیوتر | علاقه‌مند به هوش مصنوعی و یادگیری ماشین</p>
+    </header>
 
-        <nav>
-            <a href="#about">معرفی</a>
-            <a href="#education">تحصیلات</a>
-            <a href="#activities">فعالیت‌ها</a>
-            <div class="dropdown">
-                <a href="#certificates">گواهی‌ها</a>
-                <div class="dropdown-content">
-                    <a href="#algorithms-certificates">الگوریتم‌ها</a>
-                    <a href="#data-science-certificates">علم داده</a>
-                    <a href="#ai-ml-certificates">هوش مصنوعی و یادگیری ماشین</a>
-                    <a href="#nlp-llm-certificates">NLP و LLM</a>
-                    <a href="#deep-learning-certificates">یادگیری عمیق</a>
-                    <a href="#computer-vision-certificates">بینایی کامپیوتر</a>
-                    <a href="#reinforcement-learning-certificates">یادگیری تقویتی</a>
-                    <a href="#git-certificates">Git</a>
+    <nav>
+        <a href="#about" data-translate="nav_about">معرفی</a>
+        <a href="#education" data-translate="nav_education">تحصیلات</a>
+        <a href="#activities" data-translate="nav_activities">فعالیت‌ها</a>
+        <div class="dropdown">
+            <a href="#certificates" data-translate="nav_certificates">گواهی‌ها</a>
+            <div class="dropdown-content">
+                <a href="#algorithms-certificates" data-translate="nav_algorithms">Algorithms</a>
+                <a href="#data-science-certificates" data-translate="nav_data_science">Data Science</a>
+                <a href="#ai-ml-certificates" data-translate="nav_ai_ml">AI & Machine Learning</a>
+                <a href="#nlp-llm-certificates" data-translate="nav_nlp_llm">NLP & LLM</a>
+                <a href="#deep-learning-certificates" data-translate="nav_deep_learning">Deep Learning</a>
+                <a href="#computer-vision-certificates" data-translate="nav_computer_vision">Computer Vision</a>
+                <a href="#reinforcement-learning-certificates" data-translate="nav_reinforcement_learning">Reinforcement Learning</a>
+                <a href="#git-certificates" data-translate="nav_git">Git</a>
+            </div>
+        </div>
+        <a href="#projects" data-translate="nav_projects">نمونه‌کارها</a>
+        <a href="#goals" data-translate="nav_goals">اهداف پیش رو</a>
+        <a href="#contact" data-translate="nav_contact">ارتباط</a>
+    </nav>
+
+    <main>
+        <section id="about">
+            <h2 data-translate="about_title">معرفی من</h2>
+            <p data-translate="about_text">
+                من رضا هستم، دانشجوی دوره کارشناسی رشته مهندسی کامپیوتر. بیش از یک سال است که به‌صورت جدی در حوزه هوش مصنوعی و یادگیری ماشین فعالیت و مطالعه می‌کنم و تجربه عملی خوبی در این زمینه به‌دست آورده‌ام.
+                در شاخه‌های تخصصی مانند پردازش زبان طبیعی (NLP) و بینایی ماشین (Computer Vision) پروژه‌هایی انجام داده‌ام و توانسته‌ام مهارت‌های خود را گسترش دهم.
+                هدف و مسیر بعدی من، تسلط بر یادگیری تقویتی (Reinforcement Learning) و به‌کارگیری آن در پروژه‌های واقعی است.
+            </p>
+        </section>
+
+        <section id="education">
+            <h2 data-translate="education_title">تحصیلات آکادمیک</h2>
+            <ul>
+                <li data-translate="education_item1">دبیرستان خوارزمی تهران - منطقه 8 - رشته ریاضی و فیزیک</li>
+                <li data-translate="education_item2">دانشگاه دولتی یاسوج - رشته مهندسی کامپیوتر</li>
+            </ul>
+        </section>
+
+        <section id="activities">
+            <h2 data-translate="activities_title">سوابق و فعالیت‌ها</h2>
+            <ul>
+                <li data-translate="activity_item1">عضو انجمن کامپیوتر ایران</li>
+                <li data-translate="activity_item2">عضو انجمن ملی هوش مصنوعی</li>
+                <li data-translate="activity_item3">توسعه‌دهنده کتابخانه PerSent</li>
+                <li data-translate="activity_item4">سابقه تدریس پایتون و یادگیری ماشین</li>
+            </ul>
+        </section>
+
+        <section id="certificates">
+            <h2 data-translate="certificates_title">گواهی‌ها و افتخارات</h2>
+
+            <!-- Algorithms -->
+            <div class="cert-category" id="algorithms-certificates">
+                <h3 data-translate="nav_algorithms">Algorithms</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://icpc.sharif.edu/2024/scoreboard/" target="_blank">
+                            <img src="images/icpc_2024_result.jpg" alt="ICPC 2024 Result">
+                            <p data-translate="cert_algorithms1">ICPC 2024 – Tehran Site, Rank 35</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/Flz0oEbP/" target="_blank">
+                            <img src="images/data_structures_design.jpg" alt="Data Structures Design">
+                            <p data-translate="cert_algorithms2">Data Structures Design – PERFECT Grade</p>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <a href="#projects">نمونه‌کارها</a>
-            <a href="#goals">اهداف پیش رو</a>
-            <a href="#contact">ارتباط</a>
-        </nav>
 
-        <main>
-            <section id="about">
-                <h2>معرفی من</h2>
-                <p>
-                    من رضا هستم، دانشجوی دوره کارشناسی رشته مهندسی کامپیوتر. بیش از یک سال است که به‌صورت جدی در حوزه هوش مصنوعی و یادگیری ماشین فعالیت و مطالعه می‌کنم و تجربه عملی خوبی در این زمینه به‌دست آورده‌ام.
-                    در شاخه‌های تخصصی مانند پردازش زبان طبیعی (NLP) و بینایی ماشین (Computer Vision) پروژه‌هایی انجام داده‌ام و توانسته‌ام مهارت‌های خود را گسترش دهم.
-                    هدف و مسیر بعدی من، تسلط بر یادگیری تقویتی (Reinforcement Learning) و به‌کارگیری آن در پروژه‌های واقعی است.
-                </p>
-            </section>
-
-            <section id="education">
-                <h2>تحصیلات آکادمیک</h2>
-                <ul>
-                    <li>دبیرستان خوارزمی تهران - منطقه 8 - رشته ریاضی و فیزیک</li>
-                    <li>دانشگاه دولتی یاسوج - رشته مهندسی کامپیوتر</li>
-                </ul>
-            </section>
-
-            <section id="activities">
-                <h2>سوابق و فعالیت‌ها</h2>
-                <ul>
-                    <li>عضو انجمن کامپیوتر ایران</li>
-                    <li>عضو انجمن ملی هوش مصنوعی</li>
-                    <li>توسعه‌دهنده کتابخانه PerSent</li>
-                    <li>سابقه تدریس پایتون و یادگیری ماشین</li>
-                </ul>
-            </section>
-
-            <section id="certificates">
-                <h2>گواهی‌ها و مدارک</h2>
-                
-                <div class="cert-category" id="algorithms-certificates">
-                    <h3>الگوریتم‌ها</h3>
-                    <div class="cert-scroll">
-                        <div class="cert-card">
-                            <img src="images/algorithms-cert.jpg" alt="گواهی الگوریتم">
-                            <p>گواهی مسابقات برنامه‌نویسی</p>
-                        </div>
-                        <div class="cert-card">
-                            <img src="images/data-structures.jpg" alt="گواهی ساختمان داده">
-                            <p>ساختمان داده و الگوریتم‌ها</p>
-                        </div>
+            <!-- Data Science -->
+            <div class="cert-category" id="data-science-certificates">
+                <h3 data-translate="nav_data_science">Data Science</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/QMcPIyhT/" target="_blank">
+                            <img src="images/data_analysis_python.jpg" alt="Data Analysis with Python">
+                            <p data-translate="cert_data_science1">Data Analysis with Python – VERY GOOD Grade</p>
+                        </a>
                     </div>
-                </div>
-
-                <div class="cert-category" id="ai-ml-certificates">
-                    <h3>هوش مصنوعی و یادگیری ماشین</h3>
-                    <div class="cert-scroll">
-                        <div class="cert-card">
-                            <img src="images/ml-cert.jpg" alt="گواهی یادگیری ماشین">
-                            <p>یادگیری ماشین پیشرفته</p>
-                        </div>
-                        <div class="cert-card">
-                            <img src="images/ai-cert.jpg" alt="گواهی هوش مصنوعی">
-                            <p>مبانی هوش مصنوعی</p>
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/data-visualization" target="_blank">
+                            <img src="images/data_visualization.png" alt="Data Visualization">
+                            <p data-translate="cert_data_science2">Data Visualization</p>
+                        </a>
                     </div>
-                </div>
-            </section>
-
-            <section id="projects">
-                <h2>نمونه‌کارها</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>کتابخانه PerSent</h3>
-                        <p>یک کتابخانه پایتون برای تحلیل احساسات متون فارسی با دقت بالا و پشتیبانی از مدل‌های مختلف</p>
-                        <div class="project-links">
-                            <a href="https://github.com/RezaGooner/PerSent" target="_blank">مشاهده کد</a>
-                            <a href="https://pypi.org/project/PerSent" target="_blank">مستندات</a>
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/pandas" target="_blank">
+                            <img src="images/pandas.png" alt="Pandas">
+                            <p data-translate="cert_data_science3">Pandas</p>
+                        </a>
                     </div>
-                    <div class="project-card">
-                        <h3>سیستم تشخیص چهره</h3>
-                        <p>سیستم تشخیص و شناسایی چهره با استفاده از شبکه‌های عصبی کانولوشنی و دقت ۹۸٪</p>
-                        <div class="project-links">
-                            <a href="https://github.com/RezaGooner/FaceRecognition" target="_blank">مشاهده کد</a>
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/feature-engineering" target="_blank">
+                            <img src="images/feature_engineering.png" alt="Feature Engineering">
+                            <p data-translate="cert_data_science4">Feature Engineering</p>
+                        </a>
                     </div>
-                </div>
-            </section>
-
-            <section id="goals">
-                <h2>اهداف پیش رو</h2>
-                <div class="goals-container">
-                    <div class="goal-item">
-                        <div class="goal-header">
-                            <div class="goal-title">تسلط بر یادگیری تقویتی</div>
-                            <div class="goal-percentage">۶۰٪</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: 60%"></div>
-                        </div>
-                        <div class="goal-description">
-                            مطالعه و پیاده‌سازی الگوریتم‌های یادگیری تقویتی مانند Q-Learning، DQN و Policy Gradients
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/data-cleaning" target="_blank">
+                            <img src="images/data_cleaning.png" alt="Data Cleaning">
+                            <p data-translate="cert_data_science5">Data Cleaning</p>
+                        </a>
                     </div>
-                    <div class="goal-item">
-                        <div class="goal-header">
-                            <div class="goal-title">توسعه پروژه‌های عملی</div>
-                            <div class="goal-percentage">۷۵٪</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: 75%"></div>
-                        </div>
-                        <div class="goal-description">
-                            پیاده‌سازی پروژه‌های واقعی در حوزه هوش مصنوعی و ارائه راه‌حل‌های عملی
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/time-series" target="_blank">
+                            <img src="images/time_series.png" alt="Time Series">
+                            <p data-translate="cert_data_science6">Time Series</p>
+                        </a>
                     </div>
-                </div>
-            </section>
-
-            <section id="contact">
-                <h2>راه‌های ارتباطی</h2>
-                <p>📧 ایمیل: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
-                <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
-                <p>📱 تلگرام: <a href="https://t.me/rezagooner" target="_blank">T.me/rezagooner</a></p>
-            </section>
-        </main>
-    </div>
-
-    <!-- محتوای انگلیسی -->
-    <div lang="en">
-        <header>
-            <h1>Reza Asadi</h1>
-            <p>Computer Engineering Student | Passionate about AI and Machine Learning</p>
-        </header>
-
-        <nav>
-            <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#activities">Activities</a>
-            <div class="dropdown">
-                <a href="#certificates">Certificates</a>
-                <div class="dropdown-content">
-                    <a href="#algorithms-certificates">Algorithms</a>
-                    <a href="#data-science-certificates">Data Science</a>
-                    <a href="#ai-ml-certificates">AI & Machine Learning</a>
-                    <a href="#nlp-llm-certificates">NLP & LLM</a>
-                    <a href="#deep-learning-certificates">Deep Learning</a>
-                    <a href="#computer-vision-certificates">Computer Vision</a>
-                    <a href="#reinforcement-learning-certificates">Reinforcement Learning</a>
-                    <a href="#git-certificates">Git</a>
                 </div>
             </div>
-            <a href="#projects">Projects</a>
-            <a href="#goals">Goals</a>
-            <a href="#contact">Contact</a>
-        </nav>
 
-        <main>
-            <section id="about">
-                <h2>About Me</h2>
-                <p>
-                    I am Reza, a Computer Engineering undergraduate student. For over a year, I have been actively studying and working in the field of Artificial Intelligence and Machine Learning, gaining substantial practical experience.
-                    I have completed projects in specialized areas such as Natural Language Processing (NLP) and Computer Vision, which have helped me expand my skills.
-                    My next goal is to master Reinforcement Learning and apply it to real-world projects.
-                </p>
-            </section>
-
-            <section id="education">
-                <h2>Academic Education</h2>
-                <ul>
-                    <li>Khwarizmi High School, Tehran - District 8 - Mathematics and Physics</li>
-                    <li>Yasuj State University - Computer Engineering</li>
-                </ul>
-            </section>
-
-            <section id="activities">
-                <h2>Experience and Activities</h2>
-                <ul>
-                    <li>Member of Iran Computer Society</li>
-                    <li>Member of National AI Association</li>
-                    <li>Developer of PerSent Library</li>
-                    <li>Experience in teaching Python and Machine Learning</li>
-                </ul>
-            </section>
-
-            <section id="certificates">
-                <h2>Certificates</h2>
-                
-                <div class="cert-category" id="algorithms-certificates">
-                    <h3>Algorithms</h3>
-                    <div class="cert-scroll">
-                        <div class="cert-card">
-                            <img src="images/algorithms-cert.jpg" alt="Algorithms Certificate">
-                            <p>Programming Competitions Certificate</p>
-                        </div>
-                        <div class="cert-card">
-                            <img src="images/data-structures.jpg" alt="Data Structures Certificate">
-                            <p>Data Structures and Algorithms</p>
-                        </div>
+            <!-- AI & Machine Learning -->
+            <div class="cert-category" id="ai-ml-certificates">
+                <h3 data-translate="nav_ai_ml">AI & Machine Learning</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/D064A73E" target="_blank">
+                            <img src="images/generative_ai.jpg" alt="Generative AI">
+                            <p data-translate="cert_ai_ml1">Generative AI</p>
+                        </a>
                     </div>
-                </div>
-
-                <div class="cert-category" id="ai-ml-certificates">
-                    <h3>AI & Machine Learning</h3>
-                    <div class="cert-scroll">
-                        <div class="cert-card">
-                            <img src="images/ml-cert.jpg" alt="Machine Learning Certificate">
-                            <p>Advanced Machine Learning</p>
-                        </div>
-                        <div class="cert-card">
-                            <img src="images/ai-cert.jpg" alt="AI Certificate">
-                            <p>Artificial Intelligence Fundamentals</p>
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/0CC3B50C" target="_blank">
+                            <img src="images/mastering_machine_learning.jpg" alt="Mastering Machine Learning">
+                            <p data-translate="cert_ai_ml2">Mastering Machine Learning</p>
+                        </a>
                     </div>
-                </div>
-            </section>
-
-            <section id="projects">
-                <h2>Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>PerSent Library</h3>
-                        <p>A Python library for Persian sentiment analysis with high accuracy and support for various models</p>
-                        <div class="project-links">
-                            <a href="https://github.com/RezaGooner/PerSent" target="_blank">View Code</a>
-                            <a href="https://pypi.org/project/PerSent" target="_blank">Documentation</a>
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/9039C997" target="_blank">
+                            <img src="images/python_libraries_ml_dl.png" alt="Python Libraries for ML & DL">
+                            <p data-translate="cert_ai_ml3">Python Libraries for ML & DL</p>
+                        </a>
                     </div>
-                    <div class="project-card">
-                        <h3>Face Recognition System</h3>
-                        <p>Face detection and recognition system using convolutional neural networks with 98% accuracy</p>
-                        <div class="project-links">
-                            <a href="https://github.com/RezaGooner/FaceRecognition" target="_blank">View Code</a>
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-machine-learning" target="_blank">
+                            <img src="images/intro_machine_learning.png" alt="Intro to Machine Learning">
+                            <p data-translate="cert_ai_ml4">Intro to Machine Learning</p>
+                        </a>
                     </div>
-                </div>
-            </section>
-
-            <section id="goals">
-                <h2>Future Goals</h2>
-                <div class="goals-container">
-                    <div class="goal-item">
-                        <div class="goal-header">
-                            <div class="goal-title">Master Reinforcement Learning</div>
-                            <div class="goal-percentage">60%</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: 60%"></div>
-                        </div>
-                        <div class="goal-description">
-                            Studying and implementing reinforcement learning algorithms like Q-Learning, DQN and Policy Gradients
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/intermediate-machine-learning" target="_blank">
+                            <img src="images/intermediate_machine_learning.png" alt="Intermediate Machine Learning">
+                            <p data-translate="cert_ai_ml5">Intermediate Machine Learning</p>
+                        </a>
                     </div>
-                    <div class="goal-item">
-                        <div class="goal-header">
-                            <div class="goal-title">Develop Practical Projects</div>
-                            <div class="goal-percentage">75%</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: 75%"></div>
-                        </div>
-                        <div class="goal-description">
-                            Implementing real-world projects in AI field and providing practical solutions
-                        </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/machine-learning-explainability" target="_blank">
+                            <img src="images/machine_learning_explainability.png" alt="Machine Learning Explainability">
+                            <p data-translate="cert_ai_ml6">Machine Learning Explainability</p>
+                        </a>
                     </div>
-                </div>
-            </section>
-
-            <section id="contact">
-                <h2>Contact Information</h2>
-                <p>📧 Email: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
-                <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
-                <p>📱 Telegram: <a href="https://t.me/rezagooner" target="_blank">T.me/rezagooner</a></p>
-            </section>
-        </main>
-    </div>
-
-    <!-- محتوای روسی -->
-    <div lang="ru">
-        <header>
-            <h1>Реза Асади</h1>
-            <p>Студент компьютерной инженерии | Увлечен искусственным интеллектом и машинным обучением</p>
-        </header>
-
-        <nav>
-            <a href="#about">Обо мне</a>
-            <a href="#education">Образование</a>
-            <a href="#activities">Деятельность</a>
-            <div class="dropdown">
-                <a href="#certificates">Сертификаты</a>
-                <div class="dropdown-content">
-                    <a href="#algorithms-certificates">Алгоритмы</a>
-                    <a href="#data-science-certificates">Наука о данных</a>
-                    <a href="#ai-ml-certificates">ИИ и машинное обучение</a>
-                    <a href="#nlp-llm-certificates">NLP и LLM</a>
-                    <a href="#deep-learning-certificates">Глубокое обучение</a>
-                    <a href="#computer-vision-certificates">Компьютерное зрение</a>
-                    <a href="#reinforcement-learning-certificates">Обучение с подкреплением</a>
-                    <a href="#git-certificates">Git</a>
+                    <div class="cert-card">
+                        <a href="https://maktabkhooneh.org/certificates/mk-d3grru/" target="_blank">
+                            <img src="images/machine_learning_maktabkhooneh.png" alt="Machine Learning">
+                            <p data-translate="cert_ai_ml7">Machine Learning</p>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <a href="#projects">Проекты</a>
-            <a href="#goals">Цели</a>
-            <a href="#contact">Контакты</a>
-        </nav>
 
-        <main>
-            <section id="about">
-                <h2>Обо мне</h2>
-                <p>
-                    Я Реза, студент бакалавриата по компьютерной инженерии. Более года я активно изучаю и работаю в области искусственного интеллекта и машинного обучения, приобретая существенный практический опыт.
-                    Я выполнил проекты в специализированных областях, таких как обработка естественного языка (NLP) и компьютерное зрение, что помогло мне расширить свои навыки.
-                    Моя следующая цель - освоить обучение с подкреплением и применять его в реальных проектах.
-                </p>
-            </section>
+            <!-- NLP & LLM -->
+            <div class="cert-category" id="nlp-llm-certificates">
+                <h3 data-translate="nav_nlp_llm">NLP & LLM</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/4Ptal4Nw/" target="_blank">
+                            <img src="images/nlp_perfect.jpg" alt="Natural Language Processing">
+                            <p data-translate="cert_nlp_llm1">Natural Language Processing – PERFECT Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/99DoHWjF/" target="_blank">
+                            <img src="images/llm_perfect.jpg" alt="Large Language Models">
+                            <p data-translate="cert_nlp_llm2">Large Language Models – PERFECT Grade</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-            <section id="education">
-                <h2>Академическое образование</h2>
-                <ul>
-                    <li>Средняя школа Хорезми, Тегеран - Округ 8 - Математика и физика</li>
-                    <li>Ясуджский государственный университет - Компьютерная инженерия</li>
-                </ul>
-            </section>
+            <!-- Deep Learning -->
+            <div class="cert-category" id="deep-learning-certificates">
+                <h3 data-translate="nav_deep_learning">Deep Learning</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/A08MbVsz/" target="_blank">
+                            <img src="images/deep_learning_very_good.jpg" alt="Deep Learning">
+                            <p data-translate="cert_deep_learning1">Deep Learning – VERY GOOD Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/575E6411" target="_blank">
+                            <img src="images/deep_learning_fundamentals.jpg" alt="Deep Learning Fundamentals">
+                            <p data-translate="cert_deep_learning2">Deep Learning Fundamentals</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-deep-learning" target="_blank">
+                            <img src="images/intro_deep_learning.png" alt="Intro to Deep Learning">
+                            <p data-translate="cert_deep_learning3">Intro to Deep Learning</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Computer Vision -->
+            <div class="cert-category" id="computer-vision-certificates">
+                <h3 data-translate="nav_computer_vision">Computer Vision</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/7yi1CcBA/" target="_blank">
+                            <img src="images/professional_image_processing.jpg" alt="Professional Image Processing">
+                            <p data-translate="cert_computer_vision1">Professional Image Processing – VERY GOOD Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/4F4757FD" target="_blank">
+                            <img src="images/object_detection.jpg" alt="Object Detection">
+                            <p data-translate="cert_computer_vision2">Object Detection</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/86EE37B1" target="_blank">
+                            <img src="images/computer_vision.jpg" alt="Computer Vision">
+                            <p data-translate="cert_computer_vision3">Computer Vision</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/computer-vision" target="_blank">
+                            <img src="images/computer_vision_kaggle.png" alt="Computer Vision">
+                            <p data-translate="cert_computer_vision4">Computer Vision</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://maktabkhooneh.org/certificates/MK-GLYD87" target="_blank">
+                            <img src="images/deep_learning_object_detection.png" alt="Deep Learning for Object Detection">
+                            <p data-translate="cert_computer_vision5">Deep Learning for Object Detection and Recognition</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://maktabkhooneh.org/certificates/mk-3ap6cm/" target="_blank">
+                            <img src="images/machine_vision_opencv.png" alt="Machine Vision and Image Processing">
+                            <p data-translate="cert_computer_vision6">Machine Vision and Image Processing with OpenCV</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://courses.opencv.org/certificates/f83fe0c6d1c043e5af23cc07e4763382" target="_blank">
+                            <img src="images/opencv_bootcamp.png" alt="OPENCV BOOTCAMP">
+                            <p data-translate="cert_computer_vision7">OPENCV BOOTCAMP</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-            <section id="activities">
-                <h2>Опыт и деятельность</h2>
-                <ul>
-                    <li>Член Иранского компьютерного общества</li>
-                    <li>Член Национальной ассоциации ИИ</li>
-                    <li>Разработчик библиотеки PerSent</li>
-                    <li>Опыт преподавания Python и машинного обучения</li>
-                </ul>
-            </section>
+            <!-- Reinforcement Learning -->
+            <div class="cert-category" id="reinforcement-learning-certificates">
+                <h3 data-translate="nav_reinforcement_learning">Reinforcement Learning</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/FEAA454F" target="_blank">
+                            <img src="images/advanced_rl_techniques.jpg" alt="Advanced Reinforcement Learning">
+                            <p data-translate="cert_reinforcement_learning1">Advanced Techniques for Reinforcement Learning</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/2F9E19DC" target="_blank">
+                            <img src="images/deep_rl_dqn.jpg" alt="Deep Reinforcement Learning">
+                            <p data-translate="cert_reinforcement_learning2">Deep Reinforcement Learning with DQN</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-game-ai-and-reinforcement-learning" target="_blank">
+                            <img src="images/intro_game_ai_rl.png" alt="Intro to Game AI and RL">
+                            <p data-translate="cert_reinforcement_learning3">Intro to Game AI and Reinforcement Learning</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-            <section id="certificates">
-                <h2>Сертификаты</h2>
+            <!-- Git -->
+            <div class="cert-category" id="git-certificates">
+                <h3 data-translate="nav_git">Git</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/7886CBA3" target="_blank">
+                            <img src="images/mastering_git.jpg" alt="Mastering Git">
+                            <p data-translate="cert_git1">Mastering Git, GitHub and GitLab</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 data-translate="projects_title">نمونه‌کارها در GitHub</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 data-translate="project1_title">PerSent</h3>
+                    <p data-translate="project1_description">کتابخانه پایتون برای تحلیل و استخراج مفهوم زبان فارسی دارای توابع مختلف و مدل های آماده. این کتابخانه امکانات مختلفی برای پردازش متن فارسی از لحاظ احساسات هفتگانه یا مفهوم مثبت و منفی ارائه می‌دهد.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/RezaGooner/PerSent" target="_blank" data-translate="github_link">GitHub</a>
+                        <a href="https://pypi.org/project/persent" target="_blank" data-translate="pypi_link">PyPI</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 data-translate="project2_title">سیستم پایش وسایل نقلیه</h3>
+                    <p data-translate="project2_description">یک سیستم چندوظیفه‌ای برای پایش و شناسایی وسایل نقلیه ایرانی با قابلیت‌های تشخیص خودرو و پلاک، خواندن پلاک، تشخیص نام و رنگ ماشین و تشخیص تصادف با استفاده از تکنیک‌های بینایی کامپیوتر و یادگیری ماشین.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/RezaGooner/Multi-Task-Iranian-Vehicle-Monitoring-System" target="_blank" data-translate="github_link">GitHub</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 data-translate="project3_title">عامل یادگیری تقویتی شطرنج</h3>
+                    <p data-translate="project3_description">پیاده‌سازی یک عامل هوشمند مبتنی بر یادگیری تقویتی برای بازی شطرنج با رابط کاربری گرافیکی.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/RezaGooner/RL-Agent-Chess-game-gui" target="_blank" data-translate="github_link">GitHub</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3 data-translate="project4_title">تشخیص بازی سنگ، کاغذ، قیچی</h3>
+                    <p data-translate="project4_description">یک سیستم تشخیص زنده برای بازی سنگ، کاغذ، قیچی با استفاده از بینایی کامپیوتر و مدل‌های یادگیری عمیق.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/RezaGooner/Rock-Paper-Scissors-Live-Detection" target="_blank" data-translate="github_link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش جدید: اهداف و قدم‌های پیش رو -->
+        <section id="goals">
+            <h2 data-translate="goals_title">اهداف و قدم‌های پیش رو</h2>
+            <div class="goals-container">
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <div class="goal-title" data-translate="goal1_title">انتشار مقاله علمی</div>
+                        <div class="goal-percentage">40%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 40%"></div>
+                    </div>
+                    <div class="goal-description" data-translate="goal1_description">
+                        در حال تحقیق و نگارش مقاله علمی در حوزه پردازش زبان فارسی.
+                    </div>
+                </div>
                 
-                <div class="cert-category" id="algorithms-certificates">
-                    <h3>Алгоритмы</h3>
-                    <div class="cert-scroll">
-                        <div class="cert-card">
-                            <img src="images/algorithms-cert.jpg" alt="Сертификат Алгоритмы">
-                            <p>Сертификат программистских соревнований</p>
-                        </div>
-                        <div class="cert-card">
-                            <img src="images/data-structures.jpg" alt="Сертификат Структуры данных">
-                            <p>Структуры данных и алгоритмы</p>
-                        </div>
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <div class="goal-title" data-translate="goal2_title">پروژه دوربین ترافیک هوشمند</div>
+                        <div class="goal-percentage">35%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 35%"></div>
+                    </div>
+                    <div class="goal-description" data-translate="goal2_description">
+                        توسعه سیستم هوشمند تحلیل ترافیک با قابلیت‌های شمارش وسایل نقلیه و خواندن پلاک، تشخیص تخلفات رانندگی، و بهینه‌سازی جریان ترافیک با استفاده از تکنیک‌های پیشرفته بینایی کامپیوتر.
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="cert-category" id="ai-ml-certificates">
-                    <h3>ИИ и машинное обучение</h3>
-                    <div class="cert-scroll">
-                        <div class="cert-card">
-                            <img src="images/ml-cert.jpg" alt="Сертификат Машинное обучение">
-                            <p>Продвинутое машинное обучение</p>
-                        </div>
-                        <div class="cert-card">
-                            <img src="images/ai-cert.jpg" alt="Сертификат ИИ">
-                            <p>Основы искусственного интеллекта</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <section id="contact">
+            <h2 data-translate="contact_title">راه‌های ارتباطی</h2>
+            <p>📧 ایمیل: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
+            <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
+            <p>📱 تلگرام: <a href="https://t.me/rezagooner" target="_blank">T.me/rezagooner</a></p>
+        </section>
+    </main>
 
-            <section id="projects">
-                <h2>Проекты</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3>Библиотека PerSent</h3>
-                        <p>Библиотека Python для анализа тональности персидских текстов с высокой точностью и поддержкой различных моделей</p>
-                        <div class="project-links">
-                            <a href="https://github.com/RezaGooner/PerSent" target="_blank">Посмотреть код</a>
-                            <a href="https://pypi.org/project/PerSent" target="_blank">Документация</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>Система распознавания лиц</h3>
-                        <p>Система обнаружения и распознавания лиц с использованием сверточных нейронных сетей с точностью 98%</p>
-                        <div class="project-links">
-                            <a href="https://github.com/RezaGooner/FaceRecognition" target="_blank">Посмотреть код</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="goals">
-                <h2>Будущие цели</h2>
-                <div class="goals-container">
-                    <div class="goal-item">
-                        <div class="goal-header">
-                            <div class="goal-title">Освоить обучение с подкреплением</div>
-                            <div class="goal-percentage">60%</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: 60%"></div>
-                        </div>
-                        <div class="goal-description">
-                            Изучение и реализация алгоритмов обучения с подкреплением, таких как Q-Learning, DQN и Policy Gradients
-                        </div>
-                    </div>
-                    <div class="goal-item">
-                        <div class="goal-header">
-                            <div class="goal-title">Разработка практических проектов</div>
-                            <div class="goal-percentage">75%</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: 75%"></div>
-                        </div>
-                        <div class="goal-description">
-                            Реализация реальных проектов в области ИИ и предоставление практических решений
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact">
-                <h2>Контактная информация</h2>
-                <p>📧 Email: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
-                <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
-                <p>📱 Telegram: <a href="https://t.me/rezagooner" target="_blank">T.me/rezagooner</a></p>
-            </section>
-        </main>
-    </div>
-
-    <!-- دکمه شناور برای ایمیل -->
-    <a href="mailto:RezaAsadiProgrammer@gmail.com" class="floating-btn">
-        <span lang="fa">ارتباط با من</span>
-        <span lang="en">Contact Me</span>
-        <span lang="ru">Связаться со мной</span>
+    <!-- دکمه شناور برای ایمیل - بهبود یافته -->
+    <a href="mailto:RezaAsadiProgrammer@gmail.com" class="floating-btn" data-translate="contact_btn">
+        ارتباط با من
     </a>
 
     <footer>
-        <p>
-            <span lang="fa">© 2025 ساخته شده توسط رضا – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></span>
-            <span lang="en">© 2025 Created by Reza – Published on <a href="https://pages.github.com/">GitHub Pages</a></span>
-            <span lang="ru">© 2025 Создано Реза – Опубликовано на <a href="https://pages.github.com/">GitHub Pages</a></span>
-        </p>
+        <p data-translate="footer_text">© 2025 ساخته شده توسط رضا – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
     </footer>
 
     <script>
-        // مدیریت تغییر زبان
+        // داده‌های ترجمه
+        const translations = {
+            fa: {
+                name: "Reza Asadi",
+                title: "دانشجوی مهندسی کامپیوتر | علاقه‌مند به هوش مصنوعی و یادگیری ماشین",
+                nav_about: "معرفی",
+                nav_education: "تحصیلات",
+                nav_activities: "فعالیت‌ها",
+                nav_certificates: "گواهی‌ها",
+                nav_algorithms: "Algorithms",
+                nav_data_science: "Data Science",
+                nav_ai_ml: "AI & Machine Learning",
+                nav_nlp_llm: "NLP & LLM",
+                nav_deep_learning: "Deep Learning",
+                nav_computer_vision: "Computer Vision",
+                nav_reinforcement_learning: "Reinforcement Learning",
+                nav_git: "Git",
+                nav_projects: "نمونه‌کارها",
+                nav_goals: "اهداف پیش رو",
+                nav_contact: "ارتباط",
+                about_title: "معرفی من",
+                about_text: "من رضا هستم، دانشجوی دوره کارشناسی رشته مهندسی کامپیوتر. بیش از یک سال است که به‌صورت جدی در حوزه هوش مصنوعی و یادگیری ماشین فعالیت و مطالعه می‌کنم و تجربه عملی خوبی در این زمینه به‌دست آورده‌ام. در شاخه‌های تخصصی مانند پردازش زبان طبیعی (NLP) و بینایی ماشین (Computer Vision) پروژه‌هایی انجام داده‌ام و توانسته‌ام مهارت‌های خود را گسترش دهم. هدف و مسیر بعدی من، تسلط بر یادگیری تقویتی (Reinforcement Learning) و به‌کارگیری آن در پروژه‌های واقعی است.",
+                education_title: "تحصیلات آکادمیک",
+                education_item1: "دبیرستان خوارزمی تهران - منطقه 8 - رشته ریاضی و فیزیک",
+                education_item2: "دانشگاه دولتی یاسوج - رشته مهندسی کامپیوتر",
+                activities_title: "سوابق و فعالیت‌ها",
+                activity_item1: "عضو انجمن کامپیوتر ایران",
+                activity_item2: "عضو انجمن ملی هوش مصنوعی",
+                activity_item3: "توسعه‌دهنده کتابخانه PerSent",
+                activity_item4: "سابقه تدریس پایتون و یادگیری ماشین",
+                certificates_title: "گواهی‌ها و افتخارات",
+                cert_algorithms1: "ICPC 2024 – Tehran Site, Rank 35",
+                cert_algorithms2: "Data Structures Design – PERFECT Grade",
+                cert_data_science1: "Data Analysis with Python – VERY GOOD Grade",
+                cert_data_science2: "Data Visualization",
+                cert_data_science3: "Pandas",
+                cert_data_science4: "Feature Engineering",
+                cert_data_science5: "Data Cleaning",
+                cert_data_science6: "Time Series",
+                cert_ai_ml1: "Generative AI",
+                cert_ai_ml2: "Mastering Machine Learning",
+                cert_ai_ml3: "Python Libraries for ML & DL",
+                cert_ai_ml4: "Intro to Machine Learning",
+                cert_ai_ml5: "Intermediate Machine Learning",
+                cert_ai_ml6: "Machine Learning Explainability",
+                cert_ai_ml7: "Machine Learning",
+                cert_nlp_llm1: "Natural Language Processing – PERFECT Grade",
+                cert_nlp_llm2: "Large Language Models – PERFECT Grade",
+                cert_deep_learning1: "Deep Learning – VERY GOOD Grade",
+                cert_deep_learning2: "Deep Learning Fundamentals",
+                cert_deep_learning3: "Intro to Deep Learning",
+                cert_computer_vision1: "Professional Image Processing – VERY GOOD Grade",
+                cert_computer_vision2: "Object Detection",
+                cert_computer_vision3: "Computer Vision",
+                cert_computer_vision4: "Computer Vision",
+                cert_computer_vision5: "Deep Learning for Object Detection and Recognition",
+                cert_computer_vision6: "Machine Vision and Image Processing with OpenCV",
+                cert_computer_vision7: "OPENCV BOOTCAMP",
+                cert_reinforcement_learning1: "Advanced Techniques for Reinforcement Learning",
+                cert_reinforcement_learning2: "Deep Reinforcement Learning with DQN",
+                cert_reinforcement_learning3: "Intro to Game AI and Reinforcement Learning",
+                cert_git1: "Mastering Git, GitHub and GitLab",
+                projects_title: "نمونه‌کارها در GitHub",
+                project1_title: "PerSent",
+                project1_description: "کتابخانه پایتون برای تحلیل و استخراج مفهوم زبان فارسی دارای توابع مختلف و مدل های آماده. این کتابخانه امکانات مختلفی برای پردازش متن فارسی از لحاظ احساسات هفتگانه یا مفهوم مثبت و منفی ارائه می‌دهد.",
+                project2_title: "سیستم پایش وسایل نقلیه",
+                project2_description: "یک سیستم چندوظیفه‌ای برای پایش و شناسایی وسایل نقلیه ایرانی با قابلیت‌های تشخیص خودرو و پلاک، خواندن پلاک، تشخیص نام و رنگ ماشین و تشخیص تصادف با استفاده از تکنیک‌های بینایی کامپیوتر و یادگیری ماشین.",
+                project3_title: "عامل یادگیری تقویتی شطرنج",
+                project3_description: "پیاده‌سازی یک عامل هوشمند مبتنی بر یادگیری تقویتی برای بازی شطرنج با رابط کاربری گرافیکی.",
+                project4_title: "تشخیص بازی سنگ، کاغذ، قیچی",
+                project4_description: "یک سیستم تشخیص زنده برای بازی سنگ، کاغذ، قیچی با استفاده از بینایی کامپیوتر و مدل‌های یادگیری عمیق.",
+                github_link: "GitHub",
+                pypi_link: "PyPI",
+                goals_title: "اهداف و قدم‌های پیش رو",
+                goal1_title: "انتشار مقاله علمی",
+                goal1_description: "در حال تحقیق و نگارش مقاله علمی در حوزه پردازش زبان فارسی.",
+                goal2_title: "پروژه دوربین ترافیک هوشمند",
+                goal2_description: "توسعه سیستم هوشمند تحلیل ترافیک با قابلیت‌های شمارش وسایل نقلیه و خواندن پلاک، تشخیص تخلفات رانندگی، و بهینه‌سازی جریان ترافیک با استفاده از تکنیک‌های پیشرفته بینایی کامپیوتر.",
+                contact_title: "راه‌های ارتباطی",
+                contact_btn: "ارتباط با من",
+                footer_text: "© 2025 ساخته شده توسط رضا – منتشر شده در"
+            },
+            en: {
+                name: "Reza Asadi",
+                title: "Computer Engineering Student | Passionate about AI and Machine Learning",
+                nav_about: "About",
+                nav_education: "Education",
+                nav_activities: "Activities",
+                nav_certificates: "Certificates",
+                nav_algorithms: "Algorithms",
+                nav_data_science: "Data Science",
+                nav_ai_ml: "AI & Machine Learning",
+                nav_nlp_llm: "NLP & LLM",
+                nav_deep_learning: "Deep Learning",
+                nav_computer_vision: "Computer Vision",
+                nav_reinforcement_learning: "Reinforcement Learning",
+                nav_git: "Git",
+                nav_projects: "Projects",
+                nav_goals: "Future Goals",
+                nav_contact: "Contact",
+                about_title: "About Me",
+                about_text: "I'm Reza, a Computer Engineering undergraduate student. I have been actively studying and working in the field of Artificial Intelligence and Machine Learning for over a year, gaining substantial practical experience. I have completed projects in specialized areas such as Natural Language Processing (NLP) and Computer Vision, expanding my skills. My next goal is to master Reinforcement Learning and apply it to real-world projects.",
+                education_title: "Academic Education",
+                education_item1: "Khwarizmi High School, Tehran - District 8 - Mathematics and Physics",
+                education_item2: "Yasouj State University - Computer Engineering",
+                activities_title: "Background and Activities",
+                activity_item1: "Member of Iran Computer Society",
+                activity_item2: "Member of National AI Association",
+                activity_item3: "Developer of PerSent Library",
+                activity_item4: "Experience in teaching Python and Machine Learning",
+                certificates_title: "Certificates and Achievements",
+                cert_algorithms1: "ICPC 2024 – Tehran Site, Rank 35",
+                cert_algorithms2: "Data Structures Design – PERFECT Grade",
+                cert_data_science1: "Data Analysis with Python – VERY GOOD Grade",
+                cert_data_science2: "Data Visualization",
+                cert_data_science3: "Pandas",
+                cert_data_science4: "Feature Engineering",
+                cert_data_science5: "Data Cleaning",
+                cert_data_science6: "Time Series",
+                cert_ai_ml1: "Generative AI",
+                cert_ai_ml2: "Mastering Machine Learning",
+                cert_ai_ml3: "Python Libraries for ML & DL",
+                cert_ai_ml4: "Intro to Machine Learning",
+                cert_ai_ml5: "Intermediate Machine Learning",
+                cert_ai_ml6: "Machine Learning Explainability",
+                cert_ai_ml7: "Machine Learning",
+                cert_nlp_llm1: "Natural Language Processing – PERFECT Grade",
+                cert_nlp_llm2: "Large Language Models – PERFECT Grade",
+                cert_deep_learning1: "Deep Learning – VERY GOOD Grade",
+                cert_deep_learning2: "Deep Learning Fundamentals",
+                cert_deep_learning3: "Intro to Deep Learning",
+                cert_computer_vision1: "Professional Image Processing – VERY GOOD Grade",
+                cert_computer_vision2: "Object Detection",
+                cert_computer_vision3: "Computer Vision",
+                cert_computer_vision4: "Computer Vision",
+                cert_computer_vision5: "Deep Learning for Object Detection and Recognition",
+                cert_computer_vision6: "Machine Vision and Image Processing with OpenCV",
+                cert_computer_vision7: "OPENCV BOOTCAMP",
+                cert_reinforcement_learning1: "Advanced Techniques for Reinforcement Learning",
+                cert_reinforcement_learning2: "Deep Reinforcement Learning with DQN",
+                cert_reinforcement_learning3: "Intro to Game AI and Reinforcement Learning",
+                cert_git1: "Mastering Git, GitHub and GitLab",
+                projects_title: "Projects on GitHub",
+                project1_title: "PerSent",
+                project1_description: "Python library for Persian language analysis and sentiment extraction with various functions and ready-to-use models. This library provides various capabilities for Persian text processing in terms of seven emotions or positive/negative concepts.",
+                project2_title: "Vehicle Monitoring System",
+                project2_description: "A multi-task system for monitoring and identifying Iranian vehicles with capabilities for vehicle and license plate detection, plate reading, vehicle name and color recognition, and accident detection using computer vision and machine learning techniques.",
+                project3_title: "Reinforcement Learning Chess Agent",
+                project3_description: "Implementation of an intelligent agent based on reinforcement learning for chess with a graphical user interface.",
+                project4_title: "Rock, Paper, Scissors Detection",
+                project4_description: "A live detection system for the rock, paper, scissors game using computer vision and deep learning models.",
+                github_link: "GitHub",
+                pypi_link: "PyPI",
+                goals_title: "Future Goals and Steps",
+                goal1_title: "Publishing Scientific Paper",
+                goal1_description: "Currently researching and writing a scientific paper in the field of Persian language processing.",
+                goal2_title: "Smart Traffic Camera Project",
+                goal2_description: "Developing an intelligent traffic analysis system with capabilities for vehicle counting and license plate reading, traffic violation detection, and traffic flow optimization using advanced computer vision techniques.",
+                contact_title: "Contact Information",
+                contact_btn: "Contact Me",
+                footer_text: "© 2025 Created by Reza – Published on"
+            },
+            ru: {
+                name: "Reza Asadi",
+                title: "Студент компьютерной инженерии | Увлечен искусственным интеллектом и машинным обучением",
+                nav_about: "Обо мне",
+                nav_education: "Образование",
+                nav_activities: "Деятельность",
+                nav_certificates: "Сертификаты",
+                nav_algorithms: "Алгоритмы",
+                nav_data_science: "Наука о данных",
+                nav_ai_ml: "ИИ и машинное обучение",
+                nav_nlp_llm: "NLP и LLM",
+                nav_deep_learning: "Глубокое обучение",
+                nav_computer_vision: "Компьютерное зрение",
+                nav_reinforcement_learning: "Обучение с подкреплением",
+                nav_git: "Git",
+                nav_projects: "Проекты",
+                nav_goals: "Будущие цели",
+                nav_contact: "Контакты",
+                about_title: "Обо мне",
+                about_text: "Я Реза, студент бакалавриата по компьютерной инженерии. Более года я активно изучаю и работаю в области искусственного интеллекта и машинного обучения, получив значительный практический опыт. Я выполнил проекты в специализированных областях, таких как обработка естественного языка (NLP) и компьютерное зрение, расширяя свои навыки. Моя следующая цель - освоить обучение с подкреплением и применять его в реальных проектах.",
+                education_title: "Академическое образование",
+                education_item1: "Средняя школа Хорезми, Тегеран - Район 8 - Математика и физика",
+                education_item2: "Государственный университет Ясудж - Компьютерная инженерия",
+                activities_title: "Опыт и деятельность",
+                activity_item1: "Член Иранского компьютерного общества",
+                activity_item2: "Член Национальной ассоциации ИИ",
+                activity_item3: "Разработчик библиотеки PerSent",
+                activity_item4: "Опыт преподавания Python и машинного обучения",
+                certificates_title: "Сертификаты и достижения",
+                cert_algorithms1: "ICPC 2024 – Tehran Site, Rank 35",
+                cert_algorithms2: "Data Structures Design – PERFECT Grade",
+                cert_data_science1: "Data Analysis with Python – VERY GOOD Grade",
+                cert_data_science2: "Data Visualization",
+                cert_data_science3: "Pandas",
+                cert_data_science4: "Feature Engineering",
+                cert_data_science5: "Data Cleaning",
+                cert_data_science6: "Time Series",
+                cert_ai_ml1: "Generative AI",
+                cert_ai_ml2: "Mastering Machine Learning",
+                cert_ai_ml3: "Python Libraries for ML & DL",
+                cert_ai_ml4: "Intro to Machine Learning",
+                cert_ai_ml5: "Intermediate Machine Learning",
+                cert_ai_ml6: "Machine Learning Explainability",
+                cert_ai_ml7: "Machine Learning",
+                cert_nlp_llm1: "Natural Language Processing – PERFECT Grade",
+                cert_nlp_llm2: "Large Language Models – PERFECT Grade",
+                cert_deep_learning1: "Deep Learning – VERY GOOD Grade",
+                cert_deep_learning2: "Deep Learning Fundamentals",
+                cert_deep_learning3: "Intro to Deep Learning",
+                cert_computer_vision1: "Professional Image Processing – VERY GOOD Grade",
+                cert_computer_vision2: "Object Detection",
+                cert_computer_vision3: "Computer Vision",
+                cert_computer_vision4: "Computer Vision",
+                cert_computer_vision5: "Deep Learning for Object Detection and Recognition",
+                cert_computer_vision6: "Machine Vision and Image Processing with OpenCV",
+                cert_computer_vision7: "OPENCV BOOTCAMP",
+                cert_reinforcement_learning1: "Advanced Techniques for Reinforcement Learning",
+                cert_reinforcement_learning2: "Deep Reinforcement Learning with DQN",
+                cert_reinforcement_learning3: "Intro to Game AI and Reinforcement Learning",
+                cert_git1: "Mastering Git, GitHub and GitLab",
+                projects_title: "Проекты на GitHub",
+                project1_title: "PerSent",
+                project1_description: "Библиотека Python для анализа персидского языка и извлечения смысла с различными функциями и готовыми моделями. Эта библиотека предоставляет различные возможности для обработки персидского текста с точки зрения семи эмоций или позитивных/негативных концепций.",
+                project2_title: "Система мониторинга транспортных средств",
+                project2_description: "Многозадачная система для мониторинга и идентификации иранских транспортных средств с возможностями обнаружения транспортных средств и номерных знаков, чтения номерных знаков, распознавания названия и цвета автомобиля и обнаружения аварий с использованием методов компьютерного зрения и машинного обучения.",
+                project3_title: "Агент обучения с подкреплением для шахмат",
+                project3_description: "Реализация интеллектуального агента на основе обучения с подкреплением для шахмат с графическим пользовательским интерфейсом.",
+                project4_title: "Обнаружение игры камень, ножницы, бумага",
+                project4_description: "Система живого обнаружения для игры камень, ножницы, бумага с использованием компьютерного зрения и моделей глубокого обучения.",
+                github_link: "GitHub",
+                pypi_link: "PyPI",
+                goals_title: "Будущие цели и шаги",
+                goal1_title: "Публикация научной статьи",
+                goal1_description: "В настоящее время исследую и пишу научную статью в области обработки персидского языка.",
+                goal2_title: "Проект умной камеры для трафика",
+                goal2_description: "Разработка интеллектуальной системы анализа трафика с возможностями подсчета транспортных средств и чтения номерных знаков, обнаружения нарушений ПДД и оптимизации потока трафика с использованием передовых методов компьютерного зрения.",
+                contact_title: "Контактная информация",
+                contact_btn: "Связаться со мной",
+                footer_text: "© 2025 Создано Реза – Опубликовано на"
+            }
+        };
+
+        // تابع تغییر زبان
+        function changeLanguage(lang) {
+            // تغییر دکمه‌های فعال
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // تغییر متن‌ها
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // تغییر جهت متن برای زبان‌های مختلف
+            if (lang === 'fa') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'fa';
+            } else if (lang === 'en') {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = 'en';
+            } else if (lang === 'ru') {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = 'ru';
+            }
+            
+            // ذخیره زبان انتخاب شده
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // بارگذاری زبان ذخیره شده
         document.addEventListener('DOMContentLoaded', function() {
-            const langButtons = document.querySelectorAll('.lang-btn');
-            const floatingBtn = document.querySelector('.floating-btn');
+            const savedLang = localStorage.getItem('selectedLanguage') || 'fa';
+            changeLanguage(savedLang);
+            
+            // اضافه کردن رویداد کلیک به دکمه‌های زبان
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    changeLanguage(this.dataset.lang);
+                });
+            });
             
             // انیمیشن برای نوارهای پیشرفت
             const progressBars = document.querySelectorAll('.progress-bar');
+            
             progressBars.forEach(bar => {
                 const width = bar.style.width;
                 bar.style.width = '0';
+                
                 setTimeout(() => {
                     bar.style.width = width;
                 }, 300);
             });
-
-            // تغییر زبان
-            langButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const selectedLang = this.getAttribute('data-lang');
-                    
-                    // به‌روزرسانی دکمه فعال
-                    langButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // تغییر زبان صفحه
-                    document.documentElement.lang = selectedLang;
-                    document.documentElement.dir = selectedLang === 'fa' ? 'rtl' : 'ltr';
-                    
-                    // نمایش محتوای زبان انتخاب شده و مخفی کردن بقیه
-                    document.querySelectorAll('[lang]').forEach(element => {
-                        if (element.getAttribute('lang') === selectedLang) {
-                            element.style.display = 'block';
-                        } else {
-                            element.style.display = 'none';
-                        }
-                    });
-                    
-                    // به‌روزرسانی دکمه شناور
-                    updateFloatingButton(selectedLang);
-                });
-            });
-
-            function updateFloatingButton(lang) {
-                const spans = floatingBtn.querySelectorAll('span');
-                spans.forEach(span => {
-                    if (span.getAttribute('lang') === lang) {
-                        span.style.display = 'inline';
-                    } else {
-                        span.style.display = 'none';
-                    }
-                });
-            }
         });
     </script>
 </body>
