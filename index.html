@@ -718,7 +718,7 @@
             }
         }
 
-        /* مخفی کردن محتوای زبان‌های دیگر */
+        /* نمایش اولیه - فقط فارسی نمایش داده شود */
         [lang]:not([lang="fa"]) {
             display: none;
         }
@@ -793,9 +793,88 @@
                 </ul>
             </section>
 
-            <!-- سایر بخش‌ها به همان صورت قبلی -->
-            <!-- برای صرفه‌جویی در فضا، بخش گواهی‌ها و نمونه‌کارها حذف شده‌اند -->
-            <!-- در نسخه کامل باید تمام بخش‌ها اضافه شوند -->
+            <section id="certificates">
+                <h2>گواهی‌ها و مدارک</h2>
+                
+                <div class="cert-category" id="algorithms-certificates">
+                    <h3>الگوریتم‌ها</h3>
+                    <div class="cert-scroll">
+                        <div class="cert-card">
+                            <img src="images/algorithms-cert.jpg" alt="گواهی الگوریتم">
+                            <p>گواهی مسابقات برنامه‌نویسی</p>
+                        </div>
+                        <div class="cert-card">
+                            <img src="images/data-structures.jpg" alt="گواهی ساختمان داده">
+                            <p>ساختمان داده و الگوریتم‌ها</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-category" id="ai-ml-certificates">
+                    <h3>هوش مصنوعی و یادگیری ماشین</h3>
+                    <div class="cert-scroll">
+                        <div class="cert-card">
+                            <img src="images/ml-cert.jpg" alt="گواهی یادگیری ماشین">
+                            <p>یادگیری ماشین پیشرفته</p>
+                        </div>
+                        <div class="cert-card">
+                            <img src="images/ai-cert.jpg" alt="گواهی هوش مصنوعی">
+                            <p>مبانی هوش مصنوعی</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>نمونه‌کارها</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>کتابخانه PerSent</h3>
+                        <p>یک کتابخانه پایتون برای تحلیل احساسات متون فارسی با دقت بالا و پشتیبانی از مدل‌های مختلف</p>
+                        <div class="project-links">
+                            <a href="https://github.com/RezaGooner/PerSent" target="_blank">مشاهده کد</a>
+                            <a href="https://pypi.org/project/PerSent" target="_blank">مستندات</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>سیستم تشخیص چهره</h3>
+                        <p>سیستم تشخیص و شناسایی چهره با استفاده از شبکه‌های عصبی کانولوشنی و دقت ۹۸٪</p>
+                        <div class="project-links">
+                            <a href="https://github.com/RezaGooner/FaceRecognition" target="_blank">مشاهده کد</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="goals">
+                <h2>اهداف پیش رو</h2>
+                <div class="goals-container">
+                    <div class="goal-item">
+                        <div class="goal-header">
+                            <div class="goal-title">تسلط بر یادگیری تقویتی</div>
+                            <div class="goal-percentage">۶۰٪</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 60%"></div>
+                        </div>
+                        <div class="goal-description">
+                            مطالعه و پیاده‌سازی الگوریتم‌های یادگیری تقویتی مانند Q-Learning، DQN و Policy Gradients
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-header">
+                            <div class="goal-title">توسعه پروژه‌های عملی</div>
+                            <div class="goal-percentage">۷۵٪</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 75%"></div>
+                        </div>
+                        <div class="goal-description">
+                            پیاده‌سازی پروژه‌های واقعی در حوزه هوش مصنوعی و ارائه راه‌حل‌های عملی
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section id="contact">
                 <h2>راه‌های ارتباطی</h2>
@@ -861,6 +940,89 @@
                     <li>Developer of PerSent Library</li>
                     <li>Experience in teaching Python and Machine Learning</li>
                 </ul>
+            </section>
+
+            <section id="certificates">
+                <h2>Certificates</h2>
+                
+                <div class="cert-category" id="algorithms-certificates">
+                    <h3>Algorithms</h3>
+                    <div class="cert-scroll">
+                        <div class="cert-card">
+                            <img src="images/algorithms-cert.jpg" alt="Algorithms Certificate">
+                            <p>Programming Competitions Certificate</p>
+                        </div>
+                        <div class="cert-card">
+                            <img src="images/data-structures.jpg" alt="Data Structures Certificate">
+                            <p>Data Structures and Algorithms</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-category" id="ai-ml-certificates">
+                    <h3>AI & Machine Learning</h3>
+                    <div class="cert-scroll">
+                        <div class="cert-card">
+                            <img src="images/ml-cert.jpg" alt="Machine Learning Certificate">
+                            <p>Advanced Machine Learning</p>
+                        </div>
+                        <div class="cert-card">
+                            <img src="images/ai-cert.jpg" alt="AI Certificate">
+                            <p>Artificial Intelligence Fundamentals</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>PerSent Library</h3>
+                        <p>A Python library for Persian sentiment analysis with high accuracy and support for various models</p>
+                        <div class="project-links">
+                            <a href="https://github.com/RezaGooner/PerSent" target="_blank">View Code</a>
+                            <a href="https://pypi.org/project/PerSent" target="_blank">Documentation</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Face Recognition System</h3>
+                        <p>Face detection and recognition system using convolutional neural networks with 98% accuracy</p>
+                        <div class="project-links">
+                            <a href="https://github.com/RezaGooner/FaceRecognition" target="_blank">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="goals">
+                <h2>Future Goals</h2>
+                <div class="goals-container">
+                    <div class="goal-item">
+                        <div class="goal-header">
+                            <div class="goal-title">Master Reinforcement Learning</div>
+                            <div class="goal-percentage">60%</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 60%"></div>
+                        </div>
+                        <div class="goal-description">
+                            Studying and implementing reinforcement learning algorithms like Q-Learning, DQN and Policy Gradients
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-header">
+                            <div class="goal-title">Develop Practical Projects</div>
+                            <div class="goal-percentage">75%</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 75%"></div>
+                        </div>
+                        <div class="goal-description">
+                            Implementing real-world projects in AI field and providing practical solutions
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section id="contact">
@@ -929,6 +1091,89 @@
                 </ul>
             </section>
 
+            <section id="certificates">
+                <h2>Сертификаты</h2>
+                
+                <div class="cert-category" id="algorithms-certificates">
+                    <h3>Алгоритмы</h3>
+                    <div class="cert-scroll">
+                        <div class="cert-card">
+                            <img src="images/algorithms-cert.jpg" alt="Сертификат Алгоритмы">
+                            <p>Сертификат программистских соревнований</p>
+                        </div>
+                        <div class="cert-card">
+                            <img src="images/data-structures.jpg" alt="Сертификат Структуры данных">
+                            <p>Структуры данных и алгоритмы</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-category" id="ai-ml-certificates">
+                    <h3>ИИ и машинное обучение</h3>
+                    <div class="cert-scroll">
+                        <div class="cert-card">
+                            <img src="images/ml-cert.jpg" alt="Сертификат Машинное обучение">
+                            <p>Продвинутое машинное обучение</p>
+                        </div>
+                        <div class="cert-card">
+                            <img src="images/ai-cert.jpg" alt="Сертификат ИИ">
+                            <p>Основы искусственного интеллекта</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>Проекты</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Библиотека PerSent</h3>
+                        <p>Библиотека Python для анализа тональности персидских текстов с высокой точностью и поддержкой различных моделей</p>
+                        <div class="project-links">
+                            <a href="https://github.com/RezaGooner/PerSent" target="_blank">Посмотреть код</a>
+                            <a href="https://pypi.org/project/PerSent" target="_blank">Документация</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Система распознавания лиц</h3>
+                        <p>Система обнаружения и распознавания лиц с использованием сверточных нейронных сетей с точностью 98%</p>
+                        <div class="project-links">
+                            <a href="https://github.com/RezaGooner/FaceRecognition" target="_blank">Посмотреть код</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="goals">
+                <h2>Будущие цели</h2>
+                <div class="goals-container">
+                    <div class="goal-item">
+                        <div class="goal-header">
+                            <div class="goal-title">Освоить обучение с подкреплением</div>
+                            <div class="goal-percentage">60%</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 60%"></div>
+                        </div>
+                        <div class="goal-description">
+                            Изучение и реализация алгоритмов обучения с подкреплением, таких как Q-Learning, DQN и Policy Gradients
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-header">
+                            <div class="goal-title">Разработка практических проектов</div>
+                            <div class="goal-percentage">75%</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 75%"></div>
+                        </div>
+                        <div class="goal-description">
+                            Реализация реальных проектов в области ИИ и предоставление практических решений
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="contact">
                 <h2>Контактная информация</h2>
                 <p>📧 Email: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
@@ -982,11 +1227,14 @@
                     document.documentElement.lang = selectedLang;
                     document.documentElement.dir = selectedLang === 'fa' ? 'rtl' : 'ltr';
                     
-                    // نمایش محتوای زبان انتخاب شده
+                    // نمایش محتوای زبان انتخاب شده و مخفی کردن بقیه
                     document.querySelectorAll('[lang]').forEach(element => {
-                        element.style.display = 'none';
+                        if (element.getAttribute('lang') === selectedLang) {
+                            element.style.display = 'block';
+                        } else {
+                            element.style.display = 'none';
+                        }
                     });
-                    document.querySelector(`[lang="${selectedLang}"]`).style.display = 'block';
                     
                     // به‌روزرسانی دکمه شناور
                     updateFloatingButton(selectedLang);
@@ -996,9 +1244,12 @@
             function updateFloatingButton(lang) {
                 const spans = floatingBtn.querySelectorAll('span');
                 spans.forEach(span => {
-                    span.style.display = 'none';
+                    if (span.getAttribute('lang') === lang) {
+                        span.style.display = 'inline';
+                    } else {
+                        span.style.display = 'none';
+                    }
                 });
-                floatingBtn.querySelector(`span[lang="${lang}"]`).style.display = 'inline';
             }
         });
     </script>
