@@ -1,560 +1,595 @@
 <!DOCTYPE html>
-<html lang="fa">
-
+<html lang="fa" dir="rtl">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reza Asadi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reza Asadi</title>
 
+    <style>
+        @font-face {
+            font-family: 'IRANSansWeb(FaNum)';
+            src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
+                url('fonts/IRANSansWeb(FaNum).woff') format('woff'),
+                url('fonts/IRANSansWeb(FaNum).ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
 
-<style>
-@font-face {
-    font-family: 'IRANSansWeb(FaNum)';
-    src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
-         url('fonts/IRANSansWeb(FaNum).woff') format('woff'),
-         url('fonts/IRANSansWeb(FaNum).ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
+        @font-face {
+            font-family: 'IRANSansWeb(FaNum)';
+            src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
+                url('fonts/IRANSansWeb(FaNum).woff') format('woff'),
+                url('fonts/IRANSansWeb(FaNum).ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
 
-@font-face {
-    font-family: 'IRANSansWeb(FaNum)';
-    src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
-         url('fonts/IRANSansWeb(FaNum).woff') format('woff'),
-         url('fonts/IRANSansWeb(FaNum).ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
+        /* اعمال فونت به کل سایت */
+        html, body, * {
+            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
+        }
 
-/* اعمال فونت به کل سایت */
-html, body, * {
-    font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
-}
+        /* هدر */
+        header {
+            background: linear-gradient(135deg, #222, #444);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+        }
+        header p {
+            font-size: 1.1em;
+            color: #ddd;
+        }
 
+        /* منو */
+        nav {
+            background-color: #333;
+            padding: 8px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+            position: relative;
+        }
+        nav a:hover {
+            background-color: #ffd700;
+            color: #222;
+        }
 
-/* هدر */
-header {
-    background: linear-gradient(135deg, #222, #444);
-    color: #fff;
-    text-align: center;
-    padding: 40px 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-header h1 {
-    margin: 0;
-    font-size: 2.8em;
-}
-header p {
-    font-size: 1.1em;
-    color: #ddd;
-}
+        /* منوی کشویی گواهی‌ها */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            top: 100%;
+            right: 0;
+        }
+        
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #ffd700;
+            color: #222;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
 
-/* منو */
-nav {
-    background-color: #333;
-    padding: 8px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 12px;
-    font-weight: 500;
-    padding: 6px 10px;
-    border-radius: 4px;
-    transition: background 0.3s;
-}
-nav a:hover {
-    background-color: #ffd700;
-    color: #222;
-}
+        /* بخش اصلی */
+        main {
+            max-width: 1150px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 30px;
+        }
 
-/* بخش اصلی */
-main {
-    max-width: 1150px;
-    margin: auto;
-    padding: 20px;
-    margin-top: 30px;
-}
+        /* بخش عمومی */
+        section {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+        h2 {
+            color: #222;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
 
-/* بخش عمومی */
-section {
-    background: #fff;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-}
-h2 {
-    color: #222;
-    border-bottom: 3px solid #ffd700;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
-}
+        /* لیست داخلی */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #fafafa;
+            margin: 6px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: background 0.2s;
+        }
+        ul li:hover {
+            background: #f0f0f0;
+        }
 
-/* لیست داخلی */
-ul {
-    list-style: none;
-    padding: 0;
-}
-ul li {
-    background: #fafafa;
-    margin: 6px 0;
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    transition: background 0.2s;
-}
-ul li:hover {
-    background: #f0f0f0;
-}
+        /* بخش گواهی‌ها با اسکرول افقی */
+        .cert-category {
+            margin-bottom: 30px;
+        }
+        .cert-category h3 {
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .cert-scroll {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 8px;
+        }
+        .cert-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .cert-scroll::-webkit-scrollbar-thumb {
+            background: #bbb;
+            border-radius: 4px;
+        }
+        .cert-scroll::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+        .cert-card {
+            flex: 0 0 220px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.25s ease-in-out, box-shadow 0.25s;
+        }
+        .cert-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        .cert-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        .cert-card p {
+            padding: 10px;
+            font-size: 0.9em;
+            margin: 0;
+            color: #555;
+        }
 
-/* بخش گواهی‌ها با اسکرول افقی */
-.cert-category {
-    margin-bottom: 30px;
-}
-.cert-category h3 {
-    border-bottom: 2px solid #ffd700;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-    color: #333;
-}
-.cert-scroll {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 8px;
-}
-.cert-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-.cert-scroll::-webkit-scrollbar-thumb {
-    background: #bbb;
-    border-radius: 4px;
-}
-.cert-scroll::-webkit-scrollbar-thumb:hover {
-    background: #999;
-}
-.cert-card {
-    flex: 0 0 220px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: transform 0.25s ease-in-out, box-shadow 0.25s;
-}
-.cert-card:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-}
-.cert-card img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    display: block;
-    border-bottom: 1px solid #eee;
-}
-.cert-card p {
-    padding: 10px;
-    font-size: 0.9em;
-    margin: 0;
-    color: #555;
-}
+        /* چیدمان جدید برای نمونه‌کارها */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .project-card {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+        
+        .project-card h3 {
+            margin-top: 0;
+            color: #222;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 8px;
+        }
+        
+        .project-card p {
+            flex-grow: 1;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .project-card a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            text-align: center;
+        }
+        
+        .project-card a:hover {
+            background-color: #ffd700;
+            color: #222;
+        }
 
-/* فوتر */
-footer {
-    background-color: #222;
-    color: #ccc;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
-}
-footer a {
-    color: #ffd700;
-    text-decoration: none;
-}
-footer a:hover {
-    text-decoration: underline;
-}
-</style>
+        /* فوتر */
+        footer {
+            background-color: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+        }
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body>
-<!-- بقیه HTML بدنه همونطور که الان داری -->
+    <header>
+        <h1>Reza Asadi</h1>
+        <p>دانشجوی مهندسی کامپیوتر | علاقه‌مند به هوش مصنوعی و یادگیری ماشین</p>
+    </header>
 
-<header>
-    <h1>Reza Asadi</h1>
-    <p>دانشجوی مهندسی کامپیوتر | علاقه‌مند به هوش مصنوعی و یادگیری ماشین</p>
-</header>
+    <nav>
+        <a href="#about">معرفی</a>
+        <a href="#education">تحصیلات</a>
+        <a href="#activities">فعالیت‌ها</a>
+        <div class="dropdown">
+            <a href="#certificates">گواهی‌ها</a>
+            <div class="dropdown-content">
+                <a href="#algorithms-certificates">Algorithms</a>
+                <a href="#data-science-certificates">Data Science</a>
+                <a href="#ai-ml-certificates">AI & Machine Learning</a>
+                <a href="#nlp-llm-certificates">NLP & LLM</a>
+                <a href="#deep-learning-certificates">Deep Learning</a>
+                <a href="#computer-vision-certificates">Computer Vision</a>
+                <a href="#reinforcement-learning-certificates">Reinforcement Learning</a>
+                <a href="#git-certificates">Git</a>
+            </div>
+        </div>
+        <a href="#projects">نمونه‌کارها</a>
+        <a href="#contact">ارتباط</a>
+    </nav>
 
-<nav>
-    <ul>
-        <li><a href="#about">معرفی</a></li>
-        <li><a href="#education">تحصیلات</a></li>
-        <li><a href="#activities">فعالیت‌ها</a></li>
-        <li>
-            <a href="#certificates">گواهی‌ها ▾</a>
+    <main>
+        <section id="about">
+            <h2>معرفی من</h2>
+            <p>
+                من رضا هستم، دانشجوی دوره کارشناسی رشته مهندسی کامپیوتر. بیش از یک سال است که به‌صورت جدی در حوزه هوش مصنوعی و یادگیری ماشین فعالیت و مطالعه می‌کنم و تجربه عملی خوبی در این زمینه به‌دست آورده‌ام.
+                در شاخه‌های تخصصی مانند پردازش زبان طبیعی (NLP) و بینایی ماشین (Computer Vision) پروژه‌هایی انجام داده‌ام و توانسته‌ام مهارت‌های خود را گسترش دهم.
+                هدف و مسیر بعدی من، تسلط بر یادگیری تقویتی (Reinforcement Learning) و به‌کارگیری آن در پروژه‌های واقعی است.
+            </p>
+        </section>
+
+        <section id="education">
+            <h2>تحصیلات آکادمیک</h2>
             <ul>
-                <li><a href="#algorithms">Algorithms</a></li>
-                <li><a href="#datascience">Data Science</a></li>
-                <li><a href="#aiml">AI & ML</a></li>
-                <li><a href="#nlp">NLP & LLM</a></li>
-                <li><a href="#deeplearning">Deep Learning</a></li>
-                <li><a href="#cv">Computer Vision</a></li>
-                <li><a href="#rl">Reinforcement Learning</a></li>
-                <li><a href="#git">Git</a></li>
+                <li>دبیرستان خوارزمی تهران - منطقه 8 - رشته ریاضی و فیزیک</li>
+                <li>دانشگاه دولتی یاسوج - رشته مهندسی کامپیوتر</li>
             </ul>
-        </li>
-        <li><a href="#projects">نمونه‌کارها</a></li>
-        <li><a href="#contact">ارتباط</a></li>
-    </ul>
-</nav>
+        </section>
 
-<main>
-    <section id="about">
-        <h2>معرفی من</h2>
-        <p>
-            من رضا هستم، دانشجوی دوره کارشناسی رشته مهندسی کامپیوتر. بیش از یک سال است که به‌صورت جدی در حوزه هوش مصنوعی و یادگیری ماشین فعالیت و مطالعه می‌کنم و تجربه عملی خوبی در این زمینه به‌دست آورده‌ام.
-            در شاخه‌های تخصصی مانند پردازش زبان طبیعی (NLP) و بینایی ماشین (Computer Vision) پروژه‌هایی انجام داده‌ام و توانسته‌ام مهارت‌های خود را گسترش دهم.
-            هدف و مسیر بعدی من، تسلط بر یادگیری تقویتی (Reinforcement Learning) و به‌کارگیری آن در پروژه‌های واقعی است.
-        </p>
-    </section>
+        <section id="activities">
+            <h2>سوابق و فعالیت‌ها</h2>
+            <ul>
+                <li>عضو انجمن کامپیوتر ایران</li>
+                <li>عضو انجمن ملی هوش مصنوعی</li>
+                <li>توسعه‌دهنده کتابخانه PerSent</li>
+                <li>سابقه تدریس پایتون و یادگیری ماشین</li>
+            </ul>
+        </section>
 
-    <section id="education">
-        <h2>تحصیلات آکادمیک</h2>
-        <ul>
-            <li>دبیرستان خوارزمی تهران - منطقه 8 - رشته ریاضی و فیزیک</li>
-            <li>دانشگاه دولتی یاسوج - رشته مهندسی کامپیوتر</li>
-        </ul>
-    </section>
+        <section id="certificates">
+            <h2>گواهی‌ها و افتخارات</h2>
 
-    <section id="activities">
-        <h2>سوابق و فعالیت‌ها</h2>
-        <ul>
-            <li>عضو انجمن کامپیوتر ایران</li>
-            <li>عضو انجمن ملی هوش مصنوعی</li>
-            <li>توسعه‌دهنده کتابخانه PerSent</li>
-            <li>سابقه تدریس پایتون و یادگیری ماشین</li>
-        </ul>
-    </section>
+            <!-- Algorithms -->
+            <div class="cert-category" id="algorithms-certificates">
+                <h3>Algorithms</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://icpc.sharif.edu/2024/scoreboard/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/67434fa2-ed05-4540-a9d5-ebb1caa5d975" alt="ICPC 2024 Result">
+                            <p>ICPC 2024 – Tehran Site, Rank 35</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/Flz0oEbP/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/6fc0ae7c-a9ee-46de-bac2-54bc4e0680b0" alt="Data Structures Design">
+                            <p>Data Structures Design – PERFECT Grade</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-<style>
-/* استایل دسته و اسکرول */
-.cert-category {
-    margin-bottom: 40px;
-}
+            <!-- Data Science -->
+            <div class="cert-category" id="data-science-certificates">
+                <h3>Data Science</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/QMcPIyhT/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/0a541ce6-1092-44a0-a04e-ed5631ddb200" alt="Data Analysis with Python">
+                            <p>Data Analysis with Python – VERY GOOD Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/data-visualization" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/050857aa-5afa-4ed3-8438-b31daebf1554" alt="Data Visualization">
+                            <p>Data Visualization</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/pandas" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/23311a3a-faaa-4a86-b438-f18f1be44a08" alt="Pandas">
+                            <p>Pandas</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/feature-engineering" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/10a29ab7-8658-47a2-982d-d22ca2e13a05" alt="Feature Engineering">
+                            <p>Feature Engineering</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/data-cleaning" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/94576e8e-e702-4752-8d3b-a2f7c2de64f8" alt="Data Cleaning">
+                            <p>Data Cleaning</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/time-series" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/a76ea930-6a05-4f70-8cdb-97f9be29460d" alt="Time Series">
+                            <p>Time Series</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-.cert-category h3 {
-    border-bottom: 2px solid #ffd700;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-    color: #222;
-}
+            <!-- AI & Machine Learning -->
+            <div class="cert-category" id="ai-ml-certificates">
+                <h3>AI & Machine Learning</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/D064A73E" target="_blank">
+                            <img src="images/certificate_d064a73e_en.jpg" alt="Generative AI">
+                            <p>Generative AI</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/0CC3B50C" target="_blank">
+                            <img src="images/certificate_0cc3b50c_en.jpg" alt="Mastering Machine Learning">
+                            <p>Mastering Machine Learning</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/9039C997" target="_blank">
+                            <img src="images/certificate-1.png" alt="Python Libraries for ML & DL">
+                            <p>Python Libraries for ML & DL</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-machine-learning" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/b9f8c0f6-6a10-47b6-a048-ac3a3260d2dc" alt="Intro to Machine Learning">
+                            <p>Intro to Machine Learning</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/intermediate-machine-learning" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/f21ee139-c3df-455b-99b0-be3599d2c2aa" alt="Intermediate Machine Learning">
+                            <p>Intermediate Machine Learning</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/machine-learning-explainability" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/761eda2d-b81a-4868-b5da-a035b753da2a" alt="Machine Learning Explainability">
+                            <p>Machine Learning Explainability</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://maktabkhooneh.org/certificates/mk-d3grru/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/ac44b0c9-abfa-4f01-941d-4cac8cb78ad4" alt="Machine Learning">
+                            <p>Machine Learning – Maktabkhooneh</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-.cert-scroll {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 10px;
-}
+            <!-- NLP & LLM -->
+            <div class="cert-category" id="nlp-llm-certificates">
+                <h3>NLP & LLM</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/4Ptal4Nw/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/d473f7e6-5b43-4cee-b090-4dafdf16ca12" alt="NLP">
+                            <p>Natural Language Processing – PERFECT Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/99DoHWjF/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/1a1b18c1-8abf-422c-83e9-2ef26445d2ee" alt="LLM">
+                            <p>Large Language Models – PERFECT Grade</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-.cert-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-.cert-scroll::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
-}
-.cert-scroll::-webkit-scrollbar-thumb:hover {
-    background: #aaa;
-}
-
-/* کارت گواهی */
-.cert-card {
-    flex: 0 0 220px;
-    background: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-}
-.cert-card:hover { transform: scale(1.05); }
-.cert-card img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-}
-.cert-card p {
-    padding: 10px;
-    font-size: 0.9em;
-    margin: 0;
-    color: #333;
-}
-</style>
-
-<section id="certificates">
-    <h2>گواهی‌ها و افتخارات</h2>
-
-    <!-- Algorithms -->
-    <div class="cert-category">
-        <h3>Algorithms</h3>
-        <div class="cert-scroll">
-            <div class="cert-card">
-                <a href="https://icpc.sharif.edu/2024/scoreboard/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/67434fa2-ed05-4540-a9d5-ebb1caa5d975" alt="ICPC 2024 Result">
-                    <p>ICPC 2024 – Tehran Site, Rank 35</p>
-                </a>
+            <!-- Deep Learning -->
+            <div class="cert-category" id="deep-learning-certificates">
+                <h3>Deep Learning</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/A08MbVsz/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/c0fbf1f3-8504-4d08-9e88-a2db179ff957" alt="Deep Learning">
+                            <p>Deep Learning – VERY GOOD Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/575E6411" target="_blank">
+                            <img src="images/certificate_575e6411_en.jpg" alt="Deep Learning Fundamentals">
+                            <p>Deep Learning Fundamentals</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-deep-learning" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/9d8a6964-61c6-42ec-9e77-217c63f070e9" alt="Intro to Deep Learning">
+                            <p>Intro to Deep Learning</p>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/Flz0oEbP/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/6fc0ae7c-a9ee-46de-bac2-54bc4e0680b0" alt="Data Structures Design">
-                    <p>Data Structures Design – PERFECT Grade</p>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Data Science -->
-    <div class="cert-category">
-        <h3>Data Science</h3>
-        <div class="cert-scroll">
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/QMcPIyhT/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/0a541ce6-1092-44a0-a04e-ed5631ddb200" alt="Data Analysis with Python">
-                    <p>Data Analysis with Python – VERY GOOD Grade</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://www.kaggle.com/learn/certification/rezagooner/data-visualization" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/050857aa-5afa-4ed3-8438-b31daebf1554" alt="Data Visualization">
-                    <p>Data Visualization</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://www.kaggle.com/learn/certification/rezagooner/pandas" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/23311a3a-faaa-4a86-b438-f18f1be44a08" alt="Pandas">
-                    <p>Pandas</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://www.kaggle.com/learn/certification/rezagooner/feature-engineering" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/10a29ab7-8658-47a2-982d-d22ca2e13a05" alt="Feature Engineering">
-                    <p>Feature Engineering</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://www.kaggle.com/learn/certification/rezagooner/data-cleaning" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/94576e8e-e702-4752-8d3b-a2f7c2de64f8" alt="Data Cleaning">
-                    <p>Data Cleaning</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://www.kaggle.com/learn/certification/rezagooner/time-series" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/a76ea930-6a05-4f70-8cdb-97f9be29460d" alt="Time Series">
-                    <p>Time Series</p>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- AI & Machine Learning -->
-    <div class="cert-category">
-        <h3>AI & Machine Learning</h3>
-        <div class="cert-scroll">
-            <div class="cert-card">
-                <a href="https://faradars.org/verify/D064A73E" target="_blank">
-                    <img src="images/certificate_d064a73e_en.jpg" alt="Generative AI">
-                    <p>Generative AI</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://faradars.org/verify/0CC3B50C" target="_blank">
-                    <img src="images/certificate_0cc3b50c_en.jpg" alt="Mastering Machine Learning">
-                    <p>Mastering Machine Learning</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://faradars.org/verify/9039C997" target="_blank">
-                    <img src="images/certificate-1.png" alt="Python Libraries for ML & DL">
-                    <p>Python Libraries for ML & DL</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-machine-learning" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/b9f8c0f6-6a10-47b6-a048-ac3a3260d2dc" alt="Intro to Machine Learning">
-                    <p>Intro to Machine Learning</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://www.kaggle.com/learn/certification/rezagooner/intermediate-machine-learning" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/f21ee139-c3df-455b-99b0-be3599d2c2aa" alt="Intermediate Machine Learning">
-                    <p>Intermediate Machine Learning</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://www.kaggle.com/learn/certification/rezagooner/machine-learning-explainability" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/761eda2d-b81a-4868-b5da-a035b753da2a" alt="Machine Learning Explainability">
-                    <p>Machine Learning Explainability</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://maktabkhooneh.org/certificates/mk-d3grru/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/ac44b0c9-abfa-4f01-941d-4cac8cb78ad4" alt="Machine Learning">
-                    <p>Machine Learning – Maktabkhooneh</p>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- NLP & LLM -->
-    <div class="cert-category">
-        <h3>NLP & LLM</h3>
-        <div class="cert-scroll">
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/4Ptal4Nw/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/d473f7e6-5b43-4cee-b090-4dafdf16ca12" alt="NLP">
-                    <p>Natural Language Processing – PERFECT Grade</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/99DoHWjF/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/1a1b18c1-8abf-422c-83e9-2ef26445d2ee" alt="LLM">
-                    <p>Large Language Models – PERFECT Grade</p>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Deep Learning -->
-    <div class="cert-category">
-        <h3>Deep Learning</h3>
-        <div class="cert-scroll">
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/A08MbVsz/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/c0fbf1f3-8504-4d08-9e88-a2db179ff957" alt="Deep Learning">
-                    <p>Deep Learning – VERY GOOD Grade</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://faradars.org/verify/575E6411" target="_blank">
-                    <img src="images/certificate_575e6411_en.jpg" alt="Deep Learning Fundamentals">
-                    <p>Deep Learning Fundamentals</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://www.kaggle.com/learn/certification/rezagooner/intro-to-deep-learning" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/9d8a6964-61c6-42ec-9e77-217c63f070e9" alt="Intro to Deep Learning">
-                    <p>Intro to Deep Learning</p>
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Computer Vision -->
-    <div class="cert-category">
-        <h3>Computer Vision</h3>
-        <div class="cert-scroll">
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/DvQWzY1d/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/2e2cce52-8e9f-4d7e-8648-06305805e3f1" alt="Image Processing">
-                    <p>Image Processing – PERFECT Grade</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/3p6cyjFA/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/6b6b8ea3-1b9b-43cf-9f72-047a7debf577" alt="Object Detection">
-                    <p>Object Detection – PERFECT Grade</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/6qpZFoXM/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/9dfdd0b8-0aed-4ef0-9b04-5afb2cf55104" alt="OpenCV Basics">
-                    <p>OpenCV Basics – PERFECT Grade</p>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Reinforcement Learning -->
-    <div class="cert-category">
-        <h3>Reinforcement Learning</h3>
-        <div class="cert-scroll">
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/pV4AFaJN/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/4de96e6a-3da9-4907-aefb-9c889dad7d68" alt="Advanced RL">
-                    <p>Advanced Reinforcement Learning – PERFECT Grade</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/DgG6WdML/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/4c143eff-bc26-44dd-8ce6-261796518b64" alt="Deep Q-Network">
-                    <p>Deep Q-Network – PERFECT Grade</p>
-                </a>
-            </div>
-            <div class="cert-card">
-                <a href="https://quera.org/certificate/1k6Kc1YP/" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/e5473f4d-6175-48e0-b39e-90b358ba771e" alt="Intro Game AI">
-                    <p>Intro to Game AI – PERFECT Grade</p>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Git -->
-    <div class="cert-category">
-        <h3>Git</h3>
-        <div class="cert-scroll">
-            <div class="cert-card">
-                <a href="https://faradars.org/verify/A8B2AD5C" target="_blank">
-                    <img src="https://github.com/user-attachments/assets/e389021d-96ca-47a4-95a6-0137c8768cb7" alt="Mastering Git">
-                    <p>Mastering Git</p>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-
             
-    </section>
-
- <section id="projects">
-        <h2>نمونه‌کارها در GitHub</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <a href="https://github.com/RezaGooner/PerSent" target="_blank">PerSent - پردازش متن فارسی با hazm</a>
+            <!-- Computer Vision -->
+            <div class="cert-category" id="computer-vision-certificates">
+                <h3>Computer Vision</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/DvQWzY1d/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/2e2cce52-8e9f-4d7e-8648-06305805e3f1" alt="Image Processing">
+                            <p>Image Processing – PERFECT Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/3p6cyjFA/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/6b6b8ea3-1b9b-43cf-9f72-047a7debf577" alt="Object Detection">
+                            <p>Object Detection – PERFECT Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/6qpZFoXM/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/9dfdd0b8-0aed-4ef0-9b04-5afb2cf55104" alt="OpenCV Basics">
+                            <p>OpenCV Basics – PERFECT Grade</p>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="project-card">
-                <a href="https://github.com/RezaGooner/Multi-Task-Iranian-Vehicle-Monitoring-System" target="_blank">سیستم پایش وسایل نقلیه ایرانی</a>
-            </div>
-            <div class="project-card">
-                <a href="https://github.com/RezaGooner/RL-Agent-Chess-game-gui" target="_blank">عامل RL برای بازی شطرنج (GUI)</a>
-            </div>
-            <div class="project-card">
-                <a href="https://github.com/RezaGooner/Rock-Paper-Scissors-Live-Detection" target="_blank">تشخیص زنده سنگ-کاغذ-قیچی</a>
-            </div>
-        </div>
-    </section>
 
-    <section id="contact">
-        <h2>راه‌های ارتباطی</h2>
-        <p>📧 ایمیل: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
-        <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
-        <p>🔗 لینکدین: <a href="https://linkedin.com/in/USERNAME" target="_blank">LinkedIn</a></p>
-    </section>
-</main>
+            <!-- Reinforcement Learning -->
+            <div class="cert-category" id="reinforcement-learning-certificates">
+                <h3>Reinforcement Learning</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/pV4AFaJN/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/4de96e6a-3da9-4907-aefb-9c889dad7d68" alt="Advanced RL">
+                            <p>Advanced Reinforcement Learning – PERFECT Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/DgG6WdML/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/4c143eff-bc26-44dd-8ce6-261796518b64" alt="Deep Q-Network">
+                            <p>Deep Q-Network – PERFECT Grade</p>
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <a href="https://quera.org/certificate/1k6Kc1YP/" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/e5473f4d-6175-48e0-b39e-90b358ba771e" alt="Intro Game AI">
+                            <p>Intro to Game AI – PERFECT Grade</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-<footer>
-    <p>© 2025 ساخته شده توسط رضا گونر – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
-</footer>
+            <!-- Git -->
+            <div class="cert-category" id="git-certificates">
+                <h3>Git</h3>
+                <div class="cert-scroll">
+                    <div class="cert-card">
+                        <a href="https://faradars.org/verify/A8B2AD5C" target="_blank">
+                            <img src="https://github.com/user-attachments/assets/e389021d-96ca-47a4-95a6-0137c8768cb7" alt="Mastering Git">
+                            <p>Mastering Git</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <section id="projects">
+            <h2>نمونه‌کارها در GitHub</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>PerSent</h3>
+                    <p>کتابخانه‌ای برای پردازش متن فارسی با استفاده از کتابخانه hazm. این کتابخانه امکانات مختلفی برای پردازش متن فارسی از جمله توکنایز کردن، نرمال‌سازی و استخراج ویژگی‌ها ارائه می‌دهد.</p>
+                    <a href="https://github.com/RezaGooner/PerSent" target="_blank">مشاهده در GitHub</a>
+                </div>
+                <div class="project-card">
+                    <h3>سیستم پایش وسایل نقلیه</h3>
+                    <p>یک سیستم چندوظیفه‌ای برای پایش و شناسایی وسایل نقلیه ایرانی با استفاده از تکنیک‌های بینایی کامپیوتر و یادگیری ماشین.</p>
+                    <a href="https://github.com/RezaGooner/Multi-Task-Iranian-Vehicle-Monitoring-System" target="_blank">مشاهده در GitHub</a>
+                </div>
+                <div class="project-card">
+                    <h3>عامل یادگیری تقویتی شطرنج</h3>
+                    <p>پیاده‌سازی یک عامل هوشمند مبتنی بر یادگیری تقویتی برای بازی شطرنج با رابط کاربری گرافیکی.</p>
+                    <a href="https://github.com/RezaGooner/RL-Agent-Chess-game-gui" target="_blank">مشاهده در GitHub</a>
+                </div>
+                <div class="project-card">
+                    <h3>تشخیص بازی سنگ، کاغذ، قیچی</h3>
+                    <p>یک سیستم تشخیص زنده برای بازی سنگ، کاغذ، قیچی با استفاده از بینایی کامپیوتر و مدل‌های یادگیری عمیق.</p>
+                    <a href="https://github.com/RezaGooner/Rock-Paper-Scissors-Live-Detection" target="_blank">مشاهده در GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>راه‌های ارتباطی</h2>
+            <p>📧 ایمیل: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
+            <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
+            <p>🔗 لینکدین: <a href="https://linkedin.com/in/USERNAME" target="_blank">LinkedIn</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 ساخته شده توسط رضا گونر – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
+    </footer>
 </body>
 </html>
