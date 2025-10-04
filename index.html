@@ -389,6 +389,94 @@
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
         }
 
+        /* بخش اهداف و قدم‌های پیش رو */
+        .goals-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .goal-item {
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+        
+        .goal-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .goal-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1a2a6c;
+            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+        }
+        
+        .goal-percentage {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1a2a6c;
+            background: #ffd700;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(to right, #1a2a6c, #2a3a7c);
+            transition: width 1s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .goal-description {
+            color: #555;
+            line-height: 1.6;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+
         /* دکمه شناور - بهبود یافته */
         .floating-btn {
             position: fixed;
@@ -471,6 +559,12 @@
                 flex-direction: column;
             }
             
+            .goal-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
             .floating-btn {
                 bottom: 20px;
                 left: 20px;
@@ -530,6 +624,7 @@
             </div>
         </div>
         <a href="#projects">نمونه‌کارها</a>
+        <a href="#goals">اهداف پیش رو</a>
         <a href="#contact">ارتباط</a>
     </nav>
 
@@ -861,6 +956,40 @@
             </div>
         </section>
 
+        <!-- بخش جدید: اهداف و قدم‌های پیش رو -->
+        <section id="goals">
+            <h2>اهداف و قدم‌های پیش رو</h2>
+            <div class="goals-container">
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <div class="goal-title">انتشار مقاله علمی</div>
+                        <div class="goal-percentage">40%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 40%"></div>
+                    </div>
+                    <div class="goal-description">
+                        در حال تحقیق و نگارش مقاله علمی در حوزه پردازش زبان فارسی.
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <div class="goal-title">پروژه دوربین ترافیک هوشمند</div>
+                        <div class="goal-percentage">35%</div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 35%"></div>
+                    </div>
+                    <div class="goal-description">
+                        توسعه سیستم هوشمند تحلیل ترافیک با قابلیت‌های شمارش وسایل نقلیه و خواندن پلاک، تشخیص تخلفات رانندگی، و بهینه‌سازی جریان ترافیک با استفاده از تکنیک‌های پیشرفته بینایی کامپیوتر.
+                    </div>
+                </div>
+                
+
+            </div>
+        </section>
+
         <section id="contact">
             <h2>راه‌های ارتباطی</h2>
             <p>📧 ایمیل: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
@@ -877,5 +1006,21 @@
     <footer>
         <p>© 2025 ساخته شده توسط رضا – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
     </footer>
+
+    <script>
+        // انیمیشن برای نوارهای پیشرفت
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        });
+    </script>
 </body>
 </html>
