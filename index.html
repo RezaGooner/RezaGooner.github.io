@@ -363,9 +363,14 @@
             line-height: 1.7;
         }
         
-        .project-card a {
-            display: inline-block;
+        .project-links {
+            display: flex;
+            gap: 10px;
             margin-top: 20px;
+        }
+        
+        .project-links a {
+            display: inline-block;
             padding: 10px 20px;
             background: linear-gradient(to right, #1a2a6c, #2a3a7c);
             color: white;
@@ -374,9 +379,10 @@
             transition: all 0.3s;
             text-align: center;
             font-weight: 500;
+            flex: 1;
         }
         
-        .project-card a:hover {
+        .project-links a:hover {
             background: linear-gradient(to right, #ffd700, #ffed4e);
             color: #222;
             transform: translateY(-2px);
@@ -459,6 +465,10 @@
             
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .project-links {
+                flex-direction: column;
             }
             
             .floating-btn {
@@ -778,23 +788,32 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>PerSent</h3>
-                    <p>کتابخانه‌ای برای پردازش متن فارسی با استفاده از کتابخانه hazm. این کتابخانه امکانات مختلفی برای پردازش متن فارسی از جمله توکنایز کردن، نرمال‌سازی و استخراج ویژگی‌ها ارائه می‌دهد.</p>
-                    <a href="https://github.com/RezaGooner/PerSent" target="_blank">مشاهده در GitHub</a>
+                    <p>کتابخانه پایتون برای تحلیل و استخراج مفهوم زبان فارسی دارای توابع مختلف و مدل های آماده. این کتابخانه امکانات مختلفی برای پردازش متن فارسی از جمله توکنایز کردن، نرمال‌سازی و استخراج ویژگی‌ها ارائه می‌دهد.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/RezaGooner/PerSent" target="_blank">مشاهده در GitHub</a>
+                        <a href="https://pypi.org/project/persent" target="_blank">PyPI</a>
+                    </div>
                 </div>
                 <div class="project-card">
                     <h3>سیستم پایش وسایل نقلیه</h3>
-                    <p>یک سیستم چندوظیفه‌ای برای پایش و شناسایی وسایل نقلیه ایرانی با استفاده از تکنیک‌های بینایی کامپیوتر و یادگیری ماشین.</p>
-                    <a href="https://github.com/RezaGooner/Multi-Task-Iranian-Vehicle-Monitoring-System" target="_blank">مشاهده در GitHub</a>
+                    <p>یک سیستم چندوظیفه‌ای برای پایش و شناسایی وسایل نقلیه ایرانی با قابلیت‌های تشخیص خودرو و پلاک، خواندن پلاک، تشخیص نام و رنگ ماشین و تشخیص تصادف با استفاده از تکنیک‌های بینایی کامپیوتر و یادگیری ماشین.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/RezaGooner/Multi-Task-Iranian-Vehicle-Monitoring-System" target="_blank">مشاهده در GitHub</a>
+                    </div>
                 </div>
                 <div class="project-card">
                     <h3>عامل یادگیری تقویتی شطرنج</h3>
                     <p>پیاده‌سازی یک عامل هوشمند مبتنی بر یادگیری تقویتی برای بازی شطرنج با رابط کاربری گرافیکی.</p>
-                    <a href="https://github.com/RezaGooner/RL-Agent-Chess-game-gui" target="_blank">مشاهده در GitHub</a>
+                    <div class="project-links">
+                        <a href="https://github.com/RezaGooner/RL-Agent-Chess-game-gui" target="_blank">مشاهده در GitHub</a>
+                    </div>
                 </div>
                 <div class="project-card">
                     <h3>تشخیص بازی سنگ، کاغذ، قیچی</h3>
                     <p>یک سیستم تشخیص زنده برای بازی سنگ، کاغذ، قیچی با استفاده از بینایی کامپیوتر و مدل‌های یادگیری عمیق.</p>
-                    <a href="https://github.com/RezaGooner/Rock-Paper-Scissors-Live-Detection" target="_blank">مشاهده در GitHub</a>
+                    <div class="project-links">
+                        <a href="https://github.com/RezaGooner/Rock-Paper-Scissors-Live-Detection" target="_blank">مشاهده در GitHub</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -803,7 +822,7 @@
             <h2>راه‌های ارتباطی</h2>
             <p>📧 ایمیل: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
             <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
-            <p>🔗 لینکدین: <a href="https://linkedin.com/in/USERNAME" target="_blank">LinkedIn</a></p>
+            <p>📱 تلگرام: <a href="https://t.me/rezagooner" target="_blank">T.me/rezagooner</a></p>
         </section>
     </main>
 
@@ -813,7 +832,7 @@
     </a>
 
     <footer>
-        <p>© 2025 ساخته شده توسط رضا گونر – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
+        <p>© 2025 ساخته شده توسط رضا – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
     </footer>
 </body>
 </html>
