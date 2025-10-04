@@ -25,50 +25,108 @@
             font-style: normal;
         }
 
+        @font-face {
+            font-family: 'B Titr';
+            src: url('fonts/BTITRBD.woff2') format('woff2'),
+                 url('fonts/BTITRBD.woff') format('woff'),
+                 url('fonts/BTITRBD.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
         /* اعمال فونت به کل سایت */
         html, body, * {
             font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
         }
 
+        /* اعمال فونت B Titr برای تیترها */
+        h1, h2, h3, h4, h5, h6,
+        header h1,
+        header p,
+        nav a,
+        .dropdown-content a,
+        .project-card h3,
+        .cert-category h3 {
+            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
+        }
+
+        /* استایل کلی */
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ee 100%);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
         /* هدر */
         header {
-            background: linear-gradient(135deg, #222, #444);
+            background: linear-gradient(135deg, #1a2a6c, #2a3a7c, #3a4a8c);
             color: #fff;
             text-align: center;
-            padding: 40px 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            padding: 60px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
         }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
         header h1 {
             margin: 0;
-            font-size: 2.8em;
+            font-size: 3.2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            letter-spacing: 1px;
         }
+        
         header p {
-            font-size: 1.1em;
-            color: #ddd;
+            font-size: 1.3em;
+            color: #e0e0e0;
+            margin-top: 15px;
+            position: relative;
+            max-width: 600px;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         /* منو */
         nav {
-            background-color: #333;
-            padding: 8px;
+            background: linear-gradient(to right, #2c3e50, #34495e);
+            padding: 12px;
             text-align: center;
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
         }
+        
         nav a {
             color: #fff;
             text-decoration: none;
-            margin: 0 12px;
+            margin: 0 15px;
             font-weight: 500;
-            padding: 6px 10px;
-            border-radius: 4px;
-            transition: background 0.3s;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
             position: relative;
+            font-size: 1.1em;
         }
+        
         nav a:hover {
             background-color: #ffd700;
             color: #222;
+            transform: translateY(-2px);
         }
 
         /* منوی کشویی گواهی‌ها */
@@ -80,29 +138,32 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 200px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+            min-width: 220px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             z-index: 1;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
             top: 100%;
             right: 0;
+            border: 1px solid #e0e0e0;
         }
         
         .dropdown-content a {
             color: #333;
-            padding: 12px 16px;
+            padding: 12px 20px;
             text-decoration: none;
             display: block;
             text-align: right;
             border-bottom: 1px solid #eee;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            font-size: 1em;
         }
         
         .dropdown-content a:hover {
             background-color: #ffd700;
             color: #222;
+            padding-right: 25px;
         }
         
         .dropdown:hover .dropdown-content {
@@ -111,25 +172,46 @@
 
         /* بخش اصلی */
         main {
-            max-width: 1150px;
+            max-width: 1200px;
             margin: auto;
-            padding: 20px;
+            padding: 30px 20px;
             margin-top: 30px;
         }
 
         /* بخش عمومی */
         section {
             background: #fff;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
         }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
         h2 {
-            color: #222;
+            color: #1a2a6c;
             border-bottom: 3px solid #ffd700;
-            padding-bottom: 8px;
-            margin-bottom: 20px;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #ffd700, transparent);
         }
 
         /* لیست داخلی */
@@ -137,142 +219,250 @@
             list-style: none;
             padding: 0;
         }
+        
         ul li {
-            background: #fafafa;
-            margin: 6px 0;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            transition: background 0.2s;
+            background: #f8f9fa;
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s;
+            position: relative;
+            padding-right: 50px;
         }
+        
+        ul li::before {
+            content: '▶';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffd700;
+        }
+        
         ul li:hover {
-            background: #f0f0f0;
+            background: #e9ecef;
+            transform: translateX(-5px);
         }
 
         /* بخش گواهی‌ها با اسکرول افقی */
         .cert-category {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
+        
         .cert-category h3 {
             border-bottom: 2px solid #ffd700;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-            color: #333;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            color: #1a2a6c;
+            font-size: 1.5em;
+            font-weight: bold;
         }
+        
         .cert-scroll {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding-bottom: 8px;
+            padding-bottom: 15px;
         }
+        
         .cert-scroll::-webkit-scrollbar {
             height: 8px;
         }
+        
         .cert-scroll::-webkit-scrollbar-thumb {
             background: #bbb;
             border-radius: 4px;
         }
+        
         .cert-scroll::-webkit-scrollbar-thumb:hover {
             background: #999;
         }
+        
         .cert-card {
-            flex: 0 0 220px;
+            flex: 0 0 240px;
             background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.25s ease-in-out, box-shadow 0.25s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
         }
+        
         .cert-card:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
+        
         .cert-card img {
             width: 100%;
-            height: 140px;
+            height: 150px;
             object-fit: cover;
             display: block;
             border-bottom: 1px solid #eee;
         }
+        
         .cert-card p {
-            padding: 10px;
-            font-size: 0.9em;
+            padding: 15px;
+            font-size: 0.95em;
             margin: 0;
-            color: #555;
+            color: #444;
+            font-weight: 500;
         }
 
         /* چیدمان جدید برای نمونه‌کارها */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
         
         .project-card {
-            background: #fafafa;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            transition: all 0.3s ease;
+            background: linear-gradient(to bottom right, #f8f9fa, #ffffff);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
             height: 100%;
             box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #1a2a6c, #ffd700);
         }
         
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            background: #fff;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
         .project-card h3 {
             margin-top: 0;
-            color: #222;
+            color: #1a2a6c;
             border-bottom: 2px solid #ffd700;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
+            font-size: 1.4em;
+            font-weight: bold;
         }
         
         .project-card p {
             flex-grow: 1;
             color: #555;
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
         .project-card a {
             display: inline-block;
-            margin-top: 15px;
-            padding: 8px 16px;
-            background-color: #333;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #1a2a6c, #2a3a7c);
             color: white;
             text-decoration: none;
-            border-radius: 4px;
-            transition: background 0.3s;
+            border-radius: 6px;
+            transition: all 0.3s;
             text-align: center;
+            font-weight: 500;
         }
         
         .project-card a:hover {
-            background-color: #ffd700;
+            background: linear-gradient(to right, #ffd700, #ffed4e);
+            color: #222;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* دکمه شناور */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1a2a6c, #2a3a7c);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
             color: #222;
         }
 
         /* فوتر */
         footer {
-            background-color: #222;
+            background: linear-gradient(to right, #2c3e50, #34495e);
             color: #ccc;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+            padding: 30px 20px;
+            margin-top: 60px;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
         }
+        
         footer a {
             color: #ffd700;
             text-decoration: none;
+            transition: all 0.3s;
         }
+        
         footer a:hover {
             text-decoration: underline;
+            color: #ffed4e;
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+            
+            header p {
+                font-size: 1.1em;
+            }
+            
+            nav a {
+                margin: 0 8px;
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                left: 20px;
+                font-size: 20px;
+            }
+            
+            section {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -587,6 +777,11 @@
             <p>🔗 لینکدین: <a href="https://linkedin.com/in/USERNAME" target="_blank">LinkedIn</a></p>
         </section>
     </main>
+
+    <!-- دکمه شناور برای ایمیل -->
+    <a href="mailto:RezaAsadiProgrammer@gmail.com" class="floating-btn">
+        ✉️
+    </a>
 
     <footer>
         <p>© 2025 ساخته شده توسط رضا گونر – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
