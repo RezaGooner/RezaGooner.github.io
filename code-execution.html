@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
     
     <style>
+        /* استایل‌ها مانند قبل باقی می‌مانند */
         @font-face {
             font-family: 'IRANSansWeb(FaNum)';
             src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
@@ -381,55 +382,6 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
                 <div class="output-content" id="sentiment-output">در انتظار بارگذاری Pyodide...</div>
             </div>
         </div>
-
-        <!-- کد سوم: نصب و تست کتابخانه -->
-        <div class="code-section">
-            <h2>نصب و تست کتابخانه PerSent</h2>
-            <div class="code-description">
-                این کد کتابخانه PerSent را نصب کرده و یک تست کامل انجام می‌دهد.
-            </div>
-            
-            <div class="code-input-section">
-                <label for="custom-input">متن دلخواه برای تست:</label>
-                <textarea id="custom-input" placeholder="متن خود را اینجا وارد کنید...">این فیلم بسیار خسته کننده و بی‌معنی بود</textarea>
-            </div>
-            
-            <div class="code-block">
-# کد کامل برای نصب و تست PerSent
-import micropip
-
-# نصب کتابخانه PerSent
-await micropip.install('persent')
-
-from PerSent import CommentAnalyzer, SentimentAnalyzer
-
-# تحلیل با CommentAnalyzer
-comment_analyzer = CommentAnalyzer()
-comment_analyzer.loadModel()
-
-# تحلیل با SentimentAnalyzer  
-sentiment_analyzer = SentimentAnalyzer()
-sentiment_analyzer.loadModel()
-
-text = "متن ورودی کاربر"
-
-print("=== تحلیل با CommentAnalyzer ===")
-comment_result = comment_analyzer.analyzeText(text)
-print(f"نتیجه: {comment_result}")
-
-print("\n=== تحلیل با SentimentAnalyzer ===")
-sentiment_result = sentiment_analyzer.analyzeText(text)
-for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], reverse=True):
-    print(f"{emotion}: {score:.2f}%")
-            </div>
-            
-            <button class="run-btn" id="run-custom" onclick="runCustomExample()" disabled>اجرای کد</button>
-            
-            <div class="output-section">
-                <h3>خروجی:</h3>
-                <div class="output-content" id="custom-output">در انتظار بارگذاری Pyodide...</div>
-            </div>
-        </div>
     </div>
 
     <footer>
@@ -457,7 +409,6 @@ for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], rever
                 // فعال کردن دکمه‌ها
                 document.getElementById('run-comment').disabled = false;
                 document.getElementById('run-sentiment').disabled = false;
-                document.getElementById('run-custom').disabled = false;
                 
                 isPyodideReady = true;
                 
@@ -482,7 +433,7 @@ for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], rever
             statusElement.appendChild(newIndicator);
         }
 
-        // تابع برای اجرای کد پایتون
+        // تابع برای اجرای کد پایتون و گرفتن خروجی
         async function runPythonCode(code, inputText) {
             if (!isPyodideReady || !pyodide) {
                 throw new Error('Pyodide هنوز آماده نیست');
@@ -492,11 +443,32 @@ for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], rever
                 // جایگزینی متن ورودی در کد
                 const finalCode = code.replace(/متن ورودی کاربر/g, inputText);
                 
+                // تنظیم تابع برای گرفتن خروجی
+                let output = '';
+                pyodide.setStdout({
+                    batched: (text) => {
+                        output += text + '\n';
+                    }
+                });
+                
                 // اجرای کد پایتون
-                const result = await pyodide.runPythonAsync(finalCode);
-                return result;
+                await pyodide.runPythonAsync(finalCode);
+                return output;
             } catch (error) {
                 throw error;
+            }
+        }
+
+        // تابع برای نصب کتابخانه PerSent
+        async function installPerSent() {
+            try {
+                const micropip = pyodide.pyimport("micropip");
+                await micropip.install("PerSent");
+                console.log('کتابخانه PerSent با موفقیت نصب شد');
+                return true;
+            } catch (error) {
+                console.error('خطا در نصب PerSent:', error);
+                throw new Error('نصب کتابخانه PerSent ناموفق بود');
             }
         }
 
@@ -516,6 +488,10 @@ for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], rever
             output.innerHTML = '<span class="loading">در حال اجرای کد پایتون...</span>';
 
             try {
+                // نصب کتابخانه
+                output.innerHTML = '<span class="loading">در حال نصب کتابخانه PerSent...</span>';
+                await installPerSent();
+                
                 const code = `
 from PerSent import CommentAnalyzer
 
@@ -527,8 +503,8 @@ result = analyzer.analyzeText(text)
 print(f"Sentiment: {result}")
                 `;
 
-                await runPythonCode(code, input);
-                output.innerHTML = '<span class="success">کد با موفقیت اجرا شد. نتیجه در کنسول مرورگر نمایش داده می‌شود.</span>';
+                const result = await runPythonCode(code, input);
+                output.innerHTML = `<span class="success">${result}</span>`;
                 
             } catch (error) {
                 console.error('Error:', error);
@@ -555,6 +531,10 @@ print(f"Sentiment: {result}")
             output.innerHTML = '<span class="loading">در حال اجرای کد پایتون...</span>';
 
             try {
+                // نصب کتابخانه
+                output.innerHTML = '<span class="loading">در حال نصب کتابخانه PerSent...</span>';
+                await installPerSent();
+                
                 const code = `
 from PerSent import SentimentAnalyzer
 
@@ -568,64 +548,8 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
     print(f"{emotion}: {score:.2f}%")
                 `;
 
-                await runPythonCode(code, input);
-                output.innerHTML = '<span class="success">کد با موفقیت اجرا شد. نتیجه در کنسول مرورگر نمایش داده می‌شود.</span>';
-                
-            } catch (error) {
-                console.error('Error:', error);
-                output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
-            } finally {
-                button.disabled = false;
-                button.textContent = 'اجرای کد';
-            }
-        }
-
-        // تابع برای اجرای مثال سفارشی
-        async function runCustomExample() {
-            const input = document.getElementById('custom-input').value;
-            const output = document.getElementById('custom-output');
-            const button = document.getElementById('run-custom');
-            
-            if (!input.trim()) {
-                output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
-                return;
-            }
-
-            button.disabled = true;
-            button.textContent = 'در حال اجرا...';
-            output.innerHTML = '<span class="loading">در حال اجرای کد پایتون...</span>';
-
-            try {
-                const code = `
-import micropip
-
-# نصب کتابخانه PerSent
-await micropip.install('persent')
-
-from PerSent import CommentAnalyzer, SentimentAnalyzer
-
-# تحلیل با CommentAnalyzer
-comment_analyzer = CommentAnalyzer()
-comment_analyzer.loadModel()
-
-# تحلیل با SentimentAnalyzer  
-sentiment_analyzer = SentimentAnalyzer()
-sentiment_analyzer.loadModel()
-
-text = "متن ورودی کاربر"
-
-print("=== تحلیل با CommentAnalyzer ===")
-comment_result = comment_analyzer.analyzeText(text)
-print(f"نتیجه: {comment_result}")
-
-print("\\n=== تحلیل با SentimentAnalyzer ===")
-sentiment_result = sentiment_analyzer.analyzeText(text)
-for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], reverse=True):
-    print(f"{emotion}: {score:.2f}%")
-                `;
-
-                await runPythonCode(code, input);
-                output.innerHTML = '<span class="success">کد با موفقیت اجرا شد. نتیجه در کنسول مرورگر نمایش داده می‌شود.</span>';
+                const result = await runPythonCode(code, input);
+                output.innerHTML = `<span class="success">${result}</span>`;
                 
             } catch (error) {
                 console.error('Error:', error);
