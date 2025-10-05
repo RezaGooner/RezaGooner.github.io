@@ -428,6 +428,29 @@
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
         }
 
+        /* دکمه تست کتابخانه PerSent */
+        .persent-test-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+        
+        .persent-test-btn:hover {
+            background: linear-gradient(to right, #ffd700, #ffed4e);
+            color: #222;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(255, 215, 0, 0.4);
+        }
+
         /* بخش اهداف و قدم‌های پیش رو */
         .goals-container {
             display: flex;
@@ -553,43 +576,6 @@
             font-size: 18px;
         }
 
-        /* دکمه کدهای قابل اجرا */
-        .code-execution-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            color: white;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 1000;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 12px 25px;
-            min-width: 150px;
-            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
-        }
-        
-        .code-execution-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #222;
-            padding: 12px 30px;
-        }
-        
-        .code-execution-btn::before {
-            content: "💻";
-            margin-left: 8px;
-            font-size: 18px;
-        }
-
         /* فوتر */
         footer {
             background: linear-gradient(to right, #2c3e50, #34495e);
@@ -664,19 +650,6 @@
                 margin-left: 6px;
             }
             
-            .code-execution-btn {
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 20px;
-                min-width: 130px;
-                font-size: 14px;
-            }
-            
-            .code-execution-btn::before {
-                font-size: 16px;
-                margin-left: 6px;
-            }
-            
             section {
                 padding: 20px;
             }
@@ -692,19 +665,6 @@
             }
             
             .floating-btn::before {
-                font-size: 14px;
-                margin-left: 4px;
-            }
-            
-            .code-execution-btn {
-                bottom: 15px;
-                right: 15px;
-                padding: 8px 16px;
-                min-width: 120px;
-                font-size: 13px;
-            }
-            
-            .code-execution-btn::before {
                 font-size: 14px;
                 margin-left: 4px;
             }
@@ -1030,6 +990,7 @@
                     <div class="project-links">
                         <a href="https://github.com/RezaGooner/PerSent" target="_blank" data-translate="github_link">GitHub</a>
                         <a href="https://pypi.org/project/persent" target="_blank" data-translate="pypi_link">PyPI</a>
+                        <a href="code-execution.html" class="persent-test-btn" data-translate="test_persent">تست کتابخانه</a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -1099,11 +1060,6 @@
     <!-- دکمه شناور برای ایمیل - بهبود یافته -->
     <a href="mailto:RezaAsadiProgrammer@gmail.com" class="floating-btn" data-translate="contact_btn">
         ارتباط با من
-    </a>
-
-    <!-- دکمه شناور برای صفحه کدهای قابل اجرا -->
-    <a href="code-execution.html" class="code-execution-btn" data-translate="code_execution_btn">
-        کدهای قابل اجرا
     </a>
 
     <footer>
@@ -1184,6 +1140,7 @@
                 project4_description: "یک سیستم تشخیص زنده برای بازی سنگ، کاغذ، قیچی با استفاده از بینایی کامپیوتر و مدل‌های یادگیری عمیق.",
                 github_link: "GitHub",
                 pypi_link: "PyPI",
+                test_persent: "تست کتابخانه",
                 goals_title: "اهداف و قدم‌های پیش رو",
                 goal1_title: "انتشار مقاله علمی",
                 goal1_description: "در حال تحقیق و نگارش مقاله علمی در حوزه پردازش زبان فارسی.",
@@ -1191,7 +1148,6 @@
                 goal2_description: "توسعه سیستم هوشمند تحلیل ترافیک با قابلیت‌های شمارش وسایل نقلیه و خواندن پلاک، تشخیص تخلفات رانندگی، و بهینه‌سازی جریان ترافیک با استفاده از تکنیک‌های پیشرفته بینایی کامپیوتر.",
                 contact_title: "راه‌های ارتباطی",
                 contact_btn: "ارتباط با من",
-                code_execution_btn: "کدهای قابل اجرا",
                 footer_text: "© 2025 ساخته شده توسط رضا – منتشر شده در"
             },
             en: {
@@ -1265,6 +1221,7 @@
                 project4_description: "A live detection system for the rock, paper, scissors game using computer vision and deep learning models.",
                 github_link: "GitHub",
                 pypi_link: "PyPI",
+                test_persent: "Test Library",
                 goals_title: "Future Goals and Steps",
                 goal1_title: "Publishing Scientific Paper",
                 goal1_description: "Currently researching and writing a scientific paper in the field of Persian language processing.",
@@ -1272,7 +1229,6 @@
                 goal2_description: "Developing an intelligent traffic analysis system with capabilities for vehicle counting and license plate reading, traffic violation detection, and traffic flow optimization using advanced computer vision techniques.",
                 contact_title: "Contact Information",
                 contact_btn: "Contact Me",
-                code_execution_btn: "Executable Codes",
                 footer_text: "© 2025 Created by Reza – Published on"
             },
             ru: {
@@ -1346,6 +1302,7 @@
                 project4_description: "Система живого обнаружения для игры камень, ножницы, бумага с использованием компьютерного зрения и моделей глубокого обучения.",
                 github_link: "GitHub",
                 pypi_link: "PyPI",
+                test_persent: "Тест библиотеки",
                 goals_title: "Будущие цели и шаги",
                 goal1_title: "Публикация научной статьи",
                 goal1_description: "В настоящее время исследую и пишу научную статью в области обработки персидского языка.",
@@ -1353,7 +1310,6 @@
                 goal2_description: "Разработка интеллектуальной системы анализа трафика с возможностями подсчета транспортных средств и чтения номерных знаков, обнаружения нарушений ПДД и оптимизации потока трафика с использованием передовых методов компьютерного зрения.",
                 contact_title: "Контактная информация",
                 contact_btn: "Связаться со мной",
-                code_execution_btn: "Исполняемые коды",
                 footer_text: "© 2025 Создано Реза – Опубликовано на"
             }
         };
