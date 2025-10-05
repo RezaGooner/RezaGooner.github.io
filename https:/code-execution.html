@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کدهای قابل اجرا - Reza Asadi</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <style>
+        @font-face {
+            font-family: 'IRANSansWeb(FaNum)';
+            src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
+                url('fonts/IRANSansWeb(FaNum).woff') format('woff'),
+                url('fonts/IRANSansWeb(FaNum).ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'B Titr';
+            src: url('fonts/BTitr.woff2') format('woff2'),
+                 url('fonts/BTitr.woff') format('woff'),
+                 url('fonts/BTitr.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ee 100%);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #2a3a7c, #3a4a8c);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #e0e0e0;
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #222;
+            transform: scale(1.05);
+        }
+
+        .code-section {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
+        }
+
+        .code-section h2 {
+            color: #1a2a6c;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+        }
+
+        .code-description {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .code-input-section {
+            margin-bottom: 15px;
+        }
+
+        .code-input-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #1a2a6c;
+        }
+
+        .code-input-section input, .code-input-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .code-input-section textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .run-btn {
+            background: linear-gradient(to right, #1a2a6c, #2a3a7c);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+
+        .run-btn:hover {
+            background: linear-gradient(to right, #ffd700, #ffed4e);
+            color: #222;
+            transform: translateY(-2px);
+        }
+
+        .output-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            min-height: 50px;
+        }
+
+        .output-section h3 {
+            margin-top: 0;
+            color: #1a2a6c;
+            font-size: 1.2em;
+            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+        }
+
+        .output-content {
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #27ae60;
+        }
+
+        footer {
+            background: linear-gradient(to right, #2c3e50, #34495e);
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #ffed4e;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            
+            header p {
+                font-size: 1em;
+            }
+            
+            .back-btn {
+                top: 15px;
+                left: 15px;
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+            
+            .code-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-btn">بازگشت به صفحه اصلی</a>
+        <h1>کدهای قابل اجرا</h1>
+        <p>اجرای کدهای پایتون در مرورگر</p>
+    </header>
+
+    <div class="container">
+        <!-- کد اول: محاسبه فاکتوریل -->
+        <div class="code-section">
+            <h2>محاسبه فاکتوریل</h2>
+            <div class="code-description">
+                این برنامه یک عدد از کاربر دریافت می‌کند و فاکتوریل آن را محاسبه می‌کند.
+            </div>
+            
+            <div class="code-input-section">
+                <label for="factorial-input">عدد مورد نظر را وارد کنید:</label>
+                <input type="number" id="factorial-input" min="0" max="100" value="5">
+            </div>
+            
+            <div class="code-block">
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+# دریافت ورودی از کاربر
+number = int(input("لطفاً یک عدد وارد کنید: "))
+result = factorial(number)
+print(f"فاکتوریل {number} برابر است با: {result}")
+            </div>
+            
+            <button class="run-btn" onclick="runFactorial()">اجرای کد</button>
+            
+            <div class="output-section">
+                <h3>خروجی:</h3>
+                <div class="output-content" id="factorial-output">در انتظار اجرا...</div>
+            </div>
+        </div>
+
+        <!-- کد دوم: تشخیص عدد اول -->
+        <div class="code-section">
+            <h2>تشخیص عدد اول</h2>
+            <div class="code-description">
+                این برنامه بررسی می‌کند که آیا عدد وارد شده اول است یا خیر.
+            </div>
+            
+            <div class="code-input-section">
+                <label for="prime-input">عدد مورد نظر را وارد کنید:</label>
+                <input type="number" id="prime-input" min="2" max="1000" value="17">
+            </div>
+            
+            <div class="code-block">
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+# دریافت ورودی از کاربر
+number = int(input("لطفاً یک عدد وارد کنید: "))
+if is_prime(number):
+    print(f"{number} یک عدد اول است.")
+else:
+    print(f"{number} یک عدد اول نیست.")
+            </div>
+            
+            <button class="run-btn" onclick="runPrime()">اجرای کد</button>
+            
+            <div class="output-section">
+                <h3>خروجی:</h3>
+                <div class="output-content" id="prime-output">در انتظار اجرا...</div>
+            </div>
+        </div>
+
+        <!-- کد سوم: تحلیل متن با PerSent -->
+        <div class="code-section">
+            <h2>تحلیل احساسات متن فارسی</h2>
+            <div class="code-description">
+                این برنامه با استفاده از کتابخانه PerSent، احساسات متن فارسی را تحلیل می‌کند.
+            </div>
+            
+            <div class="code-input-section">
+                <label for="sentiment-input">متن فارسی خود را وارد کنید:</label>
+                <textarea id="sentiment-input" placeholder="متن فارسی خود را اینجا وارد کنید...">امروز روز بسیار خوبی است و من احساس شادی می‌کنم.</textarea>
+            </div>
+            
+            <div class="code-block">
+# شبیه‌سازی کتابخانه PerSent برای تحلیل احساسات
+def analyze_sentiment(text):
+    positive_words = ['خوب', 'عالی', 'عالیه', 'زیبا', 'شادی', 'خوشحال', 'مثبت', 'عالیست']
+    negative_words = ['بد', 'زشت', 'ناراحت', 'غم', 'منفی', 'بدی', 'مشکل']
+    
+    words = text.split()
+    positive_count = sum(1 for word in words if word in positive_words)
+    negative_count = sum(1 for word in words if word in negative_words)
+    
+    if positive_count > negative_count:
+        return "مثبت", positive_count / len(words) * 100
+    elif negative_count > positive_count:
+        return "منفی", negative_count / len(words) * 100
+    else:
+        return "خنثی", 50
+
+# دریافت ورودی از کاربر
+text = input("لطفاً متن فارسی خود را وارد کنید: ")
+sentiment, confidence = analyze_sentiment(text)
+print(f"احساسات متن: {sentiment}")
+print(f"درصد اطمینان: {confidence:.2f}%")
+            </div>
+            
+            <button class="run-btn" onclick="runSentiment()">اجرای کد</button>
+            
+            <div class="output-section">
+                <h3>خروجی:</h3>
+                <div class="output-content" id="sentiment-output">در انتظار اجرا...</div>
+            </div>
+        </div>
+
+        <!-- کد چهارم: مرتب‌سازی لیست -->
+        <div class="code-section">
+            <h2>مرتب‌سازی لیست اعداد</h2>
+            <div class="code-description">
+                این برنامه یک لیست از اعداد را از کاربر دریافت کرده و به صورت صعودی مرتب می‌کند.
+            </div>
+            
+            <div class="code-input-section">
+                <label for="sort-input">اعداد را با کاما جدا کنید (مثال: 5,2,8,1):</label>
+                <input type="text" id="sort-input" value="5,2,8,1,9,3">
+            </div>
+            
+            <div class="code-block">
+def bubble_sort(numbers):
+    n = len(numbers)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if numbers[j] > numbers[j+1]:
+                numbers[j], numbers[j+1] = numbers[j+1], numbers[j]
+    return numbers
+
+# دریافت ورودی از کاربر
+input_str = input("لطفاً اعداد را با کاما جدا کنید: ")
+numbers = [int(x.strip()) for x in input_str.split(',')]
+sorted_numbers = bubble_sort(numbers)
+print(f"لیست مرتب شده: {sorted_numbers}")
+            </div>
+            
+            <button class="run-btn" onclick="runSort()">اجرای کد</button>
+            
+            <div class="output-section">
+                <h3>خروجی:</h3>
+                <div class="output-content" id="sort-output">در انتظار اجرا...</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 ساخته شده توسط رضا – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
+    </footer>
+
+    <script>
+        // تابع برای اجرای کد فاکتوریل
+        function runFactorial() {
+            const input = document.getElementById('factorial-input').value;
+            const output = document.getElementById('factorial-output');
+            
+            try {
+                const number = parseInt(input);
+                if (isNaN(number) || number < 0) {
+                    output.innerHTML = '<span class="error">خطا: لطفاً یک عدد صحیح غیرمنفی وارد کنید.</span>';
+                    return;
+                }
+                
+                if (number > 100) {
+                    output.innerHTML = '<span class="error">خطا: عدد وارد شده بسیار بزرگ است. لطفاً عدد کوچکتری وارد کنید.</span>';
+                    return;
+                }
+                
+                // شبیه‌سازی اجرای کد پایتون
+                const result = factorial(number);
+                output.innerHTML = `<span class="success">فاکتوریل ${number} برابر است با: ${result}</span>`;
+            } catch (error) {
+                output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
+            }
+        }
+        
+        // تابع محاسبه فاکتوریل
+        function factorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            return n * factorial(n - 1);
+        }
+        
+        // تابع برای اجرای کد تشخیص عدد اول
+        function runPrime() {
+            const input = document.getElementById('prime-input').value;
+            const output = document.getElementById('prime-output');
+            
+            try {
+                const number = parseInt(input);
+                if (isNaN(number) || number < 2) {
+                    output.innerHTML = '<span class="error">خطا: لطفاً یک عدد صحیح بزرگتر از 1 وارد کنید.</span>';
+                    return;
+                }
+                
+                // شبیه‌سازی اجرای کد پایتون
+                const isPrime = checkPrime(number);
+                if (isPrime) {
+                    output.innerHTML = `<span class="success">${number} یک عدد اول است.</span>`;
+                } else {
+                    output.innerHTML = `<span class="success">${number} یک عدد اول نیست.</span>`;
+                }
+            } catch (error) {
+                output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
+            }
+        }
+        
+        // تابع تشخیص عدد اول
+        function checkPrime(n) {
+            if (n <= 1) return false;
+            if (n <= 3) return true;
+            if (n % 2 === 0 || n % 3 === 0) return false;
+            
+            let i = 5;
+            while (i * i <= n) {
+                if (n % i === 0 || n % (i + 2) === 0) return false;
+                i += 6;
+            }
+            return true;
+        }
+        
+        // تابع برای اجرای کد تحلیل احساسات
+        function runSentiment() {
+            const input = document.getElementById('sentiment-input').value;
+            const output = document.getElementById('sentiment-output');
+            
+            try {
+                if (!input.trim()) {
+                    output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
+                    return;
+                }
+                
+                // شبیه‌سازی اجرای کد پایتون
+                const result = analyzeSentiment(input);
+                output.innerHTML = `<span class="success">احساسات متن: ${result.sentiment}<br>درصد اطمینان: ${result.confidence.toFixed(2)}%</span>`;
+            } catch (error) {
+                output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
+            }
+        }
+        
+        // تابع تحلیل احساسات متن فارسی
+        function analyzeSentiment(text) {
+            const positiveWords = ['خوب', 'عالی', 'عالیه', 'زیبا', 'شادی', 'خوشحال', 'مثبت', 'عالیست', 'عالیی', 'خوش'];
+            const negativeWords = ['بد', 'زشت', 'ناراحت', 'غم', 'منفی', 'بدی', 'مشکل', 'بدترین', 'زشت', 'ناراحتی'];
+            
+            const words = text.split(' ');
+            let positiveCount = 0;
+            let negativeCount = 0;
+            
+            for (const word of words) {
+                if (positiveWords.includes(word)) positiveCount++;
+                if (negativeWords.includes(word)) negativeCount++;
+            }
+            
+            const total = positiveCount + negativeCount;
+            if (total === 0) {
+                return { sentiment: "خنثی", confidence: 50 };
+            }
+            
+            if (positiveCount > negativeCount) {
+                return { sentiment: "مثبت", confidence: (positiveCount / total) * 100 };
+            } else if (negativeCount > positiveCount) {
+                return { sentiment: "منفی", confidence: (negativeCount / total) * 100 };
+            } else {
+                return { sentiment: "خنثی", confidence: 50 };
+            }
+        }
+        
+        // تابع برای اجرای کد مرتب‌سازی
+        function runSort() {
+            const input = document.getElementById('sort-input').value;
+            const output = document.getElementById('sort-output');
+            
+            try {
+                if (!input.trim()) {
+                    output.innerHTML = '<span class="error">خطا: لطفاً اعداد را وارد کنید.</span>';
+                    return;
+                }
+                
+                const numbers = input.split(',').map(num => parseInt(num.trim()));
+                
+                if (numbers.some(isNaN)) {
+                    output.innerHTML = '<span class="error">خطا: لطفاً فقط اعداد وارد کنید.</span>';
+                    return;
+                }
+                
+                // شبیه‌سازی اجرای کد پایتون
+                const sortedNumbers = bubbleSort(numbers);
+                output.innerHTML = `<span class="success">لیست مرتب شده: [${sortedNumbers.join(', ')}]</span>`;
+            } catch (error) {
+                output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
+            }
+        }
+        
+        // تابع مرتب‌سازی حبابی
+        function bubbleSort(numbers) {
+            const arr = [...numbers];
+            const n = arr.length;
+            
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    }
+                }
+            }
+            
+            return arr;
+        }
+    </script>
+</body>
+</html>
