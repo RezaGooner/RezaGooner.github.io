@@ -9,6 +9,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
+    <!-- بارگذاری Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    
     <style>
         @font-face {
             font-family: 'IRANSansWeb(FaNum)';
@@ -170,10 +173,16 @@
             font-size: 1em;
         }
 
-        .run-btn:hover {
+        .run-btn:hover:not(:disabled) {
             background: linear-gradient(to right, #ffd700, #ffed4e);
             color: #222;
             transform: translateY(-2px);
+        }
+
+        .run-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .output-section {
@@ -214,6 +223,38 @@
             padding: 15px;
             margin-bottom: 20px;
             color: #1a2a6c;
+        }
+
+        .loading {
+            color: #1a2a6c;
+            font-style: italic;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .status-ready {
+            background-color: #27ae60;
+        }
+
+        .status-loading {
+            background-color: #f39c12;
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-error {
+            background-color: #e74c3c;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
 
         footer {
@@ -262,12 +303,17 @@
     <header>
         <a href="index.html" class="back-btn">بازگشت به صفحه اصلی</a>
         <h1>کدهای قابل اجرا - کتابخانه PerSent</h1>
-        <p>اجرای کدهای پایتون برای تست کتابخانه PerSent</p>
+        <p>اجرای واقعی کدهای پایتون با کتابخانه PerSent در مرورگر</p>
+        <div id="pyodide-status">
+            وضعیت Pyodide: <span class="loading">در حال بارگذاری...</span>
+            <span class="status-indicator status-loading"></span>
+        </div>
     </header>
 
     <div class="container">
         <div class="info">
-            <strong>توجه:</strong> این صفحه برای شبیه‌سازی اجرای کدهای پایتون مربوط به کتابخانه PerSent طراحی شده است. در محیط واقعی، این کدها نیاز به نصب کتابخانه و اجرا در محیط پایتون دارند.
+            <strong>توجه:</strong> این صفحه از Pyodide برای اجرای واقعی پایتون در مرورگر استفاده می‌کند. 
+            بارگذاری اولیه ممکن است چند ثانیه طول بکشد. پس از آماده شدن وضعیت، می‌توانید کدها را اجرا کنید.
         </div>
 
         <!-- کد اول: تحلیل احساسات با CommentAnalyzer -->
@@ -283,22 +329,22 @@
             </div>
             
             <div class="code-block">
-pip install persent
+# کد پایتون واقعی - تحلیل با CommentAnalyzer
 from PerSent import CommentAnalyzer
 
 analyzer = CommentAnalyzer()
 analyzer.loadModel()
 
-text = input()
+text = "متن ورودی کاربر"
 result = analyzer.analyzeText(text)
-print(f"Sentiment: {result}")  # Output: Sentiment: recommended
+print(f"Sentiment: {result}")
             </div>
             
-            <button class="run-btn" onclick="runCommentAnalyzer()">اجرای کد</button>
+            <button class="run-btn" id="run-comment" onclick="runCommentAnalyzer()" disabled>اجرای کد</button>
             
             <div class="output-section">
                 <h3>خروجی:</h3>
-                <div class="output-content" id="comment-output">در انتظار اجرا...</div>
+                <div class="output-content" id="comment-output">در انتظار بارگذاری Pyodide...</div>
             </div>
         </div>
 
@@ -315,31 +361,32 @@ print(f"Sentiment: {result}")  # Output: Sentiment: recommended
             </div>
             
             <div class="code-block">
+# کد پایتون واقعی - تحلیل با SentimentAnalyzer
 from PerSent import SentimentAnalyzer
 
 analyzer = SentimentAnalyzer()
 analyzer.loadModel()
 
-sample_text = input()
-
+sample_text = "متن ورودی کاربر"
 result = analyzer.analyzeText(sample_text)
+
 for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
     print(f"{emotion}: {score:.2f}%")
             </div>
             
-            <button class="run-btn" onclick="runSentimentAnalyzer()">اجرای کد</button>
+            <button class="run-btn" id="run-sentiment" onclick="runSentimentAnalyzer()" disabled>اجرای کد</button>
             
             <div class="output-section">
                 <h3>خروجی:</h3>
-                <div class="output-content" id="sentiment-output">در انتظار اجرا...</div>
+                <div class="output-content" id="sentiment-output">در انتظار بارگذاری Pyodide...</div>
             </div>
         </div>
 
-        <!-- کد سوم: مثال‌های اضافی -->
+        <!-- کد سوم: نصب و تست کتابخانه -->
         <div class="code-section">
-            <h2>مثال‌های بیشتر برای تست</h2>
+            <h2>نصب و تست کتابخانه PerSent</h2>
             <div class="code-description">
-                در این بخش می‌توانید متن‌های مختلفی را برای تست کتابخانه وارد کنید.
+                این کد کتابخانه PerSent را نصب کرده و یک تست کامل انجام می‌دهد.
             </div>
             
             <div class="code-input-section">
@@ -348,8 +395,12 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
             </div>
             
             <div class="code-block">
-# کد کامل برای تحلیل احساسات
-pip install persent
+# کد کامل برای نصب و تست PerSent
+import micropip
+
+# نصب کتابخانه PerSent
+await micropip.install('persent')
+
 from PerSent import CommentAnalyzer, SentimentAnalyzer
 
 # تحلیل با CommentAnalyzer
@@ -360,7 +411,7 @@ comment_analyzer.loadModel()
 sentiment_analyzer = SentimentAnalyzer()
 sentiment_analyzer.loadModel()
 
-text = input("لطفاً متن فارسی خود را وارد کنید: ")
+text = "متن ورودی کاربر"
 
 print("=== تحلیل با CommentAnalyzer ===")
 comment_result = comment_analyzer.analyzeText(text)
@@ -372,11 +423,11 @@ for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], rever
     print(f"{emotion}: {score:.2f}%")
             </div>
             
-            <button class="run-btn" onclick="runCustomExample()">اجرای کد</button>
+            <button class="run-btn" id="run-custom" onclick="runCustomExample()" disabled>اجرای کد</button>
             
             <div class="output-section">
                 <h3>خروجی:</h3>
-                <div class="output-content" id="custom-output">در انتظار اجرا...</div>
+                <div class="output-content" id="custom-output">در انتظار بارگذاری Pyodide...</div>
             </div>
         </div>
     </div>
@@ -386,133 +437,209 @@ for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], rever
     </footer>
 
     <script>
+        // متغیرهای سراسری
+        let pyodide;
+        let isPyodideReady = false;
+
+        // تابع برای بارگذاری Pyodide
+        async function loadPyodide() {
+            try {
+                console.log('در حال بارگذاری Pyodide...');
+                updateStatus('در حال بارگذاری Pyodide...', 'loading');
+                
+                pyodide = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+                });
+                
+                console.log('Pyodide بارگذاری شد');
+                updateStatus('Pyodide آماده است', 'ready');
+                
+                // فعال کردن دکمه‌ها
+                document.getElementById('run-comment').disabled = false;
+                document.getElementById('run-sentiment').disabled = false;
+                document.getElementById('run-custom').disabled = false;
+                
+                isPyodideReady = true;
+                
+                // نصب micropip برای مدیریت پکیج‌ها
+                await pyodide.loadPackage("micropip");
+                console.log('micropip بارگذاری شد');
+                
+            } catch (error) {
+                console.error('خطا در بارگذاری Pyodide:', error);
+                updateStatus('خطا در بارگذاری Pyodide', 'error');
+            }
+        }
+
+        // تابع برای به‌روزرسانی وضعیت
+        function updateStatus(message, status) {
+            const statusElement = document.getElementById('pyodide-status');
+            const indicator = statusElement.querySelector('.status-indicator');
+            
+            statusElement.innerHTML = `وضعیت Pyodide: ${message}`;
+            const newIndicator = document.createElement('span');
+            newIndicator.className = `status-indicator status-${status}`;
+            statusElement.appendChild(newIndicator);
+        }
+
+        // تابع برای اجرای کد پایتون
+        async function runPythonCode(code, inputText) {
+            if (!isPyodideReady || !pyodide) {
+                throw new Error('Pyodide هنوز آماده نیست');
+            }
+
+            try {
+                // جایگزینی متن ورودی در کد
+                const finalCode = code.replace(/متن ورودی کاربر/g, inputText);
+                
+                // اجرای کد پایتون
+                const result = await pyodide.runPythonAsync(finalCode);
+                return result;
+            } catch (error) {
+                throw error;
+            }
+        }
+
         // تابع برای اجرای کد CommentAnalyzer
-        function runCommentAnalyzer() {
+        async function runCommentAnalyzer() {
             const input = document.getElementById('comment-input').value;
             const output = document.getElementById('comment-output');
+            const button = document.getElementById('run-comment');
             
+            if (!input.trim()) {
+                output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = 'در حال اجرا...';
+            output.innerHTML = '<span class="loading">در حال اجرای کد پایتون...</span>';
+
             try {
-                if (!input.trim()) {
-                    output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
-                    return;
-                }
+                const code = `
+from PerSent import CommentAnalyzer
+
+analyzer = CommentAnalyzer()
+analyzer.loadModel()
+
+text = "متن ورودی کاربر"
+result = analyzer.analyzeText(text)
+print(f"Sentiment: {result}")
+                `;
+
+                await runPythonCode(code, input);
+                output.innerHTML = '<span class="success">کد با موفقیت اجرا شد. نتیجه در کنسول مرورگر نمایش داده می‌شود.</span>';
                 
-                // شبیه‌سازی تحلیل احساسات با CommentAnalyzer
-                const result = simulateCommentAnalyzer(input);
-                output.innerHTML = `<span class="success">Sentiment: ${result}</span>`;
             } catch (error) {
+                console.error('Error:', error);
                 output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
+            } finally {
+                button.disabled = false;
+                button.textContent = 'اجرای کد';
             }
         }
-        
-        // شبیه‌سازی CommentAnalyzer
-        function simulateCommentAnalyzer(text) {
-            const positiveWords = ['عالی', 'خوب', 'عالیه', 'ممتاز', 'عالیست', 'عالیی', 'خوش', 'راضی', 'عالی است', 'خوب است', 'مثبت'];
-            const negativeWords = ['بد', 'ضعیف', 'بی‌معنی', 'خسته کننده', 'بدترین', 'ضعیف است', 'بد است', 'منفی'];
-            
-            const words = text.split(' ');
-            let positiveCount = 0;
-            let negativeCount = 0;
-            
-            for (const word of words) {
-                if (positiveWords.includes(word)) positiveCount++;
-                if (negativeWords.includes(word)) negativeCount++;
-            }
-            
-            return positiveCount >= negativeCount ? 'recommended' : 'not_recommended';
-        }
-        
+
         // تابع برای اجرای کد SentimentAnalyzer
-        function runSentimentAnalyzer() {
+        async function runSentimentAnalyzer() {
             const input = document.getElementById('sentiment-input').value;
             const output = document.getElementById('sentiment-output');
+            const button = document.getElementById('run-sentiment');
             
+            if (!input.trim()) {
+                output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = 'در حال اجرا...';
+            output.innerHTML = '<span class="loading">در حال اجرای کد پایتون...</span>';
+
             try {
-                if (!input.trim()) {
-                    output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
-                    return;
-                }
+                const code = `
+from PerSent import SentimentAnalyzer
+
+analyzer = SentimentAnalyzer()
+analyzer.loadModel()
+
+sample_text = "متن ورودی کاربر"
+result = analyzer.analyzeText(sample_text)
+
+for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
+    print(f"{emotion}: {score:.2f}%")
+                `;
+
+                await runPythonCode(code, input);
+                output.innerHTML = '<span class="success">کد با موفقیت اجرا شد. نتیجه در کنسول مرورگر نمایش داده می‌شود.</span>';
                 
-                // شبیه‌سازی تحلیل احساسات با SentimentAnalyzer
-                const result = simulateSentimentAnalyzer(input);
-                let outputHTML = '<span class="success">';
-                for (const [emotion, score] of Object.entries(result)) {
-                    outputHTML += `${emotion}: ${score.toFixed(2)}%<br>`;
-                }
-                outputHTML += '</span>';
-                output.innerHTML = outputHTML;
             } catch (error) {
+                console.error('Error:', error);
                 output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
+            } finally {
+                button.disabled = false;
+                button.textContent = 'اجرای کد';
             }
         }
-        
-        // شبیه‌سازی SentimentAnalyzer
-        function simulateSentimentAnalyzer(text) {
-            const emotions = {
-                'شادی': ['شادی', 'خوشحال', 'خنده', 'خندان', 'شاد', 'سرحال', 'انرژی مثبت'],
-                'غم': ['غم', 'ناراحت', 'اندوه', 'گریه', 'غمگین', 'دلگیر'],
-                'خشم': ['خشم', 'عصبانی', 'خشمگین', 'ناراحت', 'عصبانیت'],
-                'ترس': ['ترس', 'وحشت', 'هراس', 'ترسیده', 'نگران'],
-                'تعجب': ['تعجب', 'شگفت‌زده', 'حیرت', 'عجیب', 'غریب'],
-                'تنفر': ['تنفر', 'متنفر', 'نفرت', 'بیزاری'],
-                'علاقه': ['علاقه', 'دوست', 'محبت', 'عشق', 'پسند']
-            };
-            
-            const result = {};
-            const words = text.split(' ');
-            
-            // محاسبه امتیاز هر احساس
-            for (const [emotion, keywords] of Object.entries(emotions)) {
-                let score = 0;
-                for (const word of words) {
-                    if (keywords.includes(word)) {
-                        score += 10; // امتیاز پایه برای هر کلمه مرتبط
-                    }
-                }
-                // اضافه کردن امتیاز تصادفی برای شبیه‌سازی بهتر
-                score += Math.random() * 30;
-                result[emotion] = Math.min(score, 100); // محدود کردن به 100
-            }
-            
-            // نرمال‌سازی نتایج
-            const total = Object.values(result).reduce((sum, score) => sum + score, 0);
-            if (total > 0) {
-                for (const emotion in result) {
-                    result[emotion] = (result[emotion] / total) * 100;
-                }
-            }
-            
-            return result;
-        }
-        
+
         // تابع برای اجرای مثال سفارشی
-        function runCustomExample() {
+        async function runCustomExample() {
             const input = document.getElementById('custom-input').value;
             const output = document.getElementById('custom-output');
+            const button = document.getElementById('run-custom');
             
+            if (!input.trim()) {
+                output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = 'در حال اجرا...';
+            output.innerHTML = '<span class="loading">در حال اجرای کد پایتون...</span>';
+
             try {
-                if (!input.trim()) {
-                    output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
-                    return;
-                }
+                const code = `
+import micropip
+
+# نصب کتابخانه PerSent
+await micropip.install('persent')
+
+from PerSent import CommentAnalyzer, SentimentAnalyzer
+
+# تحلیل با CommentAnalyzer
+comment_analyzer = CommentAnalyzer()
+comment_analyzer.loadModel()
+
+# تحلیل با SentimentAnalyzer  
+sentiment_analyzer = SentimentAnalyzer()
+sentiment_analyzer.loadModel()
+
+text = "متن ورودی کاربر"
+
+print("=== تحلیل با CommentAnalyzer ===")
+comment_result = comment_analyzer.analyzeText(text)
+print(f"نتیجه: {comment_result}")
+
+print("\\n=== تحلیل با SentimentAnalyzer ===")
+sentiment_result = sentiment_analyzer.analyzeText(text)
+for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], reverse=True):
+    print(f"{emotion}: {score:.2f}%")
+                `;
+
+                await runPythonCode(code, input);
+                output.innerHTML = '<span class="success">کد با موفقیت اجرا شد. نتیجه در کنسول مرورگر نمایش داده می‌شود.</span>';
                 
-                // شبیه‌سازی هر دو آنالایزر
-                const commentResult = simulateCommentAnalyzer(input);
-                const sentimentResult = simulateSentimentAnalyzer(input);
-                
-                let outputHTML = '<span class="success">';
-                outputHTML += '=== تحلیل با CommentAnalyzer ===<br>';
-                outputHTML += `نتیجه: ${commentResult}<br><br>`;
-                outputHTML += '=== تحلیل با SentimentAnalyzer ===<br>';
-                for (const [emotion, score] of Object.entries(sentimentResult)) {
-                    outputHTML += `${emotion}: ${score.toFixed(2)}%<br>`;
-                }
-                outputHTML += '</span>';
-                output.innerHTML = outputHTML;
             } catch (error) {
+                console.error('Error:', error);
                 output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
+            } finally {
+                button.disabled = false;
+                button.textContent = 'اجرای کد';
             }
         }
+
+        // بارگذاری Pyodide هنگام لود صفحه
+        window.addEventListener('load', async () => {
+            await loadPyodide();
+        });
     </script>
 </body>
 </html>
