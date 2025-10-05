@@ -553,6 +553,43 @@
             font-size: 18px;
         }
 
+        /* دکمه کدهای قابل اجرا */
+        .code-execution-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 12px 25px;
+            min-width: 150px;
+            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+        }
+        
+        .code-execution-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #222;
+            padding: 12px 30px;
+        }
+        
+        .code-execution-btn::before {
+            content: "💻";
+            margin-left: 8px;
+            font-size: 18px;
+        }
+
         /* فوتر */
         footer {
             background: linear-gradient(to right, #2c3e50, #34495e);
@@ -627,6 +664,19 @@
                 margin-left: 6px;
             }
             
+            .code-execution-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                min-width: 130px;
+                font-size: 14px;
+            }
+            
+            .code-execution-btn::before {
+                font-size: 16px;
+                margin-left: 6px;
+            }
+            
             section {
                 padding: 20px;
             }
@@ -642,6 +692,19 @@
             }
             
             .floating-btn::before {
+                font-size: 14px;
+                margin-left: 4px;
+            }
+            
+            .code-execution-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 8px 16px;
+                min-width: 120px;
+                font-size: 13px;
+            }
+            
+            .code-execution-btn::before {
                 font-size: 14px;
                 margin-left: 4px;
             }
@@ -1038,6 +1101,11 @@
         ارتباط با من
     </a>
 
+    <!-- دکمه شناور برای صفحه کدهای قابل اجرا -->
+    <a href="code-execution.html" class="code-execution-btn" data-translate="code_execution_btn">
+        کدهای قابل اجرا
+    </a>
+
     <footer>
         <p data-translate="footer_text">© 2025 ساخته شده توسط رضا – منتشر شده در <a href="https://pages.github.com/">GitHub Pages</a></p>
     </footer>
@@ -1123,6 +1191,7 @@
                 goal2_description: "توسعه سیستم هوشمند تحلیل ترافیک با قابلیت‌های شمارش وسایل نقلیه و خواندن پلاک، تشخیص تخلفات رانندگی، و بهینه‌سازی جریان ترافیک با استفاده از تکنیک‌های پیشرفته بینایی کامپیوتر.",
                 contact_title: "راه‌های ارتباطی",
                 contact_btn: "ارتباط با من",
+                code_execution_btn: "کدهای قابل اجرا",
                 footer_text: "© 2025 ساخته شده توسط رضا – منتشر شده در"
             },
             en: {
@@ -1203,6 +1272,7 @@
                 goal2_description: "Developing an intelligent traffic analysis system with capabilities for vehicle counting and license plate reading, traffic violation detection, and traffic flow optimization using advanced computer vision techniques.",
                 contact_title: "Contact Information",
                 contact_btn: "Contact Me",
+                code_execution_btn: "Executable Codes",
                 footer_text: "© 2025 Created by Reza – Published on"
             },
             ru: {
@@ -1283,6 +1353,7 @@
                 goal2_description: "Разработка интеллектуальной системы анализа трафика с возможностями подсчета транспортных средств и чтения номерных знаков, обнаружения нарушений ПДД и оптимизации потока трафика с использованием передовых методов компьютерного зрения.",
                 contact_title: "Контактная информация",
                 contact_btn: "Связаться со мной",
+                code_execution_btn: "Исполняемые коды",
                 footer_text: "© 2025 Создано Реза – Опубликовано на"
             }
         };
