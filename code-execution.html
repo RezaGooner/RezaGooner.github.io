@@ -392,6 +392,7 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
         // متغیرهای سراسری
         let pyodide;
         let isPyodideReady = false;
+        let isPerSentInstalled = false;
 
         // تابع برای بارگذاری Pyodide
         async function loadPyodide() {
@@ -404,6 +405,14 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
                 });
                 
                 console.log('Pyodide بارگذاری شد');
+                
+                // نصب micropip برای مدیریت پکیج‌ها
+                await pyodide.loadPackage("micropip");
+                console.log('micropip بارگذاری شد');
+                
+                // نصب کتابخانه PerSent
+                await installPerSent();
+                
                 updateStatus('Pyodide آماده است', 'ready');
                 
                 // فعال کردن دکمه‌ها
@@ -411,10 +420,6 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
                 document.getElementById('run-sentiment').disabled = false;
                 
                 isPyodideReady = true;
-                
-                // نصب micropip برای مدیریت پکیج‌ها
-                await pyodide.loadPackage("micropip");
-                console.log('micropip بارگذاری شد');
                 
             } catch (error) {
                 console.error('خطا در بارگذاری Pyodide:', error);
@@ -425,18 +430,52 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
         // تابع برای به‌روزرسانی وضعیت
         function updateStatus(message, status) {
             const statusElement = document.getElementById('pyodide-status');
-            const indicator = statusElement.querySelector('.status-indicator');
-            
             statusElement.innerHTML = `وضعیت Pyodide: ${message}`;
             const newIndicator = document.createElement('span');
             newIndicator.className = `status-indicator status-${status}`;
             statusElement.appendChild(newIndicator);
         }
 
+        // تابع برای نصب کتابخانه PerSent
+        async function installPerSent() {
+            try {
+                updateStatus('در حال نصب کتابخانه PerSent...', 'loading');
+                
+                const micropip = pyodide.pyimport("micropip");
+                
+                // نصب PerSent از PyPI
+                await micropip.install("PerSent");
+                
+                console.log('کتابخانه PerSent با موفقیت نصب شد');
+                isPerSentInstalled = true;
+                return true;
+                
+            } catch (error) {
+                console.error('خطا در نصب PerSent:', error);
+                
+                // تلاش جایگزین: نصب از طریق URL مستقیم
+                try {
+                    updateStatus('تلاش روش جایگزین برای نصب PerSent...', 'loading');
+                    const micropip = pyodide.pyimport("micropip");
+                    await micropip.install("https://files.pythonhosted.org/packages/source/P/PerSent/PerSent-0.1.0.tar.gz");
+                    console.log('کتابخانه PerSent با روش جایگزین نصب شد');
+                    isPerSentInstalled = true;
+                    return true;
+                } catch (error2) {
+                    console.error('خطا در نصب جایگزین PerSent:', error2);
+                    throw new Error('نصب کتابخانه PerSent ناموفق بود. ممکن است این کتابخانه با Pyodide سازگار نباشد.');
+                }
+            }
+        }
+
         // تابع برای اجرای کد پایتون و گرفتن خروجی
         async function runPythonCode(code, inputText) {
             if (!isPyodideReady || !pyodide) {
                 throw new Error('Pyodide هنوز آماده نیست');
+            }
+
+            if (!isPerSentInstalled) {
+                throw new Error('کتابخانه PerSent نصب نشده است');
             }
 
             try {
@@ -447,7 +486,7 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
                 let output = '';
                 pyodide.setStdout({
                     batched: (text) => {
-                        output += text + '\n';
+                        output += text;
                     }
                 });
                 
@@ -456,19 +495,6 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
                 return output;
             } catch (error) {
                 throw error;
-            }
-        }
-
-        // تابع برای نصب کتابخانه PerSent
-        async function installPerSent() {
-            try {
-                const micropip = pyodide.pyimport("micropip");
-                await micropip.install("PerSent");
-                console.log('کتابخانه PerSent با موفقیت نصب شد');
-                return true;
-            } catch (error) {
-                console.error('خطا در نصب PerSent:', error);
-                throw new Error('نصب کتابخانه PerSent ناموفق بود');
             }
         }
 
@@ -488,10 +514,6 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
             output.innerHTML = '<span class="loading">در حال اجرای کد پایتون...</span>';
 
             try {
-                // نصب کتابخانه
-                output.innerHTML = '<span class="loading">در حال نصب کتابخانه PerSent...</span>';
-                await installPerSent();
-                
                 const code = `
 from PerSent import CommentAnalyzer
 
@@ -504,7 +526,7 @@ print(f"Sentiment: {result}")
                 `;
 
                 const result = await runPythonCode(code, input);
-                output.innerHTML = `<span class="success">${result}</span>`;
+                output.innerHTML = `<span class="success">${result || 'کد با موفقیت اجرا شد'}</span>`;
                 
             } catch (error) {
                 console.error('Error:', error);
@@ -531,10 +553,6 @@ print(f"Sentiment: {result}")
             output.innerHTML = '<span class="loading">در حال اجرای کد پایتون...</span>';
 
             try {
-                // نصب کتابخانه
-                output.innerHTML = '<span class="loading">در حال نصب کتابخانه PerSent...</span>';
-                await installPerSent();
-                
                 const code = `
 from PerSent import SentimentAnalyzer
 
@@ -549,7 +567,7 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
                 `;
 
                 const result = await runPythonCode(code, input);
-                output.innerHTML = `<span class="success">${result}</span>`;
+                output.innerHTML = `<span class="success">${result || 'کد با موفقیت اجرا شد'}</span>`;
                 
             } catch (error) {
                 console.error('Error:', error);
