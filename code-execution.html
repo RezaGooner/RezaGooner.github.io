@@ -207,6 +207,15 @@
             color: #27ae60;
         }
 
+        .info {
+            background: #e8f4fd;
+            border: 1px solid #b6d7f2;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #1a2a6c;
+        }
+
         footer {
             background: linear-gradient(to right, #2c3e50, #34495e);
             color: #ccc;
@@ -252,124 +261,73 @@
 <body>
     <header>
         <a href="index.html" class="back-btn">بازگشت به صفحه اصلی</a>
-        <h1>کدهای قابل اجرا</h1>
-        <p>اجرای کدهای پایتون در مرورگر</p>
+        <h1>کدهای قابل اجرا - کتابخانه PerSent</h1>
+        <p>اجرای کدهای پایتون برای تست کتابخانه PerSent</p>
     </header>
 
     <div class="container">
-        <!-- کد اول: محاسبه فاکتوریل -->
+        <div class="info">
+            <strong>توجه:</strong> این صفحه برای شبیه‌سازی اجرای کدهای پایتون مربوط به کتابخانه PerSent طراحی شده است. در محیط واقعی، این کدها نیاز به نصب کتابخانه و اجرا در محیط پایتون دارند.
+        </div>
+
+        <!-- کد اول: تحلیل احساسات با CommentAnalyzer -->
         <div class="code-section">
-            <h2>محاسبه فاکتوریل</h2>
+            <h2>تحلیل احساسات با CommentAnalyzer</h2>
             <div class="code-description">
-                این برنامه یک عدد از کاربر دریافت می‌کند و فاکتوریل آن را محاسبه می‌کند.
+                این کد از کلاس CommentAnalyzer برای تحلیل احساسات متن استفاده می‌کند و نتیجه را به صورت recommended یا not_recommended برمی‌گرداند.
             </div>
             
             <div class="code-input-section">
-                <label for="factorial-input">عدد مورد نظر را وارد کنید:</label>
-                <input type="number" id="factorial-input" min="0" max="100" value="5">
+                <label for="comment-input">متن مورد نظر برای تحلیل احساسات:</label>
+                <textarea id="comment-input" placeholder="متن خود را اینجا وارد کنید...">این محصول واقعا عالی است و من از خرید آن بسیار راضی هستم</textarea>
             </div>
             
             <div class="code-block">
-def factorial(n):
-    if n == 0 or n == 1:
-        return 1
-    else:
-        return n * factorial(n-1)
+pip install persent
+from PerSent import CommentAnalyzer
 
-# دریافت ورودی از کاربر
-number = int(input("لطفاً یک عدد وارد کنید: "))
-result = factorial(number)
-print(f"فاکتوریل {number} برابر است با: {result}")
+analyzer = CommentAnalyzer()
+analyzer.loadModel()
+
+text = input()
+result = analyzer.analyzeText(text)
+print(f"Sentiment: {result}")  # Output: Sentiment: recommended
             </div>
             
-            <button class="run-btn" onclick="runFactorial()">اجرای کد</button>
+            <button class="run-btn" onclick="runCommentAnalyzer()">اجرای کد</button>
             
             <div class="output-section">
                 <h3>خروجی:</h3>
-                <div class="output-content" id="factorial-output">در انتظار اجرا...</div>
+                <div class="output-content" id="comment-output">در انتظار اجرا...</div>
             </div>
         </div>
 
-        <!-- کد دوم: تشخیص عدد اول -->
+        <!-- کد دوم: تحلیل احساسات با SentimentAnalyzer -->
         <div class="code-section">
-            <h2>تشخیص عدد اول</h2>
+            <h2>تحلیل احساسات با SentimentAnalyzer</h2>
             <div class="code-description">
-                این برنامه بررسی می‌کند که آیا عدد وارد شده اول است یا خیر.
+                این کد از کلاس SentimentAnalyzer برای تحلیل احساسات متن استفاده می‌کند و درصد هر یک از احساسات را نمایش می‌دهد.
             </div>
             
             <div class="code-input-section">
-                <label for="prime-input">عدد مورد نظر را وارد کنید:</label>
-                <input type="number" id="prime-input" min="2" max="1000" value="17">
+                <label for="sentiment-input">متن مورد نظر برای تحلیل احساسات:</label>
+                <textarea id="sentiment-input" placeholder="متن خود را اینجا وارد کنید...">امروز روز بسیار خوبی است و من احساس شادی و انرژی مثبت می‌کنم</textarea>
             </div>
             
             <div class="code-block">
-def is_prime(n):
-    if n <= 1:
-        return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-    return True
+from PerSent import SentimentAnalyzer
 
-# دریافت ورودی از کاربر
-number = int(input("لطفاً یک عدد وارد کنید: "))
-if is_prime(number):
-    print(f"{number} یک عدد اول است.")
-else:
-    print(f"{number} یک عدد اول نیست.")
-            </div>
-            
-            <button class="run-btn" onclick="runPrime()">اجرای کد</button>
-            
-            <div class="output-section">
-                <h3>خروجی:</h3>
-                <div class="output-content" id="prime-output">در انتظار اجرا...</div>
-            </div>
-        </div>
+analyzer = SentimentAnalyzer()
+analyzer.loadModel()
 
-        <!-- کد سوم: تحلیل متن با PerSent -->
-        <div class="code-section">
-            <h2>تحلیل احساسات متن فارسی</h2>
-            <div class="code-description">
-                این برنامه با استفاده از کتابخانه PerSent، احساسات متن فارسی را تحلیل می‌کند.
-            </div>
-            
-            <div class="code-input-section">
-                <label for="sentiment-input">متن فارسی خود را وارد کنید:</label>
-                <textarea id="sentiment-input" placeholder="متن فارسی خود را اینجا وارد کنید...">امروز روز بسیار خوبی است و من احساس شادی می‌کنم.</textarea>
-            </div>
-            
-            <div class="code-block">
-# شبیه‌سازی کتابخانه PerSent برای تحلیل احساسات
-def analyze_sentiment(text):
-    positive_words = ['خوب', 'عالی', 'عالیه', 'زیبا', 'شادی', 'خوشحال', 'مثبت', 'عالیست']
-    negative_words = ['بد', 'زشت', 'ناراحت', 'غم', 'منفی', 'بدی', 'مشکل']
-    
-    words = text.split()
-    positive_count = sum(1 for word in words if word in positive_words)
-    negative_count = sum(1 for word in words if word in negative_words)
-    
-    if positive_count > negative_count:
-        return "مثبت", positive_count / len(words) * 100
-    elif negative_count > positive_count:
-        return "منفی", negative_count / len(words) * 100
-    else:
-        return "خنثی", 50
+sample_text = input()
 
-# دریافت ورودی از کاربر
-text = input("لطفاً متن فارسی خود را وارد کنید: ")
-sentiment, confidence = analyze_sentiment(text)
-print(f"احساسات متن: {sentiment}")
-print(f"درصد اطمینان: {confidence:.2f}%")
+result = analyzer.analyzeText(sample_text)
+for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
+    print(f"{emotion}: {score:.2f}%")
             </div>
             
-            <button class="run-btn" onclick="runSentiment()">اجرای کد</button>
+            <button class="run-btn" onclick="runSentimentAnalyzer()">اجرای کد</button>
             
             <div class="output-section">
                 <h3>خروجی:</h3>
@@ -377,39 +335,48 @@ print(f"درصد اطمینان: {confidence:.2f}%")
             </div>
         </div>
 
-        <!-- کد چهارم: مرتب‌سازی لیست -->
+        <!-- کد سوم: مثال‌های اضافی -->
         <div class="code-section">
-            <h2>مرتب‌سازی لیست اعداد</h2>
+            <h2>مثال‌های بیشتر برای تست</h2>
             <div class="code-description">
-                این برنامه یک لیست از اعداد را از کاربر دریافت کرده و به صورت صعودی مرتب می‌کند.
+                در این بخش می‌توانید متن‌های مختلفی را برای تست کتابخانه وارد کنید.
             </div>
             
             <div class="code-input-section">
-                <label for="sort-input">اعداد را با کاما جدا کنید (مثال: 5,2,8,1):</label>
-                <input type="text" id="sort-input" value="5,2,8,1,9,3">
+                <label for="custom-input">متن دلخواه برای تست:</label>
+                <textarea id="custom-input" placeholder="متن خود را اینجا وارد کنید...">این فیلم بسیار خسته کننده و بی‌معنی بود</textarea>
             </div>
             
             <div class="code-block">
-def bubble_sort(numbers):
-    n = len(numbers)
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if numbers[j] > numbers[j+1]:
-                numbers[j], numbers[j+1] = numbers[j+1], numbers[j]
-    return numbers
+# کد کامل برای تحلیل احساسات
+pip install persent
+from PerSent import CommentAnalyzer, SentimentAnalyzer
 
-# دریافت ورودی از کاربر
-input_str = input("لطفاً اعداد را با کاما جدا کنید: ")
-numbers = [int(x.strip()) for x in input_str.split(',')]
-sorted_numbers = bubble_sort(numbers)
-print(f"لیست مرتب شده: {sorted_numbers}")
+# تحلیل با CommentAnalyzer
+comment_analyzer = CommentAnalyzer()
+comment_analyzer.loadModel()
+
+# تحلیل با SentimentAnalyzer  
+sentiment_analyzer = SentimentAnalyzer()
+sentiment_analyzer.loadModel()
+
+text = input("لطفاً متن فارسی خود را وارد کنید: ")
+
+print("=== تحلیل با CommentAnalyzer ===")
+comment_result = comment_analyzer.analyzeText(text)
+print(f"نتیجه: {comment_result}")
+
+print("\n=== تحلیل با SentimentAnalyzer ===")
+sentiment_result = sentiment_analyzer.analyzeText(text)
+for emotion, score in sorted(sentiment_result.items(), key=lambda x: x[1], reverse=True):
+    print(f"{emotion}: {score:.2f}%")
             </div>
             
-            <button class="run-btn" onclick="runSort()">اجرای کد</button>
+            <button class="run-btn" onclick="runCustomExample()">اجرای کد</button>
             
             <div class="output-section">
                 <h3>خروجی:</h3>
-                <div class="output-content" id="sort-output">در انتظار اجرا...</div>
+                <div class="output-content" id="custom-output">در انتظار اجرا...</div>
             </div>
         </div>
     </div>
@@ -419,81 +386,10 @@ print(f"لیست مرتب شده: {sorted_numbers}")
     </footer>
 
     <script>
-        // تابع برای اجرای کد فاکتوریل
-        function runFactorial() {
-            const input = document.getElementById('factorial-input').value;
-            const output = document.getElementById('factorial-output');
-            
-            try {
-                const number = parseInt(input);
-                if (isNaN(number) || number < 0) {
-                    output.innerHTML = '<span class="error">خطا: لطفاً یک عدد صحیح غیرمنفی وارد کنید.</span>';
-                    return;
-                }
-                
-                if (number > 100) {
-                    output.innerHTML = '<span class="error">خطا: عدد وارد شده بسیار بزرگ است. لطفاً عدد کوچکتری وارد کنید.</span>';
-                    return;
-                }
-                
-                // شبیه‌سازی اجرای کد پایتون
-                const result = factorial(number);
-                output.innerHTML = `<span class="success">فاکتوریل ${number} برابر است با: ${result}</span>`;
-            } catch (error) {
-                output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
-            }
-        }
-        
-        // تابع محاسبه فاکتوریل
-        function factorial(n) {
-            if (n === 0 || n === 1) {
-                return 1;
-            }
-            return n * factorial(n - 1);
-        }
-        
-        // تابع برای اجرای کد تشخیص عدد اول
-        function runPrime() {
-            const input = document.getElementById('prime-input').value;
-            const output = document.getElementById('prime-output');
-            
-            try {
-                const number = parseInt(input);
-                if (isNaN(number) || number < 2) {
-                    output.innerHTML = '<span class="error">خطا: لطفاً یک عدد صحیح بزرگتر از 1 وارد کنید.</span>';
-                    return;
-                }
-                
-                // شبیه‌سازی اجرای کد پایتون
-                const isPrime = checkPrime(number);
-                if (isPrime) {
-                    output.innerHTML = `<span class="success">${number} یک عدد اول است.</span>`;
-                } else {
-                    output.innerHTML = `<span class="success">${number} یک عدد اول نیست.</span>`;
-                }
-            } catch (error) {
-                output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
-            }
-        }
-        
-        // تابع تشخیص عدد اول
-        function checkPrime(n) {
-            if (n <= 1) return false;
-            if (n <= 3) return true;
-            if (n % 2 === 0 || n % 3 === 0) return false;
-            
-            let i = 5;
-            while (i * i <= n) {
-                if (n % i === 0 || n % (i + 2) === 0) return false;
-                i += 6;
-            }
-            return true;
-        }
-        
-        // تابع برای اجرای کد تحلیل احساسات
-        function runSentiment() {
-            const input = document.getElementById('sentiment-input').value;
-            const output = document.getElementById('sentiment-output');
+        // تابع برای اجرای کد CommentAnalyzer
+        function runCommentAnalyzer() {
+            const input = document.getElementById('comment-input').value;
+            const output = document.getElementById('comment-output');
             
             try {
                 if (!input.trim()) {
@@ -501,18 +397,18 @@ print(f"لیست مرتب شده: {sorted_numbers}")
                     return;
                 }
                 
-                // شبیه‌سازی اجرای کد پایتون
-                const result = analyzeSentiment(input);
-                output.innerHTML = `<span class="success">احساسات متن: ${result.sentiment}<br>درصد اطمینان: ${result.confidence.toFixed(2)}%</span>`;
+                // شبیه‌سازی تحلیل احساسات با CommentAnalyzer
+                const result = simulateCommentAnalyzer(input);
+                output.innerHTML = `<span class="success">Sentiment: ${result}</span>`;
             } catch (error) {
                 output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
             }
         }
         
-        // تابع تحلیل احساسات متن فارسی
-        function analyzeSentiment(text) {
-            const positiveWords = ['خوب', 'عالی', 'عالیه', 'زیبا', 'شادی', 'خوشحال', 'مثبت', 'عالیست', 'عالیی', 'خوش'];
-            const negativeWords = ['بد', 'زشت', 'ناراحت', 'غم', 'منفی', 'بدی', 'مشکل', 'بدترین', 'زشت', 'ناراحتی'];
+        // شبیه‌سازی CommentAnalyzer
+        function simulateCommentAnalyzer(text) {
+            const positiveWords = ['عالی', 'خوب', 'عالیه', 'ممتاز', 'عالیست', 'عالیی', 'خوش', 'راضی', 'عالی است', 'خوب است', 'مثبت'];
+            const negativeWords = ['بد', 'ضعیف', 'بی‌معنی', 'خسته کننده', 'بدترین', 'ضعیف است', 'بد است', 'منفی'];
             
             const words = text.split(' ');
             let positiveCount = 0;
@@ -523,60 +419,99 @@ print(f"لیست مرتب شده: {sorted_numbers}")
                 if (negativeWords.includes(word)) negativeCount++;
             }
             
-            const total = positiveCount + negativeCount;
-            if (total === 0) {
-                return { sentiment: "خنثی", confidence: 50 };
-            }
-            
-            if (positiveCount > negativeCount) {
-                return { sentiment: "مثبت", confidence: (positiveCount / total) * 100 };
-            } else if (negativeCount > positiveCount) {
-                return { sentiment: "منفی", confidence: (negativeCount / total) * 100 };
-            } else {
-                return { sentiment: "خنثی", confidence: 50 };
-            }
+            return positiveCount >= negativeCount ? 'recommended' : 'not_recommended';
         }
         
-        // تابع برای اجرای کد مرتب‌سازی
-        function runSort() {
-            const input = document.getElementById('sort-input').value;
-            const output = document.getElementById('sort-output');
+        // تابع برای اجرای کد SentimentAnalyzer
+        function runSentimentAnalyzer() {
+            const input = document.getElementById('sentiment-input').value;
+            const output = document.getElementById('sentiment-output');
             
             try {
                 if (!input.trim()) {
-                    output.innerHTML = '<span class="error">خطا: لطفاً اعداد را وارد کنید.</span>';
+                    output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
                     return;
                 }
                 
-                const numbers = input.split(',').map(num => parseInt(num.trim()));
-                
-                if (numbers.some(isNaN)) {
-                    output.innerHTML = '<span class="error">خطا: لطفاً فقط اعداد وارد کنید.</span>';
-                    return;
+                // شبیه‌سازی تحلیل احساسات با SentimentAnalyzer
+                const result = simulateSentimentAnalyzer(input);
+                let outputHTML = '<span class="success">';
+                for (const [emotion, score] of Object.entries(result)) {
+                    outputHTML += `${emotion}: ${score.toFixed(2)}%<br>`;
                 }
-                
-                // شبیه‌سازی اجرای کد پایتون
-                const sortedNumbers = bubbleSort(numbers);
-                output.innerHTML = `<span class="success">لیست مرتب شده: [${sortedNumbers.join(', ')}]</span>`;
+                outputHTML += '</span>';
+                output.innerHTML = outputHTML;
             } catch (error) {
                 output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
             }
         }
         
-        // تابع مرتب‌سازی حبابی
-        function bubbleSort(numbers) {
-            const arr = [...numbers];
-            const n = arr.length;
+        // شبیه‌سازی SentimentAnalyzer
+        function simulateSentimentAnalyzer(text) {
+            const emotions = {
+                'شادی': ['شادی', 'خوشحال', 'خنده', 'خندان', 'شاد', 'سرحال', 'انرژی مثبت'],
+                'غم': ['غم', 'ناراحت', 'اندوه', 'گریه', 'غمگین', 'دلگیر'],
+                'خشم': ['خشم', 'عصبانی', 'خشمگین', 'ناراحت', 'عصبانیت'],
+                'ترس': ['ترس', 'وحشت', 'هراس', 'ترسیده', 'نگران'],
+                'تعجب': ['تعجب', 'شگفت‌زده', 'حیرت', 'عجیب', 'غریب'],
+                'تنفر': ['تنفر', 'متنفر', 'نفرت', 'بیزاری'],
+                'علاقه': ['علاقه', 'دوست', 'محبت', 'عشق', 'پسند']
+            };
             
-            for (let i = 0; i < n; i++) {
-                for (let j = 0; j < n - i - 1; j++) {
-                    if (arr[j] > arr[j + 1]) {
-                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            const result = {};
+            const words = text.split(' ');
+            
+            // محاسبه امتیاز هر احساس
+            for (const [emotion, keywords] of Object.entries(emotions)) {
+                let score = 0;
+                for (const word of words) {
+                    if (keywords.includes(word)) {
+                        score += 10; // امتیاز پایه برای هر کلمه مرتبط
                     }
+                }
+                // اضافه کردن امتیاز تصادفی برای شبیه‌سازی بهتر
+                score += Math.random() * 30;
+                result[emotion] = Math.min(score, 100); // محدود کردن به 100
+            }
+            
+            // نرمال‌سازی نتایج
+            const total = Object.values(result).reduce((sum, score) => sum + score, 0);
+            if (total > 0) {
+                for (const emotion in result) {
+                    result[emotion] = (result[emotion] / total) * 100;
                 }
             }
             
-            return arr;
+            return result;
+        }
+        
+        // تابع برای اجرای مثال سفارشی
+        function runCustomExample() {
+            const input = document.getElementById('custom-input').value;
+            const output = document.getElementById('custom-output');
+            
+            try {
+                if (!input.trim()) {
+                    output.innerHTML = '<span class="error">خطا: لطفاً متن فارسی خود را وارد کنید.</span>';
+                    return;
+                }
+                
+                // شبیه‌سازی هر دو آنالایزر
+                const commentResult = simulateCommentAnalyzer(input);
+                const sentimentResult = simulateSentimentAnalyzer(input);
+                
+                let outputHTML = '<span class="success">';
+                outputHTML += '=== تحلیل با CommentAnalyzer ===<br>';
+                outputHTML += `نتیجه: ${commentResult}<br><br>`;
+                outputHTML += '=== تحلیل با SentimentAnalyzer ===<br>';
+                for (const [emotion, score] of Object.entries(sentimentResult)) {
+                    outputHTML += `${emotion}: ${score.toFixed(2)}%<br>`;
+                }
+                outputHTML += '</span>';
+                output.innerHTML = outputHTML;
+            } catch (error) {
+                output.innerHTML = `<span class="error">خطا در اجرای کد: ${error.message}</span>`;
+            }
         }
     </script>
 </body>
