@@ -285,6 +285,54 @@
             transform: translateX(-5px);
         }
 
+        /* بخش مهارت‌ها */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .skill-item {
+            background: linear-gradient(to bottom right, #f8f9fa, #ffffff);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #1a2a6c, #ffd700);
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .skill-item h3 {
+            margin-top: 0;
+            color: #1a2a6c;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .skill-item p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
         /* بخش گواهی‌ها با اسکرول افقی */
         .cert-category {
             margin-bottom: 40px;
@@ -717,6 +765,10 @@
                 font-size: 0.9em;
             }
             
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
             .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -782,6 +834,8 @@
     <nav>
         <a href="#about" data-translate="nav_about">معرفی</a>
         <a href="#education" data-translate="nav_education">تحصیلات</a>
+        <a href="#experience" data-translate="nav_experience">سوابق شغلی</a>
+        <a href="#skills" data-translate="nav_skills">مهارت‌ها</a>
         <a href="#activities" data-translate="nav_activities">فعالیت‌ها</a>
         <div class="dropdown">
             <a href="#certificates" data-translate="nav_certificates">گواهی‌ها</a>
@@ -817,6 +871,44 @@
                 <li data-translate="education_item1">دبیرستان خوارزمی تهران - منطقه 8 - رشته ریاضی و فیزیک</li>
                 <li data-translate="education_item2">دانشگاه دولتی یاسوج - رشته مهندسی کامپیوتر</li>
             </ul>
+        </section>
+
+        <!-- بخش جدید: سوابق شغلی -->
+        <section id="experience">
+            <h2 data-translate="experience_title">سوابق شغلی</h2>
+            <ul>
+                <li data-translate="experience_item1">تدریس پایتون مقدماتی</li>
+                <li data-translate="experience_item2">تدریس یادگیری ماشین</li>
+                <li data-translate="experience_item3">تدریس کار و فناوری پایه هفتم</li>
+                <li data-translate="experience_item4">تدریس کار و فناوری پایه نهم</li>
+            </ul>
+        </section>
+
+        <!-- بخش جدید: مهارت‌ها -->
+        <section id="skills">
+            <h2 data-translate="skills_title">مهارت‌ها</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <h3 data-translate="skill1_title">پردازش زبان طبیعی</h3>
+                    <p data-translate="skill1_description">توسعه مدل‌های NLP برای تحلیل و پردازش متن فارسی، توسعه کتابخانه PerSent</p>
+                </div>
+                <div class="skill-item">
+                    <h3 data-translate="skill2_title">پردازش تصویر و بینایی ماشین</h3>
+                    <p data-translate="skill2_description">پیاده‌سازی سیستم‌های تشخیص و تحلیل تصویر با استفاده از OpenCV و مدل‌های عمیق</p>
+                </div>
+                <div class="skill-item">
+                    <h3 data-translate="skill3_title">یادگیری ماشین</h3>
+                    <p data-translate="skill3_description">طراحی و پیاده‌سازی مدل‌های یادگیری ماشین برای مسائل مختلف طبقه‌بندی و رگرسیون</p>
+                </div>
+                <div class="skill-item">
+                    <h3 data-translate="skill4_title">یادگیری عمیق</h3>
+                    <p data-translate="skill4_description">توسعه مدل‌های شبکه عصبی عمیق با استفاده از TensorFlow و PyTorch</p>
+                </div>
+                <div class="skill-item">
+                    <h3 data-translate="skill5_title">یادگیری تقویتی</h3>
+                    <p data-translate="skill5_description">پیاده‌سازی عامل‌های هوشمند مبتنی بر یادگیری تقویتی برای محیط‌های مختلف</p>
+                </div>
+            </div>
         </section>
 
         <section id="activities">
@@ -1190,6 +1282,8 @@
                 title: "دانشجوی مهندسی کامپیوتر | علاقه‌مند به هوش مصنوعی و یادگیری ماشین",
                 nav_about: "معرفی",
                 nav_education: "تحصیلات",
+                nav_experience: "سوابق شغلی",
+                nav_skills: "مهارت‌ها",
                 nav_activities: "فعالیت‌ها",
                 nav_certificates: "گواهی‌ها",
                 nav_algorithms: "Algorithms",
@@ -1208,6 +1302,22 @@
                 education_title: "تحصیلات آکادمیک",
                 education_item1: "دبیرستان خوارزمی تهران - منطقه 8 - رشته ریاضی و فیزیک",
                 education_item2: "دانشگاه دولتی یاسوج - رشته مهندسی کامپیوتر",
+                experience_title: "سوابق شغلی",
+                experience_item1: "تدریس پایتون مقدماتی",
+                experience_item2: "تدریس یادگیری ماشین",
+                experience_item3: "تدریس کار و فناوری پایه هفتم",
+                experience_item4: "تدریس کار و فناوری پایه نهم",
+                skills_title: "مهارت‌ها",
+                skill1_title: "پردازش زبان طبیعی",
+                skill1_description: "توسعه مدل‌های NLP برای تحلیل و پردازش متن فارسی، توسعه کتابخانه PerSent",
+                skill2_title: "پردازش تصویر و بینایی ماشین",
+                skill2_description: "پیاده‌سازی سیستم‌های تشخیص و تحلیل تصویر با استفاده از OpenCV و مدل‌های عمیق",
+                skill3_title: "یادگیری ماشین",
+                skill3_description: "طراحی و پیاده‌سازی مدل‌های یادگیری ماشین برای مسائل مختلف طبقه‌بندی و رگرسیون",
+                skill4_title: "یادگیری عمیق",
+                skill4_description: "توسعه مدل‌های شبکه عصبی عمیق با استفاده از TensorFlow و PyTorch",
+                skill5_title: "یادگیری تقویتی",
+                skill5_description: "پیاده‌سازی عامل‌های هوشمند مبتنی بر یادگیری تقویتی برای محیط‌های مختلف",
                 activities_title: "سوابق و فعالیت‌ها",
                 activity_item1: "عضو انجمن کامپیوتر ایران",
                 activity_item2: "عضو انجمن ملی هوش مصنوعی",
@@ -1277,6 +1387,8 @@
                 title: "Computer Engineering Student | Passionate about AI and Machine Learning",
                 nav_about: "About",
                 nav_education: "Education",
+                nav_experience: "Work Experience",
+                nav_skills: "Skills",
                 nav_activities: "Activities",
                 nav_certificates: "Certificates",
                 nav_algorithms: "Algorithms",
@@ -1295,6 +1407,22 @@
                 education_title: "Academic Education",
                 education_item1: "Khwarizmi High School, Tehran - District 8 - Mathematics and Physics",
                 education_item2: "Yasouj State University - Computer Engineering",
+                experience_title: "Work Experience",
+                experience_item1: "Teaching Basic Python",
+                experience_item2: "Teaching Machine Learning",
+                experience_item3: "Teaching Technology for 7th Grade",
+                experience_item4: "Teaching Technology for 9th Grade",
+                skills_title: "Skills",
+                skill1_title: "Natural Language Processing",
+                skill1_description: "Developing NLP models for Persian text analysis and processing, developing PerSent library",
+                skill2_title: "Image Processing and Computer Vision",
+                skill2_description: "Implementing image detection and analysis systems using OpenCV and deep models",
+                skill3_title: "Machine Learning",
+                skill3_description: "Designing and implementing machine learning models for various classification and regression problems",
+                skill4_title: "Deep Learning",
+                skill4_description: "Developing deep neural network models using TensorFlow and PyTorch",
+                skill5_title: "Reinforcement Learning",
+                skill5_description: "Implementing intelligent agents based on reinforcement learning for various environments",
                 activities_title: "Background and Activities",
                 activity_item1: "Member of Iran Computer Society",
                 activity_item2: "Member of National AI Association",
@@ -1364,6 +1492,8 @@
                 title: "Студент компьютерной инженерии | Увлечен искусственным интеллектом и машинным обучением",
                 nav_about: "Обо мне",
                 nav_education: "Образование",
+                nav_experience: "Опыт работы",
+                nav_skills: "Навыки",
                 nav_activities: "Деятельность",
                 nav_certificates: "Сертификаты",
                 nav_algorithms: "Алгоритмы",
@@ -1382,6 +1512,22 @@
                 education_title: "Академическое образование",
                 education_item1: "Средняя школа Хорезми, Тегеран - Район 8 - Математика и физика",
                 education_item2: "Государственный университет Ясудж - Компьютерная инженерия",
+                experience_title: "Опыт работы",
+                experience_item1: "Преподавание основ Python",
+                experience_item2: "Преподавание машинного обучения",
+                experience_item3: "Преподавание технологии для 7 класса",
+                experience_item4: "Преподавание технологии для 9 класса",
+                skills_title: "Навыки",
+                skill1_title: "Обработка естественного языка",
+                skill1_description: "Разработка моделей NLP для анализа и обработки персидского текста, разработка библиотеки PerSent",
+                skill2_title: "Обработка изображений и компьютерное зрение",
+                skill2_description: "Реализация систем обнаружения и анализа изображений с использованием OpenCV и глубоких моделей",
+                skill3_title: "Машинное обучение",
+                skill3_description: "Проектирование и реализация моделей машинного обучения для различных задач классификации и регрессии",
+                skill4_title: "Глубокое обучение",
+                skill4_description: "Разработка моделей глубоких нейронных сетей с использованием TensorFlow и PyTorch",
+                skill5_title: "Обучение с подкреплением",
+                skill5_description: "Реализация интеллектуальных агентов на основе обучения с подкреплением для различных сред",
                 activities_title: "Опыт и деятельность",
                 activity_item1: "Член Иранского компьютерного общества",
                 activity_item2: "Член Национальной ассоциации ИИ",
