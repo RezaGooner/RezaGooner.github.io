@@ -11,6 +11,7 @@
     <link rel="manifest" href="/site.webmanifest">
     
     <style>
+        /* استایل‌های قبلی شما */
         @font-face {
             font-family: 'IRANSansWeb(FaNum)';
             src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
@@ -597,6 +598,99 @@
             color: #ffed4e;
         }
 
+        /* استایل‌های جدید برای فرم تماس */
+        .contact-form {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #1a2a6c;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            font-size: 1em;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a2a6c;
+            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.1);
+            background: #fff;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #1a2a6c, #2a3a7c);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(to right, #ffd700, #ffed4e);
+            color: #222;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .form-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
         /* ریسپانسیو */
         @media (max-width: 768px) {
             .language-switcher {
@@ -1054,6 +1148,28 @@
             <p>📧 Gmail: <a href="mailto:RezaAsadiProgrammer@gmail.com">RezaAsadiProgrammer@gmail.com</a></p>
             <p>💻 GitHub: <a href="https://github.com/RezaGooner" target="_blank">RezaGooner</a></p>
             <p>📱 Telegram: <a href="https://t.me/rezagooner" target="_blank">T.me/rezagooner</a></p>
+            
+            <!-- فرم تماس -->
+            <div class="contact-form">
+                <div class="form-group">
+                    <label for="name" data-translate="form_name">نام</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" data-translate="form_email">ایمیل</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" data-translate="form_message">پیام</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" data-translate="form_submit">ارسال پیام</button>
+                
+                <div class="form-message" id="form-message"></div>
+            </div>
         </section>
     </main>
 
@@ -1147,6 +1263,12 @@
                 goal2_title: "پروژه دوربین ترافیک هوشمند",
                 goal2_description: "توسعه سیستم هوشمند تحلیل ترافیک با قابلیت‌های شمارش وسایل نقلیه و خواندن پلاک، تشخیص تخلفات رانندگی، و بهینه‌سازی جریان ترافیک با استفاده از تکنیک‌های پیشرفته بینایی کامپیوتر.",
                 contact_title: "راه‌های ارتباطی",
+                form_name: "نام",
+                form_email: "ایمیل",
+                form_message: "پیام",
+                form_submit: "ارسال پیام",
+                form_success: "پیام شما با موفقیت ارسال شد. در اسرع وقت پاسخ خواهم داد.",
+                form_error: "خطا در ارسال پیام. لطفاً دوباره تلاش کنید.",
                 contact_btn: "ارتباط با من",
                 footer_text: "© 2025 ساخته شده توسط رضا – منتشر شده در"
             },
@@ -1228,6 +1350,12 @@
                 goal2_title: "Smart Traffic Camera Project",
                 goal2_description: "Developing an intelligent traffic analysis system with capabilities for vehicle counting and license plate reading, traffic violation detection, and traffic flow optimization using advanced computer vision techniques.",
                 contact_title: "Contact Information",
+                form_name: "Name",
+                form_email: "Email",
+                form_message: "Message",
+                form_submit: "Send Message",
+                form_success: "Your message has been sent successfully. I will respond as soon as possible.",
+                form_error: "Error sending message. Please try again.",
                 contact_btn: "Contact Me",
                 footer_text: "© 2025 Created by Reza – Published on"
             },
@@ -1309,6 +1437,12 @@
                 goal2_title: "Проект умной камеры для трафика",
                 goal2_description: "Разработка интеллектуальной системы анализа трафика с возможностями подсчета транспортных средств и чтения номерных знаков, обнаружения нарушений ПДД и оптимизации потока трафика с использованием передовых методов компьютерного зрения.",
                 contact_title: "Контактная информация",
+                form_name: "Имя",
+                form_email: "Email",
+                form_message: "Сообщение",
+                form_submit: "Отправить сообщение",
+                form_success: "Ваше сообщение успешно отправлено. Я отвечу как можно скорее.",
+                form_error: "Ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз.",
                 contact_btn: "Связаться со мной",
                 footer_text: "© 2025 Создано Реза – Опубликовано на"
             }
@@ -1370,6 +1504,64 @@
                 setTimeout(() => {
                     bar.style.width = width;
                 }, 300);
+            });
+            
+            // مدیریت فرم تماس
+            const contactForm = document.querySelector('.contact-form');
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const formMessage = document.getElementById('form-message');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // غیرفعال کردن دکمه ارسال
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'در حال ارسال...';
+                
+                // جمع‌آوری داده‌های فرم
+                const formData = new FormData();
+                formData.append('name', document.getElementById('name').value);
+                formData.append('email', document.getElementById('email').value);
+                formData.append('message', document.getElementById('message').value);
+                
+                // ارسال فرم با استفاده از Formspree
+                fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // نمایش پیام موفقیت
+                        formMessage.textContent = translations[savedLang].form_success;
+                        formMessage.className = 'form-message success';
+                        formMessage.style.display = 'block';
+                        
+                        // پاک کردن فرم
+                        contactForm.reset();
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    // نمایش پیام خطا
+                    formMessage.textContent = translations[savedLang].form_error;
+                    formMessage.className = 'form-message error';
+                    formMessage.style.display = 'block';
+                    console.error('Error:', error);
+                })
+                .finally(() => {
+                    // فعال کردن دکمه ارسال
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = translations[savedLang].form_submit;
+                    
+                    // پنهان کردن پیام پس از 5 ثانیه
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                });
             });
         });
     </script>
