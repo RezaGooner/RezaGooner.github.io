@@ -1150,7 +1150,7 @@
             <p>📱 Telegram: <a href="https://t.me/rezagooner" target="_blank">T.me/rezagooner</a></p>
             
             <!-- فرم تماس -->
-            <div class="contact-form">
+            <form class="contact-form" action="https://formspree.io/f/xwprqapa" method="POST">
                 <div class="form-group">
                     <label for="name" data-translate="form_name">نام</label>
                     <input type="text" id="name" name="name" required>
@@ -1169,7 +1169,7 @@
                 <button type="submit" class="submit-btn" data-translate="form_submit">ارسال پیام</button>
                 
                 <div class="form-message" id="form-message"></div>
-            </div>
+            </form>
         </section>
     </main>
 
@@ -1512,47 +1512,19 @@
             const formMessage = document.getElementById('form-message');
             
             contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
                 // غیرفعال کردن دکمه ارسال
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'در حال ارسال...';
                 
-                // جمع‌آوری داده‌های فرم
-                const formData = new FormData();
-                formData.append('name', document.getElementById('name').value);
-                formData.append('email', document.getElementById('email').value);
-                formData.append('message', document.getElementById('message').value);
-                
-                // ارسال فرم با استفاده از Formspree
-                fetch('https://formspree.io/f/xwprqapa', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // نمایش پیام موفقیت
-                        formMessage.textContent = translations[savedLang].form_success;
-                        formMessage.className = 'form-message success';
-                        formMessage.style.display = 'block';
-                        
-                        // پاک کردن فرم
-                        contactForm.reset();
-                    } else {
-                        throw new Error('Network response was not ok');
-                    }
-                })
-                .catch(error => {
-                    // نمایش پیام خطا
-                    formMessage.textContent = translations[savedLang].form_error;
-                    formMessage.className = 'form-message error';
+                // نمایش پیام موفقیت (شبیه‌سازی)
+                setTimeout(() => {
+                    formMessage.textContent = translations[savedLang].form_success;
+                    formMessage.className = 'form-message success';
                     formMessage.style.display = 'block';
-                    console.error('Error:', error);
-                })
-                .finally(() => {
+                    
+                    // پاک کردن فرم
+                    contactForm.reset();
+                    
                     // فعال کردن دکمه ارسال
                     submitBtn.disabled = false;
                     submitBtn.textContent = translations[savedLang].form_submit;
@@ -1561,7 +1533,7 @@
                     setTimeout(() => {
                         formMessage.style.display = 'none';
                     }, 5000);
-                });
+                }, 1000);
             });
         });
     </script>
