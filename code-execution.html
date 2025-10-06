@@ -9,11 +9,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
-    <!-- بارگذاری Pyodide -->
+    <!-- بارگذاری Pyodide نسخه سازگار -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
     
     <style>
-        /* استایل‌ها مانند قبل باقی می‌مانند */
+        /* استایل‌ها مانند قبل */
         @font-face {
             font-family: 'IRANSansWeb(FaNum)';
             src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
@@ -133,7 +133,7 @@
             color: #1a2a6c;
         }
 
-        .code-input-section input, .code-input-section textarea {
+        .code-input-section textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -141,9 +141,6 @@
             font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
             font-size: 1em;
             box-sizing: border-box;
-        }
-
-        .code-input-section textarea {
             min-height: 100px;
             resize: vertical;
         }
@@ -278,6 +275,24 @@
             color: #ffed4e;
         }
 
+        .retry-btn {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+
+        .retry-btn:hover {
+            background: linear-gradient(135deg, #219653, #27ae60);
+            transform: scale(1.05);
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
@@ -315,6 +330,7 @@
         <div class="info">
             <strong>توجه:</strong> این صفحه از Pyodide برای اجرای واقعی پایتون در مرورگر استفاده می‌کند. 
             بارگذاری اولیه ممکن است چند ثانیه طول بکشد. پس از آماده شدن وضعیت، می‌توانید کدها را اجرا کنید.
+            <div id="installation-status"></div>
         </div>
 
         <!-- کد اول: تحلیل احساسات با CommentAnalyzer -->
@@ -413,17 +429,11 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
                 // نصب کتابخانه PerSent
                 await installPerSent();
                 
-                updateStatus('Pyodide آماده است', 'ready');
-                
-                // فعال کردن دکمه‌ها
-                document.getElementById('run-comment').disabled = false;
-                document.getElementById('run-sentiment').disabled = false;
-                
-                isPyodideReady = true;
-                
             } catch (error) {
                 console.error('خطا در بارگذاری Pyodide:', error);
                 updateStatus('خطا در بارگذاری Pyodide', 'error');
+                document.getElementById('installation-status').innerHTML = 
+                    '<span class="error">خطا در بارگذاری. <button class="retry-btn" onclick="location.reload()">بارگذاری مجدد</button></span>';
             }
         }
 
@@ -440,32 +450,81 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
         async function installPerSent() {
             try {
                 updateStatus('در حال نصب کتابخانه PerSent...', 'loading');
+                document.getElementById('installation-status').innerHTML = 
+                    '<span class="loading">در حال نصب کتابخانه PerSent... این فرآیند ممکن است چند دقیقه طول بکشد.</span>';
                 
                 const micropip = pyodide.pyimport("micropip");
                 
-                // نصب PerSent از PyPI
-                await micropip.install("PerSent");
+                // نصب بسته‌های پیش‌نیاز
+                await pyodide.loadPackage(["numpy", "scipy"]);
                 
-                console.log('کتابخانه PerSent با موفقیت نصب شد');
-                isPerSentInstalled = true;
-                return true;
-                
-            } catch (error) {
-                console.error('خطا در نصب PerSent:', error);
-                
-                // تلاش جایگزین: نصب از طریق URL مستقیم
+                // نصب مستقیم PerSent از PyPI
                 try {
-                    updateStatus('تلاش روش جایگزین برای نصب PerSent...', 'loading');
-                    const micropip = pyodide.pyimport("micropip");
+                    await micropip.install("PerSent");
+                    console.log('کتابخانه PerSent با موفقیت نصب شد');
+                    isPerSentInstalled = true;
+                } catch (error) {
+                    console.warn('نصب مستقیم شکست خورد، در حال تلاش روش جایگزین...', error);
+                    
+                    // روش جایگزین: نصب از آرشیو
                     await micropip.install("https://files.pythonhosted.org/packages/source/P/PerSent/PerSent-0.1.0.tar.gz");
                     console.log('کتابخانه PerSent با روش جایگزین نصب شد');
                     isPerSentInstalled = true;
-                    return true;
-                } catch (error2) {
-                    console.error('خطا در نصب جایگزین PerSent:', error2);
-                    throw new Error('نصب کتابخانه PerSent ناموفق بود. ممکن است این کتابخانه با Pyodide سازگار نباشد.');
                 }
+                
+                if (isPerSentInstalled) {
+                    // تست کتابخانه
+                    await testPerSentInstallation();
+                } else {
+                    throw new Error('نصب کتابخانه PerSent ناموفق بود');
+                }
+                
+            } catch (error) {
+                console.error('خطا در نصب PerSent:', error);
+                updateStatus('خطا در نصب PerSent', 'error');
+                document.getElementById('installation-status').innerHTML = 
+                    `<span class="error">خطا در نصب کتابخانه PerSent: ${error.message}. 
+                    <button class="retry-btn" onclick="reinstallPerSent()">تلاش مجدد برای نصب</button></span>`;
             }
+        }
+
+        // تابع برای تست نصب PerSent
+        async function testPerSentInstallation() {
+            try {
+                updateStatus('در حال تست کتابخانه PerSent...', 'loading');
+                
+                // تست import کتابخانه
+                await pyodide.runPythonAsync(`
+try:
+    from PerSent import CommentAnalyzer, SentimentAnalyzer
+    print("SUCCESS: PerSent imported successfully")
+except Exception as e:
+    print(f"ERROR: {e}")
+                `);
+                
+                console.log('تست کتابخانه PerSent موفقیت‌آمیز بود');
+                
+                updateStatus('Pyodide آماده است - PerSent نصب شد', 'ready');
+                document.getElementById('installation-status').innerHTML = 
+                    '<span class="success">کتابخانه PerSent با موفقیت نصب و تست شد. اکنون می‌توانید کدها را اجرا کنید.</span>';
+                
+                // فعال کردن دکمه‌ها
+                document.getElementById('run-comment').disabled = false;
+                document.getElementById('run-sentiment').disabled = false;
+                
+                isPyodideReady = true;
+                
+            } catch (error) {
+                console.error('خطا در تست کتابخانه PerSent:', error);
+                throw new Error('کتابخانه PerSent نصب شده اما قابل استفاده نیست: ' + error.message);
+            }
+        }
+
+        // تابع برای نصب مجدد PerSent
+        async function reinstallPerSent() {
+            document.getElementById('installation-status').innerHTML = 
+                '<span class="loading">در حال تلاش مجدد برای نصب...</span>';
+            await installPerSent();
         }
 
         // تابع برای اجرای کد پایتون و گرفتن خروجی
@@ -480,7 +539,8 @@ for emotion, score in sorted(result.items(), key=lambda x: x[1], reverse=True):
 
             try {
                 // جایگزینی متن ورودی در کد
-                const finalCode = code.replace(/متن ورودی کاربر/g, inputText);
+                const escapedInput = inputText.replace(/"/g, '\\"');
+                const finalCode = code.replace(/متن ورودی کاربر/g, escapedInput);
                 
                 // تنظیم تابع برای گرفتن خروجی
                 let output = '';
