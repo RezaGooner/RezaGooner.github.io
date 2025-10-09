@@ -10,57 +10,82 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
+    <!-- فونت‌های فارسی -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    
+    <!-- فونت‌های انگلیسی -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- فونت‌های روسی -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* استایل‌های قبلی شما */
-        @font-face {
-            font-family: 'IRANSansWeb(FaNum)';
-            src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
-                url('fonts/IRANSansWeb(FaNum).woff') format('woff'),
-                url('fonts/IRANSansWeb(FaNum).ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
+        /* استایل‌های اصلی */
+        :root {
+            --primary-color: #1a2a6c;
+            --secondary-color: #2a3a7c;
+            --accent-color: #ffd700;
+            --text-color: #333;
+            --light-bg: #f5f7fa;
+            --white: #fff;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 5px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        @font-face {
-            font-family: 'IRANSansWeb(FaNum)';
-            src: url('fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
-                url('fonts/IRANSansWeb(FaNum).woff') format('woff'),
-                url('fonts/IRANSansWeb(FaNum).ttf') format('truetype');
+        /* فونت‌های فارسی */
+        .lang-fa {
+            font-family: 'Vazir', 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
+        }
+        
+        .lang-fa h1, 
+        .lang-fa h2, 
+        .lang-fa h3, 
+        .lang-fa h4, 
+        .lang-fa h5, 
+        .lang-fa h6 {
+            font-family: 'Vazir', 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
+        }
+
+        /* فونت‌های انگلیسی */
+        .lang-en {
+            font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif !important;
+        }
+        
+        .lang-en h1, 
+        .lang-en h2, 
+        .lang-en h3, 
+        .lang-en h4, 
+        .lang-en h5, 
+        .lang-en h6 {
+            font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif !important;
             font-weight: 700;
-            font-style: normal;
         }
 
-        @font-face {
-            font-family: 'B Titr';
-            src: url('fonts/BTitr.woff2') format('woff2'),
-                 url('fonts/BTitr.woff') format('woff'),
-                 url('fonts/BTitr.ttf') format('truetype');
-            font-weight: bold;
-            font-style: normal;
+        /* فونت‌های روسی */
+        .lang-ru {
+            font-family: 'Roboto', 'Inter', 'Segoe UI', Tahoma, sans-serif !important;
         }
-
-        /* اعمال فونت به کل سایت */
-        html, body, * {
-            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
-        }
-
-        /* اعمال فونت B Titr برای تیترها */
-        h1, h2, h3, h4, h5, h6,
-        header h1,
-        header p,
-        .project-card h3,
-        .cert-category h3 {
-            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif !important;
+        
+        .lang-ru h1, 
+        .lang-ru h2, 
+        .lang-ru h3, 
+        .lang-ru h4, 
+        .lang-ru h5, 
+        .lang-ru h6 {
+            font-family: 'Roboto', 'Inter', 'Segoe UI', Tahoma, sans-serif !important;
+            font-weight: 700;
         }
 
         /* استایل کلی */
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ee 100%);
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e4e8ee 100%);
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            color: #333;
-            transition: all 0.3s ease;
+            color: var(--text-color);
+            transition: var(--transition);
+            overflow-x: hidden;
         }
 
         /* دکمه تغییر زبان */
@@ -71,29 +96,46 @@
             z-index: 1000;
             display: flex;
             gap: 10px;
+            animation: fadeInDown 0.8s ease;
         }
         
         .lang-btn {
-            background: linear-gradient(135deg, #1a2a6c, #2a3a7c);
-            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
             border: none;
-            border-radius: 6px;
+            border-radius: 25px;
             padding: 8px 16px;
             cursor: pointer;
-            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
             font-weight: bold;
-            transition: all 0.3s;
+            transition: var(--transition);
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .lang-btn:hover::before {
+            left: 100%;
         }
         
         .lang-btn:hover {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            background: linear-gradient(135deg, var(--accent-color), #ffed4e);
             color: #222;
             transform: scale(1.05);
         }
         
         .lang-btn.active {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            background: linear-gradient(135deg, var(--accent-color), #ffed4e);
             color: #222;
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
         }
@@ -104,8 +146,8 @@
             top: 20px;
             right: 20px;
             z-index: 1000;
-            background: linear-gradient(135deg, #1a2a6c, #2a3a7c);
-            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
             border: none;
             border-radius: 50%;
             width: 50px;
@@ -114,30 +156,32 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             font-size: 1.5em;
+            animation: fadeInDown 0.8s ease;
         }
         
         .menu-toggle:hover {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            background: linear-gradient(135deg, var(--accent-color), #ffed4e);
             color: #222;
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(90deg);
         }
 
         /* منوی کناری */
         .sidebar {
             position: fixed;
             top: 0;
-            right: -300px;
+            right: -320px;
             width: 300px;
             height: 100%;
-            background: linear-gradient(to bottom, #1a2a6c, #2a3a7c, #3a4a8c);
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color), #3a4a8c);
             box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-            transition: all 0.4s ease;
+            transition: var(--transition);
             z-index: 999;
             overflow-y: auto;
             padding: 20px 0;
+            border-radius: 0 0 0 20px;
         }
         
         .sidebar.active {
@@ -154,7 +198,7 @@
             z-index: 998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
         
         .sidebar-overlay.active {
@@ -170,7 +214,7 @@
         }
         
         .sidebar-header h2 {
-            color: white;
+            color: var(--white);
             margin: 0;
             font-size: 1.5em;
         }
@@ -181,25 +225,46 @@
         }
         
         .sidebar-nav a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
             padding: 15px 25px;
-            transition: all 0.3s;
+            transition: var(--transition);
             border-right: 3px solid transparent;
             font-weight: 500;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sidebar-nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transition: right 0.3s;
+        }
+        
+        .sidebar-nav a:hover::before {
+            right: 0;
         }
         
         .sidebar-nav a:hover {
-            background: rgba(255,255,255,0.1);
-            border-right: 3px solid #ffd700;
+            border-right: 3px solid var(--accent-color);
             padding-right: 30px;
         }
         
         .sidebar-nav a i {
             margin-left: 10px;
             font-size: 1.2em;
+            z-index: 1;
+        }
+        
+        .sidebar-nav a span {
+            z-index: 1;
         }
         
         .sidebar-dropdown {
@@ -210,6 +275,7 @@
             display: none;
             background: rgba(0,0,0,0.2);
             padding-right: 20px;
+            animation: slideDown 0.3s ease;
         }
         
         .sidebar-dropdown-content a {
@@ -239,13 +305,14 @@
 
         /* هدر */
         header {
-            background: linear-gradient(135deg, #1a2a6c, #2a3a7c, #3a4a8c);
-            color: #fff;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), #3a4a8c);
+            color: var(--white);
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1s ease;
         }
         
         header::before {
@@ -266,6 +333,7 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             position: relative;
             letter-spacing: 1px;
+            animation: fadeInUp 0.8s ease;
         }
         
         header p {
@@ -276,6 +344,7 @@
             max-width: 600px;
             margin-right: auto;
             margin-left: auto;
+            animation: fadeInUp 1s ease;
         }
 
         /* بخش اصلی */
@@ -288,28 +357,37 @@
 
         /* بخش عمومی */
         section {
-            background: #fff;
+            background: var(--white);
             padding: 30px;
             margin-bottom: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             border: 1px solid #f0f0f0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
         
         h2 {
-            color: #1a2a6c;
-            border-bottom: 3px solid #ffd700;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
             padding-bottom: 12px;
             margin-bottom: 25px;
             font-size: 1.8em;
             font-weight: bold;
             position: relative;
+            overflow: hidden;
         }
         
         h2::after {
@@ -319,7 +397,7 @@
             right: 0;
             width: 100px;
             height: 3px;
-            background: linear-gradient(to right, #ffd700, transparent);
+            background: linear-gradient(to right, var(--accent-color), transparent);
         }
 
         /* لیست داخلی */
@@ -334,9 +412,10 @@
             padding: 15px 20px;
             border-radius: 8px;
             border: 1px solid #e9ecef;
-            transition: all 0.3s;
+            transition: var(--transition);
             position: relative;
             padding-right: 50px;
+            overflow: hidden;
         }
         
         ul li::before {
@@ -345,7 +424,7 @@
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            color: #ffd700;
+            color: var(--accent-color);
         }
         
         ul li:hover {
@@ -362,15 +441,24 @@
         }
         
         .skill-item {
-            background: linear-gradient(to bottom right, #f8f9fa, #ffffff);
+            background: linear-gradient(to bottom right, #f8f9fa, var(--white));
             border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 20px;
-            transition: all 0.3s;
+            transition: var(--transition);
             text-align: center;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
         }
+        
+        .skill-item:nth-child(1) { animation-delay: 0.1s; }
+        .skill-item:nth-child(2) { animation-delay: 0.2s; }
+        .skill-item:nth-child(3) { animation-delay: 0.3s; }
+        .skill-item:nth-child(4) { animation-delay: 0.4s; }
+        .skill-item:nth-child(5) { animation-delay: 0.5s; }
         
         .skill-item::before {
             content: '';
@@ -379,17 +467,17 @@
             right: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(to right, #1a2a6c, #ffd700);
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
         }
         
         .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-hover);
         }
         
         .skill-item h3 {
             margin-top: 0;
-            color: #1a2a6c;
+            color: var(--primary-color);
             font-size: 1.3em;
             font-weight: bold;
             margin-bottom: 10px;
@@ -404,13 +492,25 @@
         /* بخش گواهی‌ها با اسکرول افقی */
         .cert-category {
             margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
         }
         
+        .cert-category:nth-child(1) { animation-delay: 0.1s; }
+        .cert-category:nth-child(2) { animation-delay: 0.2s; }
+        .cert-category:nth-child(3) { animation-delay: 0.3s; }
+        .cert-category:nth-child(4) { animation-delay: 0.4s; }
+        .cert-category:nth-child(5) { animation-delay: 0.5s; }
+        .cert-category:nth-child(6) { animation-delay: 0.6s; }
+        .cert-category:nth-child(7) { animation-delay: 0.7s; }
+        .cert-category:nth-child(8) { animation-delay: 0.8s; }
+        
         .cert-category h3 {
-            border-bottom: 2px solid #ffd700;
+            border-bottom: 2px solid var(--accent-color);
             padding-bottom: 8px;
             margin-bottom: 20px;
-            color: #1a2a6c;
+            color: var(--primary-color);
             font-size: 1.5em;
             font-weight: bold;
         }
@@ -438,18 +538,29 @@
         
         .cert-card {
             flex: 0 0 240px;
-            background: #fff;
+            background: var(--white);
             border: 1px solid #e0e0e0;
             border-radius: 10px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s ease-in-out;
+            transition: var(--transition);
             overflow: hidden;
+            opacity: 0;
+            transform: translateX(20px);
+            animation: fadeInRight 0.6s ease forwards;
         }
+        
+        .cert-card:nth-child(1) { animation-delay: 0.1s; }
+        .cert-card:nth-child(2) { animation-delay: 0.2s; }
+        .cert-card:nth-child(3) { animation-delay: 0.3s; }
+        .cert-card:nth-child(4) { animation-delay: 0.4s; }
+        .cert-card:nth-child(5) { animation-delay: 0.5s; }
+        .cert-card:nth-child(6) { animation-delay: 0.6s; }
+        .cert-card:nth-child(7) { animation-delay: 0.7s; }
         
         .cert-card:hover {
             transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: var(--shadow-hover);
         }
         
         .cert-card img {
@@ -458,6 +569,11 @@
             object-fit: cover;
             display: block;
             border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+        
+        .cert-card:hover img {
+            transform: scale(1.05);
         }
         
         .cert-card p {
@@ -476,18 +592,26 @@
         }
         
         .project-card {
-            background: linear-gradient(to bottom right, #f8f9fa, #ffffff);
+            background: linear-gradient(to bottom right, #f8f9fa, var(--white));
             border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 25px;
-            transition: all 0.4s ease;
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
             height: 100%;
             box-sizing: border-box;
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
         }
+        
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
         
         .project-card::before {
             content: '';
@@ -496,18 +620,18 @@
             right: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(to right, #1a2a6c, #ffd700);
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
         }
         
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-hover);
         }
         
         .project-card h3 {
             margin-top: 0;
-            color: #1a2a6c;
-            border-bottom: 2px solid #ffd700;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
             padding-bottom: 10px;
             font-size: 1.4em;
             font-weight: bold;
@@ -528,20 +652,37 @@
         .project-links a {
             display: inline-block;
             padding: 10px 20px;
-            background: linear-gradient(to right, #1a2a6c, #2a3a7c);
-            color: white;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--white);
             text-decoration: none;
             border-radius: 6px;
-            transition: all 0.3s;
+            transition: var(--transition);
             text-align: center;
             font-weight: 500;
             flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .project-links a:hover::before {
+            left: 100%;
         }
         
         .project-links a:hover {
-            background: linear-gradient(to right, #ffd700, #ffed4e);
+            background: linear-gradient(to right, var(--accent-color), #ffed4e);
             color: #222;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
         }
 
@@ -550,20 +691,36 @@
             display: inline-block;
             padding: 12px 25px;
             background: linear-gradient(to right, #ff6b6b, #ff8e8e);
-            color: white;
+            color: var(--white);
             text-decoration: none;
             border-radius: 6px;
-            transition: all 0.3s;
+            transition: var(--transition);
             text-align: center;
             font-weight: bold;
             margin-top: 15px;
-            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
             width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .persent-test-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .persent-test-btn:hover::before {
+            left: 100%;
         }
         
         .persent-test-btn:hover {
-            background: linear-gradient(to right, #ffd700, #ffed4e);
+            background: linear-gradient(to right, var(--accent-color), #ffed4e);
             color: #222;
             transform: translateY(-3px);
             box-shadow: 0 6px 18px rgba(255, 215, 0, 0.4);
@@ -577,16 +734,22 @@
         }
         
         .goal-item {
-            background: linear-gradient(to right, #f8f9fa, #ffffff);
+            background: linear-gradient(to right, #f8f9fa, var(--white));
             border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 25px;
-            transition: all 0.3s;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
         }
         
+        .goal-item:nth-child(1) { animation-delay: 0.1s; }
+        .goal-item:nth-child(2) { animation-delay: 0.2s; }
+        
         .goal-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
         
         .goal-header {
@@ -599,15 +762,14 @@
         .goal-title {
             font-size: 1.3em;
             font-weight: bold;
-            color: #1a2a6c;
-            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            color: var(--primary-color);
         }
         
         .goal-percentage {
             font-size: 1.2em;
             font-weight: bold;
-            color: #1a2a6c;
-            background: #ffd700;
+            color: var(--primary-color);
+            background: var(--accent-color);
             padding: 5px 12px;
             border-radius: 20px;
         }
@@ -624,10 +786,15 @@
         .progress-bar {
             height: 100%;
             border-radius: 10px;
-            background: linear-gradient(to right, #1a2a6c, #2a3a7c);
-            transition: width 1s ease-in-out;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: width 1.5s ease-in-out;
             position: relative;
             overflow: hidden;
+            width: 0;
+        }
+        
+        .progress-bar.animated {
+            width: var(--progress-width);
         }
         
         .progress-bar::after {
@@ -662,30 +829,31 @@
             position: fixed;
             bottom: 30px;
             left: 30px;
-            background: linear-gradient(135deg, #1a2a6c, #2a3a7c);
-            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
             border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             z-index: 1000;
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
             padding: 12px 25px;
             min-width: 150px;
-            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            animation: pulse 2s infinite;
         }
         
         .floating-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            background: linear-gradient(135deg, var(--accent-color), #ffed4e);
             color: #222;
             padding: 12px 30px;
+            animation: none;
         }
         
         .floating-btn::before {
@@ -702,12 +870,13 @@
             padding: 30px 20px;
             margin-top: 60px;
             box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease;
         }
         
         footer a {
-            color: #ffd700;
+            color: var(--accent-color);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
         
         footer a:hover {
@@ -730,7 +899,7 @@
         .form-group label {
             margin-bottom: 8px;
             font-weight: bold;
-            color: #1a2a6c;
+            color: var(--primary-color);
         }
         
         .form-group input,
@@ -738,18 +907,17 @@
             padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-family: 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
             font-size: 1em;
-            transition: all 0.3s;
+            transition: var(--transition);
             background: #f8f9fa;
         }
         
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #1a2a6c;
+            border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.1);
-            background: #fff;
+            background: var(--white);
         }
         
         .form-group textarea {
@@ -758,21 +926,37 @@
         }
         
         .submit-btn {
-            background: linear-gradient(to right, #1a2a6c, #2a3a7c);
-            color: white;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--white);
             border: none;
             border-radius: 8px;
             padding: 14px 25px;
             font-size: 1.1em;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'B Titr', 'IRANSansWeb(FaNum)', Tahoma, sans-serif;
+            transition: var(--transition);
             margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
         }
         
         .submit-btn:hover {
-            background: linear-gradient(to right, #ffd700, #ffed4e);
+            background: linear-gradient(to right, var(--accent-color), #ffed4e);
             color: #222;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
@@ -792,6 +976,7 @@
             text-align: center;
             font-weight: bold;
             display: none;
+            animation: fadeIn 0.5s ease;
         }
         
         .form-message.success {
@@ -806,6 +991,68 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
             display: block;
+        }
+
+        /* انیمیشن‌های جدید */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from { 
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(26, 42, 108, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(26, 42, 108, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(26, 42, 108, 0);
+            }
         }
 
         /* ریسپانسیو */
@@ -894,7 +1141,7 @@
     </style>
 </head>
 
-<body>
+<body class="lang-fa">
     <!-- دکمه‌های تغییر زبان -->
     <div class="language-switcher">
         <button class="lang-btn active" data-lang="fa">فارسی</button>
@@ -912,23 +1159,23 @@
         </div>
         <div class="sidebar-nav">
             <a href="#about" data-translate="nav_about">
-                <i>👤</i> معرفی
+                <i>👤</i> <span>معرفی</span>
             </a>
             <a href="#education" data-translate="nav_education">
-                <i>🎓</i> تحصیلات
+                <i>🎓</i> <span>تحصیلات</span>
             </a>
             <a href="#experience" data-translate="nav_experience">
-                <i>💼</i> سوابق شغلی
+                <i>💼</i> <span>سوابق شغلی</span>
             </a>
             <a href="#skills" data-translate="nav_skills">
-                <i>🛠️</i> مهارت‌ها
+                <i>🛠️</i> <span>مهارت‌ها</span>
             </a>
             <a href="#activities" data-translate="nav_activities">
-                <i>🌟</i> فعالیت‌ها
+                <i>🌟</i> <span>فعالیت‌ها</span>
             </a>
             <div class="sidebar-dropdown">
                 <a href="#certificates" class="sidebar-dropdown-toggle" data-translate="nav_certificates">
-                    <span><i>🏆</i> گواهی‌ها</span>
+                    <span><i>🏆</i> <span>گواهی‌ها</span></span>
                 </a>
                 <div class="sidebar-dropdown-content">
                     <a href="#algorithms-certificates" data-translate="nav_algorithms">Algorithms</a>
@@ -942,13 +1189,13 @@
                 </div>
             </div>
             <a href="#projects" data-translate="nav_projects">
-                <i>💻</i> نمونه‌کارها
+                <i>💻</i> <span>نمونه‌کارها</span>
             </a>
             <a href="#goals" data-translate="nav_goals">
-                <i>🎯</i> اهداف پیش رو
+                <i>🎯</i> <span>اهداف پیش رو</span>
             </a>
             <a href="#contact" data-translate="nav_contact">
-                <i>📞</i> ارتباط
+                <i>📞</i> <span>ارتباط</span>
             </a>
         </div>
     </div>
@@ -1320,7 +1567,7 @@
                         <div class="goal-percentage">40%</div>
                     </div>
                     <div class="progress-container">
-                        <div class="progress-bar" style="width: 40%"></div>
+                        <div class="progress-bar" data-progress="40"></div>
                     </div>
                     <div class="goal-description" data-translate="goal1_description">
                         در حال تحقیق و نگارش مقاله علمی در حوزه پردازش زبان فارسی.
@@ -1333,7 +1580,7 @@
                         <div class="goal-percentage">35%</div>
                     </div>
                     <div class="progress-container">
-                        <div class="progress-bar" style="width: 35%"></div>
+                        <div class="progress-bar" data-progress="35"></div>
                     </div>
                     <div class="goal-description" data-translate="goal2_description">
                         توسعه سیستم هوشمند تحلیل ترافیک با قابلیت‌های شمارش وسایل نقلیه و خواندن پلاک، تشخیص تخلفات رانندگی، و بهینه‌سازی جریان ترافیک با استفاده از تکنیک‌های پیشرفته بینایی کامپیوتر.
@@ -1398,17 +1645,18 @@
             sidebarOverlay.classList.remove('active');
         });
 
-        // مدیریت منوهای کشویی
+        // مدیریت منوهای کشویی - رفع مشکل بسته شدن منو
         dropdowns.forEach(dropdown => {
             const toggle = dropdown.querySelector('.sidebar-dropdown-toggle');
             toggle.addEventListener('click', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 dropdown.classList.toggle('active');
             });
         });
 
-        // بستن منو هنگام کلیک روی لینک‌ها
-        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        // بستن منو هنگام کلیک روی لینک‌ها (به جز لینک‌های کشویی)
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a:not(.sidebar-dropdown-toggle)');
         sidebarLinks.forEach(link => {
             link.addEventListener('click', () => {
                 sidebar.classList.remove('active');
@@ -1416,11 +1664,11 @@
             });
         });
 
-        // داده‌های ترجمه
+        // داده‌های ترجمه با بهبود‌ها
         const translations = {
             fa: {
                 menu_title: "منو",
-                name: "Reza Asadi",
+                name: "رضا اسدی",
                 title: "دانشجوی مهندسی کامپیوتر | علاقه‌مند به هوش مصنوعی و یادگیری ماشین",
                 nav_about: "معرفی",
                 nav_education: "تحصیلات",
@@ -1428,13 +1676,13 @@
                 nav_skills: "مهارت‌ها",
                 nav_activities: "فعالیت‌ها",
                 nav_certificates: "گواهی‌ها",
-                nav_algorithms: "Algorithms",
-                nav_data_science: "Data Science",
-                nav_ai_ml: "AI & Machine Learning",
-                nav_nlp_llm: "NLP & LLM",
-                nav_deep_learning: "Deep Learning",
-                nav_computer_vision: "Computer Vision",
-                nav_reinforcement_learning: "Reinforcement Learning",
+                nav_algorithms: "الگوریتم‌ها",
+                nav_data_science: "علم داده",
+                nav_ai_ml: "هوش مصنوعی و یادگیری ماشین",
+                nav_nlp_llm: "پردازش زبان و مدل‌های بزرگ",
+                nav_deep_learning: "یادگیری عمیق",
+                nav_computer_vision: "بینایی کامپیوتر",
+                nav_reinforcement_learning: "یادگیری تقویتی",
                 nav_git: "Git",
                 nav_projects: "نمونه‌کارها",
                 nav_goals: "اهداف پیش رو",
@@ -1467,37 +1715,37 @@
                 activity_item4: "سابقه تدریس پایتون و یادگیری ماشین",
                 activity_item5: "معاونت انجمن کامپیوتر یاسوج",
                 certificates_title: "گواهی‌ها و افتخارات",
-                cert_algorithms1: "ICPC 2024 – Tehran Site, Rank 35",
-                cert_algorithms2: "Data Structures Design – PERFECT Grade",
-                cert_data_science1: "Data Analysis with Python – VERY GOOD Grade",
-                cert_data_science2: "Data Visualization",
+                cert_algorithms1: "ICPC 2024 – تهران، رتبه 35",
+                cert_algorithms2: "طراحی ساختار داده‌ها – نمره عالی",
+                cert_data_science1: "تحلیل داده با پایتون – نمره خیلی خوب",
+                cert_data_science2: "تجسم داده‌ها",
                 cert_data_science3: "Pandas",
-                cert_data_science4: "Feature Engineering",
-                cert_data_science5: "Data Cleaning",
-                cert_data_science6: "Time Series",
-                cert_ai_ml1: "Generative AI",
-                cert_ai_ml2: "Mastering Machine Learning",
-                cert_ai_ml3: "Python Libraries for ML & DL",
-                cert_ai_ml4: "Intro to Machine Learning",
-                cert_ai_ml5: "Intermediate Machine Learning",
-                cert_ai_ml6: "Machine Learning Explainability",
-                cert_ai_ml7: "Machine Learning",
-                cert_nlp_llm1: "Natural Language Processing – PERFECT Grade",
-                cert_nlp_llm2: "Large Language Models – PERFECT Grade",
-                cert_deep_learning1: "Deep Learning – VERY GOOD Grade",
-                cert_deep_learning2: "Deep Learning Fundamentals",
-                cert_deep_learning3: "Intro to Deep Learning",
-                cert_computer_vision1: "Professional Image Processing – VERY GOOD Grade",
-                cert_computer_vision2: "Object Detection",
-                cert_computer_vision3: "Computer Vision",
-                cert_computer_vision4: "Computer Vision",
-                cert_computer_vision5: "Deep Learning for Object Detection and Recognition",
-                cert_computer_vision6: "Machine Vision and Image Processing with OpenCV",
-                cert_computer_vision7: "OPENCV BOOTCAMP",
-                cert_reinforcement_learning1: "Advanced Techniques for Reinforcement Learning",
-                cert_reinforcement_learning2: "Deep Reinforcement Learning with DQN",
-                cert_reinforcement_learning3: "Intro to Game AI and Reinforcement Learning",
-                cert_git1: "Mastering Git, GitHub and GitLab",
+                cert_data_science4: "مهندسی ویژگی",
+                cert_data_science5: "پاکسازی داده",
+                cert_data_science6: "سری زمانی",
+                cert_ai_ml1: "هوش مصنوعی مولد",
+                cert_ai_ml2: "تسلط بر یادگیری ماشین",
+                cert_ai_ml3: "کتابخانه‌های پایتون برای ML و DL",
+                cert_ai_ml4: "مقدمه‌ای بر یادگیری ماشین",
+                cert_ai_ml5: "یادگیری ماشین متوسط",
+                cert_ai_ml6: "قابل تفسیر بودن یادگیری ماشین",
+                cert_ai_ml7: "یادگیری ماشین",
+                cert_nlp_llm1: "پردازش زبان طبیعی – نمره عالی",
+                cert_nlp_llm2: "مدل‌های زبان بزرگ – نمره عالی",
+                cert_deep_learning1: "یادگیری عمیق – نمره خیلی خوب",
+                cert_deep_learning2: "مبانی یادگیری عمیق",
+                cert_deep_learning3: "مقدمه‌ای بر یادگیری عمیق",
+                cert_computer_vision1: "پردازش تصویر حرفه‌ای – نمره خیلی خوب",
+                cert_computer_vision2: "تشخیص اشیاء",
+                cert_computer_vision3: "بینایی کامپیوتر",
+                cert_computer_vision4: "بینایی کامپیوتر",
+                cert_computer_vision5: "یادگیری عمیق برای تشخیص و شناسایی اشیاء",
+                cert_computer_vision6: "بینایی ماشین و پردازش تصویر با OpenCV",
+                cert_computer_vision7: "دوره آموزشی OPENCV",
+                cert_reinforcement_learning1: "تکنیک‌های پیشرفته یادگیری تقویتی",
+                cert_reinforcement_learning2: "یادگیری تقویتی عمیق با DQN",
+                cert_reinforcement_learning3: "مقدمه‌ای بر هوش مصنوعی بازی‌ها و یادگیری تقویتی",
+                cert_git1: "تسلط بر Git، GitHub و GitLab",
                 projects_title: "نمونه‌کارها در GitHub",
                 project1_title: "PerSent",
                 project1_description: "کتابخانه پایتون برای تحلیل و استخراج مفهوم زبان فارسی دارای توابع مختلف و مدل های آماده. این کتابخانه امکانات مختلفی برای پردازش متن فارسی از لحاظ احساسات هفتگانه یا مفهوم مثبت و منفی ارائه می‌دهد.",
@@ -1751,6 +1999,18 @@
                 }
             });
             
+            // تغییر کلاس body برای فونت و جهت
+            document.body.className = `lang-${lang}`;
+            
+            // تغییر جهت متن برای زبان‌های مختلف
+            if (lang === 'fa') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'fa';
+            } else if (lang === 'en' || lang === 'ru') {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = lang;
+            }
+            
             // تغییر متن‌ها
             document.querySelectorAll('[data-translate]').forEach(element => {
                 const key = element.getAttribute('data-translate');
@@ -1758,18 +2018,6 @@
                     element.textContent = translations[lang][key];
                 }
             });
-            
-            // تغییر جهت متن برای زبان‌های مختلف
-            if (lang === 'fa') {
-                document.documentElement.dir = 'rtl';
-                document.documentElement.lang = 'fa';
-            } else if (lang === 'en') {
-                document.documentElement.dir = 'ltr';
-                document.documentElement.lang = 'en';
-            } else if (lang === 'ru') {
-                document.documentElement.dir = 'ltr';
-                document.documentElement.lang = 'ru';
-            }
             
             // ذخیره زبان انتخاب شده
             localStorage.setItem('selectedLanguage', lang);
@@ -1790,14 +2038,13 @@
             // انیمیشن برای نوارهای پیشرفت
             const progressBars = document.querySelectorAll('.progress-bar');
             
-            progressBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0';
-                
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 300);
-            });
+            setTimeout(() => {
+                progressBars.forEach(bar => {
+                    const progress = bar.getAttribute('data-progress');
+                    bar.style.setProperty('--progress-width', `${progress}%`);
+                    bar.classList.add('animated');
+                });
+            }, 500);
             
             // مدیریت فرم تماس
             const contactForm = document.querySelector('.contact-form');
@@ -1805,6 +2052,8 @@
             const formMessage = document.getElementById('form-message');
             
             contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
                 // غیرفعال کردن دکمه ارسال
                 submitBtn.disabled = true;
                 submitBtn.textContent = translations[savedLang].form_submit + '...';
@@ -1828,8 +2077,22 @@
                     }, 5000);
                 }, 1000);
             });
+            
+            // انیمیشن اسکرول برای بخش‌ها
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
         });
     </script>
 </body>
 </html>
-
